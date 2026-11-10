@@ -1,0 +1,90 @@
+\documentclass[EJP,preprint]{ejpecp}
+\usepackage{booktabs,array,caption,xcolor,xurl}
+\usepackage[shortlabels]{enumitem}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\CP}{\mathrm{CP}}
+\SHORTTITLE{The bias interval of the elephant random walk}
+\TITLE{The bias interval of the elephant random walk}
+\hypersetup{pdftitle={The bias interval of the elephant random walk},
+pdfauthor={Arjun Pemmasani}}
+\AUTHORS{Arjun Pemmasani\footnote{\raggedright Department of Mathematics, Harvey Mudd College,
+Claremont, CA 91711, USA. \mbox{\EMAIL{apemmasani@hmc.edu}}\newline
+ORCID \href{https://orcid.org/0009-0001-2776-6298}{0009-0001-2776-6298}.}}
+\KEYWORDS{elephant random walk; bimodality; shape transition; variation diminution; initial bias}
+\AMSSUBJ{60G50}
+\AMSSUBJSECONDARY{60F05; 60C05; 65G30}
+\ABSTRACT{Gu\'erin, Laulin, Raschel, and Simon conjectured that the
+initial biases giving the superdiffusive elephant random walk a
+bimodal limit law form an interval centered at one half, and they
+described the problem as challenging. We prove this. For every superdiffusive memory, strongly biased starts are
+unimodal, and the limit density has two local maxima exactly when
+the bias lies in a proper open interval. Outside it, including
+its endpoints, the density has a unique local maximum. The
+interval is nonempty exactly above a single memory threshold,
+numerically about $0.6688$, whose uniqueness follows from a
+positive-weight integral for the central curvature of the
+fair-start density. We control sign changes in the finite walk's
+first and second differences, including those created at the
+boundary, and pass them to the limit. The bias boundary is
+continuous and tends to zero at least quadratically fast as memory
+tends to one.}
+\begin{document}
+\raggedbottom
+\input{sec_intro.tex}
+\input{sec_shape_engine.tex}
+\input{sec_bulk_applications.tex}
+\input{sec_verify.tex}
+\input{sec_open.tex}
+
+\medskip
+\begin{acks}
+I thank Peter Kagey, whose Problem~131 of the Open Problem Collection
+\cite{kagey131} led to the crossing question, and Aidan Deshong for
+helpful conversations.
+\end{acks}
+
+\section*{Code and data}
+The repository
+\url{https://github.com/apemm/elephant-bias-interval/tree/v1.0}
+has the sources of this paper, the scripts that compute the numerical
+values in Remark~\ref{rem:numerics} with their interval certificates
+and records, and the Lean files. The file
+\nolinkurl{certificates/data/critical_constants_certificate.json}
+holds the enclosures of the constants.
+
+\appendix
+\input{app_modes.tex}
+\input{app_analytic_threshold.tex}
+\input{app_erw_signs.tex}
+\input{app_regularity.tex}
+
+\section*{Statement on AI use}
+I used two AI tools for this paper, with their contributions described here. Claude Opus 5.5
+(Anthropic, through Claude Code) ran literature searches, citation checks,
+and referee-style reviews, checked computations in the threshold and
+quartic-top proofs, and made final copy edits and link updates. The
+reviews informed the framing and the shortening of an earlier combined
+manuscript, and suggested proving without computation that the bias
+boundary is positive, that the transition is unique, and that the critical
+top is quartic. All proofs in the paper were written by me, and the aforementioned suggestions are the only Claude suggestions that led to a new proof or result. The Lean files and their coverage map in
+\nolinkurl{kagey-problems/problem131/lean/PaperD} were generated with
+Claude Opus 5.5 from my statements and proofs; I checked that they build
+and audited their axioms. GPT-6 Astra (OpenAI, through Codex) edited my
+drafts for grammar, concision, and consistent notation, checked the
+citations, and read the proofs for errors. It reported inconsistent
+notation, and it helped me close a gap, after the setup, in my first proof
+that $b_a>0$. Neither tool wrote a section of the paper. I read every cited
+source in full except Eisenberger (1964) and Robertson and Fryer (1969),
+which are cited only for results stated in their abstracts.
+Section~\ref{sec:verify} separates the written proofs, the formal proofs
+with their named classical hypotheses, and the numerical certificates.
+I take full responsibility for the paper, including its proofs and
+computations.
+
+\input{paperD_bibliography.tex}
+
+\end{document}

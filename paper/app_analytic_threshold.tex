@@ -1,0 +1,392 @@
+\section{An analytic proof of the transition}\label{app:analytic-threshold}
+
+Here we prove Theorem~\ref{thm:threshold}. The plan is to write the
+sign of the central curvature as a comparison between positive
+weights. We get the integral from the moment equation of Gu\'erin,
+Laulin, Raschel, and Simon~\cite[(15)]{glrs2025}.
+
+Put
+\begin{equation}\label{eq:an-H}
+ \chi_k=4^{-k}\binom{2k}{k},\qquad
+ H_a(y)=1-\sum_{k\ge1}\frac{\chi_k}{2ak-1}y^k.
+\end{equation}
+Note that $H_a$ is strictly decreasing on $[0,1)$, and $H_1(y)=\sqrt{1-y}$.
+When $a<1$ each subtracted coefficient gets bigger, so $H_a(1)<0$.
+(The series converges at $y=1$. Its coefficients are at most a
+constant times $\chi_k/(2k-1)$, and these sum to one.) Hence $H_a$
+has exactly one root $Y_a\in(0,1)$. Comparing coefficients, we also
+get
+\begin{equation}\label{eq:an-H-ode}
+ H_a(y)-2ayH_a'(y)=(1-y)^{-1/2}.
+\end{equation}
+We have $\partial_aH_a(y)>0$ for $y>0$ and $H_a'(Y_a)<0$. By the
+implicit function theorem, $Y_a$ is smooth and $Y_a'>0$.
+
+\begin{lemma}[a weighted formula for the central curvature]\label{lem:curvature-weight}
+For $1/2<a<1$,
+\begin{equation}\label{eq:an-curvature}
+ g_a''(0)=-\frac{1}{\pi\Gamma(3-3a)}
+ \int_0^{Y_a}y^{1/2}H_a(y)^{2-3a}
+             \bigl[1-(1+a)^2y\bigr]\,d y.
+\end{equation}
+The integral is absolutely convergent.
+\end{lemma}
+
+\begin{proof}
+We multiply the limit by an independent exponential power to cancel
+the gamma factors in its moments.
+Let $E$ be an independent exponential random variable of mean one
+and set $Z_a=E^a\mathcal L_a$. With the normalization of~\cite{glrs2025},
+\[
+ m_n=\frac{\Gamma(1+an)}{n!}\E \mathcal L_a^n,
+ \qquad m_0=m_1=1.
+\]
+The bound $0<m_n\le C_a^n$ follows from
+\cite[Lemma~2.10 and Corollary~2.14]{glr2026}. Applied to
+the even moments, it gives $\E\exp(\delta|Z_a|)<\infty$ for small
+$\delta>0$. Hence $M_a(z)=\E e^{zZ_a}$ is analytic on a strip
+about the imaginary axis. Compare its power series with the moment
+equation. We get
+\begin{equation}\label{eq:an-moment-ode}
+ M_a(z)+azM_a'(z)
+ =\frac{1+a}{2}M_a(z)^2
+  +\frac{1-a}{2}M_a(z)M_a(-z).
+\end{equation}
+first near zero, and then on the whole strip by analytic
+continuation. Write $M_a(it)=A(t)+iB(t)$. Then
+\begin{equation}\label{eq:an-AB}
+ atA'=A^2-A-aB^2,\qquad
+ atB'=((1+a)A-1)B.
+\end{equation}
+
+For $0<y<Y_a$ define
+\begin{equation}\label{eq:an-param}
+ t=\sqrt y\,H_a(y)^{-a},\qquad
+ A(t)=H_a(y)\sqrt{1-y},\qquad B(t)=H_a(y)\sqrt y.
+\end{equation}
+On the imaginary axis, this is the closed form of
+\cite[Proposition~3.2]{glrs2025}, with their $G(it)=i\sqrt y$
+and $(G(it)/(it))^{1/a}=H_a(y)$. We check the continuation directly
+from~\eqref{eq:an-AB}. As $y$ runs over $(0,Y_a)$, $t$ increases from
+zero to infinity, and by~\eqref{eq:an-H-ode}
+\[
+ \frac{1}{t}\frac{dt}{dy}
+ =\frac{1}{2yH_a(y)\sqrt{1-y}},
+\]
+Substituting, \eqref{eq:an-param} satisfies~\eqref{eq:an-AB}.
+Next, $H_a(0)=1$, so the analytic map $y\mapsto yH_a(y)^{-2a}$ has
+derivative one at zero. From $t^2=yH_a(y)^{-2a}$ we see that $y$ is
+analytic in $t^2$ near zero. Hence $A$ is even and analytic, and
+$B=tH_a(y)^{1+a}$ is odd and analytic, with $A(0)=1$ and $B'(0)=1$.
+These values fix both power series, because the coefficient
+recurrence has denominator $na-1$ for even $n\ge2$ and $na-a$ for
+odd $n\ge3$, and both are positive. So near zero the parametrization
+equals $M_a(it)$. By uniqueness for the ODE~\eqref{eq:an-AB} on
+$t>0$, they agree for all $t>0$.
+
+Write $f(t)=\operatorname{Re}\E e^{it\mathcal L_a}$. Exponential randomization gives
+\[
+ A(t)=\int_0^\infty e^{-v}f(tv^a)\,d v.
+\]
+We use the Fourier decay in Lemma~\ref{lem:analytic-density},
+which in particular makes every polynomial multiple of $f$
+integrable at infinity. For $0<\operatorname{Re}s<1/a$, absolute Fubini gives
+\begin{equation}\label{eq:an-mellin}
+ J(s):=\int_0^\infty t^{s-1}A(t)\,d t
+ =\Gamma(1-as)\mathcal F(s),\qquad
+ \mathcal F(s)=\int_0^\infty t^{s-1}f(t)\,d t.
+\end{equation}
+The function $\mathcal F$ is holomorphic on $\operatorname{Re}s>0$.
+The integral defining $J$ diverges at $s=3$, the value needed for curvature.
+Two integrations by parts give a convergent expression there.
+
+We send the root to zero before integrating by parts. Set $\theta=\arcsin\sqrt y$ and
+\[
+ u=F(\theta)=\sin^{-1/a}\theta\,H_a(\sin^2\theta),\qquad
+ w(u)=a\cos\theta\sin^{1/a}\theta.
+\]
+Here $\theta$ decreases from $\arcsin\sqrt{Y_a}$ to zero as
+$u$ increases from zero to infinity. From~\eqref{eq:an-H-ode},
+\[
+ F'(\theta)=-\frac1a\sin^{-1-1/a}\theta,\qquad t=u^{-a}.
+\]
+Changing variables in $J$ gives
+$J(s)=\int_0^\infty u^{-as}w(u)\,d u$.
+Since $F'(\arcsin\sqrt{Y_a})\ne0$, the function $w$ is smooth
+at zero. At infinity, $\theta\sim u^{-a}$, so its definition
+and the derivative formulas below give
+$w(u)=O(u^{-1})$, $w'(u)=O(u^{-2})$, and $w''(u)=O(u^{-3})$.
+For $0<\operatorname{Re}s<1/a$, the boundary terms therefore vanish twice,
+and~\eqref{eq:an-mellin} becomes
+\begin{equation}\label{eq:an-mellin-continued}
+ \mathcal F(s)=\frac{1}{\Gamma(3-as)}
+       \int_0^\infty u^{2-as}w''(u)\,d u.
+\end{equation}
+The right side is holomorphic on $0<\operatorname{Re}s<3/a$ by the bounds
+at infinity and boundedness of $w''$ at zero.
+Thus~\eqref{eq:an-mellin-continued} holds throughout this larger
+strip by the identity theorem, and $s=3$ is permitted.
+
+Differentiating through $u=F(\theta)$ gives
+\[
+ \begin{split}
+ w'(u)&=-a\sin^{2/a}\theta
+                  [1-(1+a)\sin^2\theta],\\
+ w''(u)&=2a\sin^{3/a}\theta\cos\theta
+                  [1-(1+a)^2\sin^2\theta].
+ \end{split}
+\]
+Insert the second expression in~\eqref{eq:an-mellin-continued}
+at $s=3$ and return to $y=\sin^2\theta$.
+The powers of $y$ reduce to $y^{1/2}$, giving the integral in
+\eqref{eq:an-curvature}. Fourier inversion supplies the factor
+$g_a''(0)=-\mathcal F(3)/\pi$.
+Finally, $H_a$ has a simple zero at $Y_a$, and $2-3a>-1$,
+so the endpoint singularity is integrable.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:threshold}]
+\emph{Signs outside a short interval.}
+
+Let $\mu_a$ be the probability law on $(0,Y_a)$ with density proportional to
+$y^{1/2}H_a(y)^{2-3a}$, and put
+\begin{equation}\label{eq:an-score}
+ \mathcal R(a)=(1+a)^2\int y\,d\mu_a(y).
+\end{equation}
+Lemma~\ref{lem:curvature-weight} says that $g_a''(0)$ has the sign
+of $\mathcal R(a)-1$.
+
+When $a\le2/3$, the extra weight $H_a^{2-3a}$ decreases in $y$.
+By Chebyshev's association inequality, it lowers the mean of the density proportional to
+$y^{1/2}$, giving $\int y\,d\mu_a(y)\le3Y_a/5$.
+At $a=2/3$, the first three terms of~\eqref{eq:an-H} give
+\[
+ H_{2/3}(3/5)
+ \le1-\frac9{10}-\frac{81}{1000}-\frac9{400}
+ =-\frac7{2000}<0.
+\]
+Since $Y_a$ increases, $Y_a\le Y_{2/3}<3/5$ for $a\le2/3$.
+Thus $\mathcal R(a)<(5/3)^2(3/5)^2=1$.
+
+When $a\ge2/3$, the extra weight increases, giving a mean of at least
+$3Y_a/5$. We need the bound
+$Y_{2/3}>117/200$. To prove it, note that $\chi_k$ decreases.
+At $y=117/200$, the terms with $k\ge4$ are at most
+\[
+ \sum_{k\ge4}\frac{\chi_ky^k}{4k/3-1}
+ \le\frac{\chi_4y^4}{(13/3)(1-y)}.
+\]
+Together with the first three terms this gives the exact bound
+\[
+ H_{2/3}(117/200)\ge\frac{929771}{135987200}>0.
+\]
+For every $a\ge69/100$, therefore,
+\[
+ \mathcal R(a)>
+ \left(\frac{169}{100}\right)^2\frac35\frac{117}{200}
+ =\frac{10024911}{10000000}>1.
+\]
+Any zero must lie between $2/3$ and $69/100$.
+
+\emph{A single crossing.}
+
+We now work on $I=[2/3,69/100]$. To compare densities on a fixed
+interval, rescale by $y=Y_au$, so $u$ always lies in $(0,1)$.
+We separate the endpoint zero by putting
+\begin{equation}\label{eq:an-weights}
+ w_k(a)=\frac{\chi_kY_a^k}{2ak-1},\qquad
+ K_a(u)=\frac{H_a(Y_au)}{1-u}
+       =\sum_{k\ge1}w_k(a)(1+u+\cdots+u^{k-1}).
+\end{equation}
+Since $\sum w_k=1$, we have $K_a\ge1$ and $\partial_uK_a\ge0$.
+Writing $s_a=3a-2\in[0,7/100]$, the rescaled measure has density
+proportional to
+\begin{equation}\label{eq:an-rescaled-weight}
+ W_a(u)=u^{1/2}(1-u)^{-s_a}K_a(u)^{-s_a}.
+\end{equation}
+To make the mean increase, we show that the score
+$\partial_a\log W_a(u)$ is strictly increasing in $u$ and use
+the covariance identity for the derivative of an expectation.
+
+First, $Y_a<2/3$ on $I$. The first three terms give
+\[
+ H_{69/100}(2/3)\le-\frac{9767}{7087608}<0,
+\]
+and $Y_a$ increases. So every series and derivative below converges
+uniformly on $I\times[0,1]$. The falling-factorial moments are
+\[
+ M_1=\sum k w_k,\qquad M_2=\sum k(k-1)w_k,\qquad
+ M_3=\sum k(k-1)(k-2)w_k.
+\]
+Let $G(y)=(1-y)^{-1/2}$. Evaluate~\eqref{eq:an-H-ode} and its first
+two derivatives at $Y=Y_a$. This gives
+\begin{equation}\label{eq:an-factorial-moments}
+ \begin{split}
+ 2aM_1&=G(Y),\\
+ 2aM_2&=YG'(Y)-(2a-1)M_1,\\
+ 2a(M_3+2M_2)&=Y^2G''(Y)+M_2.
+ \end{split}
+\end{equation}
+In particular,
+\begin{equation}\label{eq:an-Ku}
+ 0\le\partial_uK_a(u)\le\frac{M_2}{2}
+ \le\frac{YG'(Y)}{4a}
+ \le\frac{3\sqrt3}{8}<\frac{21}{32}.
+\end{equation}
+
+For the memory derivatives of the kernel, put $d_k=2k/(2ak-1)$. Differentiating $\sum w_k=1$ gives
+\begin{equation}\label{eq:an-root-derivative}
+ \frac{Y_a'}{Y_a}M_1=\sum d_kw_k\le6,
+ \qquad \frac{Y_a'}{Y_a}\le\frac{12a}{G(Y)}.
+\end{equation}
+Here $d_k$ decreases in $k$ and $d_1\le6$ on $I$.
+The logarithmic derivative $\partial_a\log w_k=kY_a'/Y_a-d_k$
+strictly increases in $k$. Since $1+u+\cdots+u^{k-1}$
+is nondecreasing in $k$, the covariance identity for
+derivatives of expectations gives $\partial_aK_a(u)\ge0$.
+The probability law here is formed by the $w_k$.
+
+In $\partial_a\partial_uK_a$, discard the negative term
+$-d_kw_k$ from $\partial_aw_k$, then bound the derivative
+of $1+u+\cdots+u^{k-1}$ by $k(k-1)/2$. Equations
+\eqref{eq:an-factorial-moments} and~\eqref{eq:an-root-derivative} give
+\begin{align}
+ \partial_a\partial_uK_a
+ &\le\frac{Y_a'}{Y_a}\frac{M_3+2M_2}{2}\notag\\
+ &\le3\left(\frac{M_2}{G(Y)}+
+                       \frac{Y^2G''(Y)}{G(Y)}\right)
+ \le3\left(\frac34+3\right)=\frac{45}{4}.
+ \label{eq:an-Kau}
+\end{align}
+The last bounds use
+$M_2/G(Y)\le Y/[4a(1-Y)]$ and
+$Y^2G''(Y)/G(Y)=3Y^2/[4(1-Y)^2]$.
+Since $K_a\ge1$, $\partial_aK_a\ge0$ and
+$\partial_uK_a\ge0$, we obtain
+\[
+ \partial_a\left(\frac{\partial_uK_a}{K_a}\right)
+ =\frac{\partial_a\partial_uK_a}{K_a}
+  -\frac{\partial_uK_a\,\partial_aK_a}{K_a^2}
+ \le\frac{45}{4}.
+\]
+In~\eqref{eq:an-rescaled-weight}, the endpoint term dominates the kernel
+terms, giving the strict bound
+\begin{align}
+ \partial_u\partial_a\log W_a(u)
+ &=\frac3{1-u}-3\frac{\partial_uK_a}{K_a}
+    -s_a\partial_a\left(\frac{\partial_uK_a}{K_a}\right)\notag\\
+ &\ge3-\frac{63}{32}-\frac7{100}\frac{45}{4}
+   =\frac{39}{160}>0.
+ \label{eq:an-increasing-score}
+\end{align}
+The score $\partial_a\log W_a$ is therefore strictly increasing
+in $u$. If $\nu_a$ denotes the normalized measure in
+\eqref{eq:an-rescaled-weight}, differentiation gives
+\[
+ \frac{d}{da}\int u\,d\nu_a(u)
+ =\operatorname{Cov}_{\nu_a}\bigl(u,\partial_a\log W_a(u)\bigr)>0.
+\]
+This is the strict form of Chebyshev's association inequality.
+Indeed, the covariance is
+one half the expectation of
+$(U-V)(S(U)-S(V))$ for independent $U,V\sim\nu_a$ and the
+strictly increasing score $S$. We may differentiate under the
+integral, because on this compact parameter interval the integrand
+is dominated by $C(1-u)^{-7/100}(1+|\log(1-u)|)$, which is integrable.
+
+It follows that
+\[
+ \mathcal R(a)=(1+a)^2Y_a\int u\,d\nu_a(u)
+\]
+has strictly positive derivative in the interior of $I$. By the signs
+at the ends of $I$ and the intermediate value theorem, $\mathcal R-1$
+has exactly one zero in $I$. We already know it has none outside $I$.
+Now rewrite~\eqref{eq:an-curvature} as
+\[
+ g_a''(0)=\frac{\mathcal Z_a}{\pi\Gamma(3-3a)}\,[\mathcal R(a)-1],
+ \qquad \mathcal Z_a=\int_0^{Y_a}y^{1/2}H_a(y)^{2-3a}\,d y>0.
+\]
+The same rescaling and domination show that the prefactor is
+continuously differentiable near the zero. At the zero
+$\mathcal R-1$ vanishes, so only $\mathcal R'$ contributes, and
+$\partial_ag_a''(0)=\mathcal Z_a\mathcal R'(a)/[\pi\Gamma(3-3a)]>0$.
+By Theorem~\ref{thm:two-modes}, $g_a$ is then unimodal for $a<a_*$
+and bimodal for $a>a_*$. For $a=a_*$ itself, let $a\uparrow a_*$. The
+inequality $g_a(x)\ge g_a(y)$ for $0\le x<y$ survives in the limit by
+joint continuity. So $g_{a_*}$ is nonincreasing on $[0,\infty)$, and
+since it is not constant on any interval, its only mode is zero.
+\end{proof}
+
+With the same bounds on $Y_a$ we can also get the sign of the
+fourth derivative.
+
+\begin{lemma}[the quartic sign]\label{lem:analytic-quartic}
+For $2/3\le a\le69/100$, we have $g_a^{(4)}(0)<0$.
+In particular, $B_*=-g_{a_*}^{(4)}(0)>0$.
+\end{lemma}
+
+\begin{proof}
+We integrate by parts once more in the Mellin calculation.
+With $u,w$ as in the proof of Lemma~\ref{lem:curvature-weight}, put
+\[
+ c_a=(1+a)^2,\qquad
+ P_a(y)=\frac3a(1-y)(1-c_ay)-y(1-c_ay)-2c_ay(1-y).
+\]
+Since $dy/du=-2ay^{1+1/(2a)}\sqrt{1-y}$, differentiation gives
+$w'''(u)=-2a^2y^{2/a}P_a(y)$.
+This derivative is bounded at zero and is $O(u^{-4})$ at infinity.
+The boundary terms vanish for $0<\operatorname{Re}s<3/a$, so
+\eqref{eq:an-mellin-continued} gives
+\[
+ \mathcal F(s)=-\frac1{\Gamma(4-as)}
+                \int_0^\infty u^{3-as}w'''(u)\,d u.
+\]
+The right side is holomorphic for $0<\operatorname{Re}s<4/a$.
+For $1/2<a<4/5$, we may therefore set $s=5$ and use
+$g_a^{(4)}(0)=\mathcal F(5)/\pi$ to obtain
+\begin{equation}\label{eq:an-fourth-derivative}
+ g_a^{(4)}(0)=\frac{a}{\pi\Gamma(4-5a)}
+ \int_0^{Y_a}y^{3/2}(1-y)^{-1/2}H_a(y)^{3-5a}P_a(y)\,d y.
+\end{equation}
+The integral converges absolutely because $H_a$ has a simple zero
+and $3-5a>-1$.
+
+Now let $a\in[2/3,69/100]$. The root bounds in the preceding proof
+give $1/2<Y_a<2/3$. For the coefficient comparison only, we use
+the larger interval $2/3\le a\le7/10$. Expanding $P_a$ gives, for $y\ge0$,
+\[
+ \begin{split}
+ P_a(y)&=\frac3a-\left(2a^2+7a+9+\frac6a\right)y
+                    +\left(3a^2+9a+9+\frac3a\right)y^2\\
+       &\le\frac92-23y+22y^2=:\widehat P(y).
+ \end{split}
+\]
+Here termwise lower bounds give
+$8/9+14/3+9+60/7=1457/63>23$ for the coefficient of $-y$,
+and termwise upper bounds give
+$147/100+63/10+9+9/2=2127/100<22$ for that of $y^2$.
+Since $\widehat P(0)>0$, $\widehat P(1/2)=-3/2$, and $\widehat P(2/3)=-19/18$,
+the quadratic $\widehat P$ has exactly one root $y_0$ in $(0,Y_a)$,
+with $\widehat P>0$ before it and $\widehat P<0$ after it. Integrating
+directly, for $1/2\le Y\le2/3$,
+\[
+ Y^{-5/2}\int_0^Y y^{3/2}\widehat P(y)\,d y
+ =\frac95-\frac{46}{7}Y+\frac{44}{9}Y^2
+ \le-\frac{83}{315}<0.
+\]
+The middle expression is convex in $Y$, so it suffices to check
+$Y=1/2$ and $Y=2/3$.
+
+The weight $\omega_a(y)=(1-y)^{-1/2}H_a(y)^{3-5a}$ is what remains,
+and it is positive and increasing on $(0,Y_a)$. Since $\widehat P$
+swaps signs only at $y_0$, we have
+$\omega_a(y)\widehat P(y)\le \omega_a(y_0)\widehat P(y)$ on the whole
+interval. Hence
+\[
+ \int_0^{Y_a}y^{3/2}\omega_a(y)P_a(y)\,d y
+ \le \omega_a(y_0)\int_0^{Y_a}y^{3/2}\widehat P(y)\,d y<0.
+\]
+On $[2/3,69/100]$ the prefactor in~\eqref{eq:an-fourth-derivative} is
+positive, and the lemma follows.
+\end{proof}
+

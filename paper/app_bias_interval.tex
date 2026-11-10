@@ -1,0 +1,184 @@
+\begin{proposition}[the dominant half]\label{prop:dominant-half}
+Under the hypotheses of Proposition~\ref{prop:all-bias-modes}, suppose
+$q\ge1/2$. Then $P_n(n-k)\le P_n(k)$ for $2k\ge n$, and the right half has
+no strict valley. That is,
+\[
+ P_n(j)\ge\min\{P_n(i),P_n(k)\}
+ \qquad\text{if }i<j<k\text{ and }2i+1\ge n.
+\]
+Equivalently, its first differences contain no negative value followed
+by a positive one. Reflection gives the corresponding left-half result
+when $q\le1/2$.
+\end{proposition}
+
+\begin{proof}
+Write the bias explicitly as $P_{n,q}$ and put
+\[
+ \Delta_n(k)=P_{n,q}(k)-P_{n,1-q}(k)
+       =P_{n,q}(k)-P_{n,q}(n-k).
+\]
+The forward equation gives
+$\Delta_{n+1}(k)=(1-r_n(k))\Delta_n(k)+r_n(k-1)\Delta_n(k-1)$.
+At $n=1$, $\Delta_1(1)=2q-1\ge0$. Suppose the assertion holds at
+length $n$. At a point strictly above the new center, both parents lie in
+the preceding upper half and both coefficients are nonnegative.
+At an integer center $\Delta_{n+1}(k)=0$ by reflection. Terms outside the
+support vanish. This proves the induction. In particular, the
+central first difference of an odd row is nonnegative.
+
+We now keep only the half favored by the start, namely the spatial
+indices $2k+1\ge t$ in $Z_t$. At $t=1$ its pattern is contained in $(+,-)$. The central entry is
+$2q-1\ge0$, followed by the future right boundary values
+$u_s(q)=-\ell_s(1-q)$. Since
+$1-q\le1/2$, their pattern is contained in $(+,-)$ by
+\eqref{eq:bias-edge-increments}. We now rule out a negative difference followed by a positive one,
+also among the future boundary entries. Suppose such a pair first
+appeared in the next row. Choose a same-sign parent for each entry.
+The preceding proof shows that the first parent comes before the second.
+The sole possible parent outside the previous half occurs at the new
+central difference of an odd row. That entry is nonnegative, so it
+cannot begin the forbidden pair. More explicitly, if a negative entry
+at index $i$ of row $t+1$ satisfies $2i+1\ge t+1$, then $2i>t$, so both its parents satisfy $2k+1\ge t$. A positive entry further
+right has its parents strictly after these, as before. By induction,
+no restricted augmented row contains the pair.
+A strict valley would contain such two adjacent differences by
+telescoping, which proves the claim.
+\end{proof}
+
+\subsection{A start with one step in each direction}
+
+\begin{lemma}[a balanced start]\label{lem:balanced-start}
+Fix the first two steps to be $+1,-1$. For $0\le a\le1$, the count
+law at each length $n\ge2$ is log-concave, with positive support
+$\{1,\ldots,n-1\}$. If $1/2<a<1$, its limiting density
+$f_a^{+-}$ is symmetric and log-concave, with
+$(f_a^{+-})'(t)<0$ for $t>0$.
+Consequently the density conditional on a positive first step satisfies
+\[
+ h_a'(t)>0\qquad(t<0).
+\]
+\end{lemma}
+
+\begin{proof}
+Starting with one step in each direction removes the boundary obstruction
+to the log-concavity induction of~\cite[Proposition~2.2]{glrs2025}.
+Write one update as
+$g_k=Af_k+Bf_{k-1}$, where
+\[
+ A=\frac{1+a}{2}-\frac{ak}{n},\qquad
+ B=\frac{1-a}{2}+\frac{a(k-1)}n,\qquad d=\frac an.
+\]
+For $u=f_{k-2}$, $v=f_{k-1}$, $w=f_k$, and $z=f_{k+1}$, expansion gives
+\begin{align*}
+ g_k^2-g_{k-1}g_{k+1}
+ &=(A^2-d^2)(w^2-vz)+(B^2-d^2)(v^2-uw)\\
+ &\quad +(A-d)(B-d)(wv-uz)+d^2(w-v)^2.
+\end{align*}
+For $2\le k\le n-1$ we have $A,B\ge d\ge0$.
+The preceding row is log-concave with interval support, so all
+three gaps are nonnegative. At the two boundaries one of the
+neighboring output masses is zero, and there is nothing to check. We
+start from the point mass at one and induct. The recurrence also
+shows the masses are strictly positive on the support.
+
+Now interpolate the lattice masses log-linearly. The result is
+log-concave. Its integral is within twice the largest atom of the
+step interpolation's, and the largest atom goes to zero because the
+limit law has a continuous density. So the limit is log-concave too.
+Splitting the walk into two subtrees gives
+\[
+ \mathcal L_a^{+-}\ \stackrel d=\ U^a\mathcal L_a'-(1-U)^a\mathcal L_a'',
+\]
+with independent copies and an independent uniform $U$.
+Symmetry is clear from this. Since $h_a>0$, also $f_a^{+-}>0$, and by
+the Fourier bound of Lemma~\ref{lem:analytic-density}, $f_a^{+-}$ is
+entire. Now $(\log f_a^{+-})'$ is nonincreasing and is zero at zero.
+Suppose it were also zero at some $t>0$. Then the density would be
+constant on $[0,t]$, which analyticity rules out. Hence
+$(f_a^{+-})'<0$ for $t>0$.
+
+Next take two positive initial steps. We claim the first differences
+are nonnegative on the negative half-line, and use induction from the
+point mass at count two. Each entry on the negative half-line has
+both parents in the lower half of the previous row. The one exception is the central
+difference of an odd row, and there reflection dominance gives the
+sign. The derivative limit of Lemma~\ref{lem:derivative-limits} then
+gives $(f_a^{++})'(t)\ge0$ for $t<0$.
+Finally
+$h_a=((1+a)/2)f_a^{++}+((1-a)/2)f_a^{+-}$.
+The second summand has strictly positive derivative there.
+\end{proof}
+
+Gu\'erin, Laulin, Raschel, and Simon prove positivity of the conditional
+mode for memory sufficiently close to one~\cite[Remark~2.1(a)]{glrs2025}.
+We need it for all $a\in(1/2,1)$, in the stronger form of a positive
+slope at zero.
+
+\begin{lemma}[the conditional mode is positive]\label{lem:positive-conditional-mode}
+For every $1/2<a<1$, we have $h_a'(0)>0$. In particular the unique
+conditional mode lies strictly to the right of zero.
+\end{lemma}
+
+\begin{proof}
+The idea is to bound the reflection difference from below by
+something that survives rescaling. Write $f_n(k)=\Prob_+(A_n=k)$ and,
+for $z\equiv n\pmod2$,
+$d_n(z)=f_n((n+z)/2)-f_n((n-z)/2)$.
+With a positive start, the reflection induction of
+Proposition~\ref{prop:dominant-half} is strict for $0<z\le n$. Indeed
+$d_1(1)=1$, and each noncentral entry of the upper half has a
+positive parent with a positive coefficient. The recurrence is
+\begin{gather*}
+ d_{n+1}(z)=\alpha_n(z)d_n(z+1)+\beta_n(z)d_n(z-1),\\
+ \alpha_n(z)=\frac12-\frac{a(z+1)}{2n},\qquad
+ \beta_n(z)=\frac12+\frac{a(z-1)}{2n}.
+\end{gather*}
+Fix $n_0>4a$. Divide by $z$ and multiply by
+$\prod_{j=n_0}^{n-1}(1-2a/j)^{-1}$. Call the new values $v_n(z)$.
+They satisfy a backward averaging equation, with weights
+\[
+ q_+=\frac{\alpha_n(z)(z+1)}{z(1-2a/n)},\qquad
+ q_-=\frac{\beta_n(z)(z-1)}{z(1-2a/n)}.
+\]
+In the band we use below, these weights are nonnegative and add up to
+one. At $z=1$ the parent $0$ gets weight zero. Let $z_n$ be the
+backward chain with these weights. Then
+\[
+ \E[z_n^2\mid z_{n+1}=z]
+ =\frac{n-4a}{n-2a}z^2+\frac{3n-4a}{n-2a}.
+\]
+With $\gamma_n=\Gamma(n-2a)/\Gamma(n-4a)\sim n^{2a}$, the process
+$Y_n=z_n^2/\gamma_n$ has backward drift
+$\delta_n=(3n-4a)/\{(n-2a)\gamma_n\}$. Note that
+$\sum_{n\ge n_0}\delta_n\to0$ as $n_0\to\infty$.
+
+Fix $R>0$. We start the chain at $z_N=1$ if $N$ is odd and at $z_N=2$
+if $N$ is even. We stop it at row $n_0$, or when it leaves the band
+$0<z/\sqrt{\gamma_n}\le R$. Since $\sqrt{\gamma_n}\sim n^a$ and $a<1$,
+we can take $n_0$ so large that $R\sqrt{\gamma_n}+1\le n$ for all
+$n\ge n_0$. Then every state in the band and its two parents lie in
+the support, and $\alpha_n(z),\beta_n(z)\ge0$ there. The chain uses the
+weights only at band states before it stops, so we need their
+nonnegativity only there. The chain moves by $\pm1$, and it can reach
+$0$ only from $z=1$, where the parent $0$ has weight zero. So it
+cannot leave the band through the bottom, and on leaving the band
+$Y>R^2$. Up to the stopping time, the mean of $Y$ is at most
+$z_N^2/\gamma_N+\sum_{n\ge n_0}\delta_n$. Taking $n_0$ and then $N$
+large, Markov's inequality shows that the chain leaves the band with
+probability below one half. Every stopped value of $v$ is positive,
+by the strict reflection induction. The band states of row $n_0$ are
+the finitely many $z$ with $0<z\le R\sqrt{\gamma_{n_0}}$, and at row
+$n_0$ the normalizing product is empty, so $v_{n_0}(z)=d_{n_0}(z)/z$.
+Their minimum $m_0>0$ depends only on $n_0$ and $R$, not on $N$. The
+chain stops in this row with probability above one half. Since
+stopping is bounded, $v_N(z_N)\ge m_0/2$. The
+product normalizer is a positive constant times $N^{2a}$ in the
+limit. Hence
+\[
+ \liminf_N N^{2a}\frac{d_N(z_N)}{z_N}>0.
+\]
+By Lemma~\ref{lem:derivative-limits} for the conditional start,
+the first differences converge, and this limit is $4h_a'(0)$. So
+$h_a'(0)>0$. Since $h_a$ is unimodal, its mode is to the right of
+zero.
+\end{proof}

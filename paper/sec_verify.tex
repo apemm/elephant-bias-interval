@@ -1,0 +1,12 @@
+\section{Computer assistance}\label{sec:verify}
+
+Every theorem, proposition, and lemma in this paper has a written proof
+that uses no computer. A computer gives only the values in
+Remark~\ref{rem:numerics}. The repository holds interval-arithmetic
+certificates for $a_*$ and for $C_*$, $B_*$, $H_*$, $K_*$, and $Q_*$,
+computed with Arb~\cite{johansson2017}, together with their records,
+inputs, and acceptance tests. The repository also holds Lean files.
+They verify all finite sign arguments and the analytic threshold proof,
+assuming the classical weak limit as a named hypothesis, and their
+coverage map lists the formal statement for each result. None of the
+paper's proofs relies on the certificates or on the Lean files.

@@ -1,0 +1,266 @@
+\section{Finite shape bounds}\label{sec:convex}
+
+This section proves the finite bounds behind
+Theorems~\ref{thm:main-limit} and~\ref{thm:two-modes}. For a fair
+start, Theorem~\ref{thm:five-blocks} shows that the second
+difference of the count law changes sign at most four times. For
+every initial bias, Proposition~\ref{prop:all-bias-modes} shows
+that the count law has at most two modal plateaus. The limit
+transfer is Lemma~\ref{lem:derivative-limits} in
+Appendix~\ref{app:modes}.
+
+We first treat second differences under a fair start. Let
+$0<\varepsilon<\frac12$, $a=1-2\varepsilon$, and $r_t(k)=\varepsilon+ak/t$. For $t\ge1$ and every integer $k$ we write
+$P_t(k)=\Prob(A_t=k)$, which is $0$ unless $0\le k\le t$, and
+\[
+ D_t(k)=P_t(k+1)-2P_t(k)+P_t(k-1).
+\]
+We also put $s_t=D_t(1)=P_t(0)-2P_t(1)+P_t(2)$ for $t\ge2$.
+
+\begin{lemma}[recurrence for the second difference]\label{lem:D-rec}
+For every $t\ge1$ and every integer $k$,
+\begin{align}
+ P_{t+1}(k)&=\bigl(1-r_t(k)\bigr)P_t(k)+r_t(k-1)\,P_t(k-1),\label{eq:P-rec}\\
+ D_{t+1}(k)&=\bigl(1-r_t(k+1)\bigr)D_t(k)+r_t(k-2)\,D_t(k-1).\label{eq:D-rec}
+\end{align}
+Also $P_t(k)=P_t(t-k)$ and $D_t(k)=D_t(t-k)$.
+\end{lemma}
+
+\begin{proof}
+Given $A_t=k$, the copied step is $+1$ with probability $k/t$, so step $t+1$
+is $+1$ with probability $(1-\varepsilon)\frac kt+\varepsilon(1-\frac
+kt)=r_t(k)$. This gives \eqref{eq:P-rec} for $0\le k\le t+1$. At $k=0$ and
+$k=t+1$, the extra term $r_t(-1)P_t(-1)$ or
+$(1-r_t(t+1))P_t(t+1)$ is $0$ because $P_t(-1)=P_t(t+1)=0$.
+Outside $0\le k\le t+1$ both sides are $0$.
+Under a fair start, $(X_i)$ and $(-X_i)$ have the same law, so
+$P_t(k)=P_t(t-k)$. Taking second differences gives the same for $D_t$.
+
+For \eqref{eq:D-rec}, take second differences in \eqref{eq:P-rec}.
+The affine identity $r_t(k+1)-r_t(k)=a/t$ gives
+\[
+ 2r_t(k+1)+r_t(k-2)=3r_t(k),\qquad
+ r_t(k+1)+2r_t(k-2)=3r_t(k-1),
+\]
+so the coefficients of $P_t(k)$ and $P_t(k-1)$ agree with the
+right side of~\eqref{eq:D-rec}. The outer two coefficients agree directly.
+\end{proof}
+
+Trinas and Valle~\cite[(2.2)]{tv2026} use \eqref{eq:P-rec}, the forward equation, for a superdiffusive local
+limit theorem. Their higher-difference
+recurrence~\cite[(4.10)]{tv2026} is the basis of a computer-certified
+study of log-concavity at fixed memory. We use \eqref{eq:D-rec} for a different
+purpose, to count sign changes. For $2\le k\le t-1$ its coefficients
+are positive. So new changes can only come in at the ends.
+Lemma~\ref{lem:interleave} shows that positive sums of neighbors never add a change
+(see~\cite{karlin1968,karlin1964} for the general theory).
+
+Let $z$ be a finite real list. Delete its zeros, replace each entry
+left by its sign, and merge equal neighbors. What remains is the
+sign pattern $\operatorname{sp}(z)$, an alternating list of signs. For
+two such lists we write $\sigma\preceq\tau$ if $\sigma$ is a subsequence of $\tau$. We put
+$\Pi_5=(+,-,+,-,+)$ and $\Pi_3=(+,-,+)$.
+
+\begin{lemma}[positive sums of neighbors]\label{lem:interleave}
+Let $\zeta=(\zeta_1,\dots,\zeta_n)$ be real, and let
+$\eta_i=A_i\zeta_i+B_i\zeta_{i+1}$ for $1\le i\le n-1$ with $A_i\ge0$ and
+$B_i\ge0$. Let $w=(\zeta_1,\eta_1,\zeta_2,\eta_2,\dots,\eta_{n-1},\zeta_n)$.
+Then $\operatorname{sp}(w)=\operatorname{sp}(\zeta)$ and
+$\operatorname{sp}(\eta)\preceq\operatorname{sp}(\zeta)$.
+\end{lemma}
+
+\begin{proof}
+Insert each $\eta_i$ between its two neighbors in $\zeta$. If $\eta_i=0$, the
+sign pattern does not change. If $\eta_i>0$, then $\zeta_i>0$ or
+$\zeta_{i+1}>0$, so $\eta_i$ is placed next to an entry of its own sign, and
+the pattern does not change. The same holds for $\eta_i<0$, proving the first claim.
+For the second, obtain $\eta$ from $w$ by deleting the entries
+$\zeta_i$. Deletion can only remove signs from the pattern.
+\end{proof}
+
+For the walk we apply Lemma~\ref{lem:interleave} to the augmented
+rows of Figure~\ref{fig:augmented-rows}, drawn there for first
+differences. Proposition~\ref{prop:all-bias-modes} treats the whole
+row and Proposition~\ref{prop:dominant-half} the half $2k+1\ge t$.
+
+\begin{figure}[ht]
+\centering
+\small
+\[
+\begin{array}{c@{\quad}c@{\quad}c}
+\underbrace{\ell_N,\ldots,\ell_{t+1}}_{\text{left boundary history}}&
+\underbrace{d_t(0),\ldots,d_t(t-1)}_{\text{active row}}&
+\underbrace{u_{t+1},\ldots,u_N}_{\text{right boundary history}}\\[9pt]
+&\downarrow\ \text{copy or sum adjacent entries}&\\[9pt]
+\ell_N,\ldots,\ell_{t+2}&
+\ell_{t+1},d_{t+1}(1),\ldots,d_{t+1}(t-1),u_{t+1}&
+u_{t+2},\ldots,u_N
+\end{array}
+\]
+\caption{One step of the augmented rows for a final length $N$, with
+$d_t(k)=P_t(k+1)-P_t(k)$, $\ell_t=d_t(0)$, and $u_t=d_t(t-1)$. The
+active row gains an entry and the histories on each side lose one.
+Each new end value was already in a history, so the bound for the
+previous row already counts its sign.}
+\label{fig:augmented-rows}
+\end{figure}
+
+\begin{lemma}[sign changes next to an end]\label{lem:level-one}
+For every $t_1\ge2$ we have $\operatorname{sp}(s_2,s_3,\dots,s_{t_1})\preceq\Pi_3$.
+\end{lemma}
+
+We prove this in Appendix~\ref{app:signs-level}.
+
+\begin{theorem}[at most five blocks]\label{thm:five-blocks}
+Let $N\ge3$ and $0<\varepsilon<\frac12$. Then
+\[
+ \operatorname{sp}\bigl(D_N(1),D_N(2),\dots,D_N(N-1)\bigr)\preceq(+,-,+,-,+).
+\]
+So the second difference of $P_N$ changes sign at most four times on
+$\{1,\dots,N-1\}$.
+\end{theorem}
+
+\begin{proof}
+For $3\le t\le N$, we retain the endpoint history in the list $\mathcal Z_t$
+\[
+ \mathcal Z_t=\bigl(s_N,s_{N-1},\dots,s_{t+1},\ s_t,D_t(2),D_t(3),\dots,D_t(t-2),s_t,\
+ s_{t+1},\dots,s_{N-1},s_N\bigr).
+\]
+It has $2N-t-1$ entries. Its middle part is
+$(D_t(1),D_t(2),\dots,D_t(t-1))$, because $D_t(t-1)=D_t(1)=s_t$ by symmetry.
+The list $\mathcal Z_3$ is $(s_N,\dots,s_4,s_3,s_3,s_4,\dots,s_N)$, and $\mathcal Z_N$ is the
+list in the statement.
+
+To apply Lemma~\ref{lem:interleave}, we check how
+$\mathcal Z_{t+1}$ is obtained from $\mathcal Z_t$ for $3\le t\le N-1$. The first $N-t$ entries of
+$\mathcal Z_{t+1}$ are $s_N,\dots,s_{t+1}$, and they are copies of the first $N-t$
+entries of $\mathcal Z_t$. So $A_i=1$ and $B_i=0$ there. The next $t-2$ entries are
+$D_{t+1}(j)$ for $2\le j\le t-1$. By \eqref{eq:D-rec},
+\[
+ D_{t+1}(j)=r_t(j-2)\,D_t(j-1)+\bigl(1-r_t(j+1)\bigr)D_t(j),
+\]
+and $D_t(j-1)$ and $D_t(j)$ are neighbors in the middle part of $\mathcal Z_t$, in the
+required order. The coefficients satisfy $r_t(j-2)\ge\varepsilon$ and
+$1-r_t(j+1)\ge1-\varepsilon-a=\varepsilon$, since $2\le j\le t-1$. The last
+$N-t$ entries of $\mathcal Z_{t+1}$ are $s_{t+1},\dots,s_N$, and each is a copy of the
+entry of $\mathcal Z_t$ one place to its right. So $A_i=0$ and $B_i=1$ there.
+
+By Lemma~\ref{lem:interleave},
+$\operatorname{sp}(\mathcal Z_N)\preceq\operatorname{sp}(\mathcal Z_{N-1})\preceq\dots\preceq\operatorname{sp}(\mathcal Z_3)$.
+By Lemma~\ref{lem:level-one} the sign pattern $p$ of $(s_3,\dots,s_N)$ is a
+subsequence of $\Pi_3$, so it is one of the lists $()$, $(+)$, $(-)$, $(+,-)$,
+$(-,+)$, and $(+,-,+)$. The sign pattern of $\mathcal Z_3$ is $p$ reversed, followed by
+$p$, with equal neighbors merged. In the six cases this is $()$, $(+)$, $(-)$,
+$(-,+,-)$, $(+,-,+)$, and $(+,-,+,-,+)$, and each is a subsequence of $\Pi_5$.
+\end{proof}
+
+\subsection{First differences for a biased start}\label{sec:biased-finite}
+
+\begin{proposition}[two modes for every initial bias]\label{prop:all-bias-modes}
+Let $0<\varepsilon<1$, let $q\in[0,1]$ be the probability that the first
+step is positive, and let $P_n(k)$ be the law of the number of positive
+steps after $n\ge1$ steps. Extend $P_n$ by zero outside $\{0,\ldots,n\}$.
+The first differences $d_n(k)=P_n(k+1)-P_n(k)$ satisfy
+\[
+ \operatorname{sp}\bigl(d_n(-1),d_n(0),\ldots,d_n(n)\bigr)
+ \preceq (+,-,+,-).
+\]
+In particular, $P_n$ has at most two modal plateaus, including endpoint
+modes. Moreover, there are no integers $i_0<\cdots<i_4$ for which
+\[
+ P_n(i_0)>P_n(i_1)<P_n(i_2)>P_n(i_3)<P_n(i_4).
+\]
+\end{proposition}
+
+\begin{proof}
+Put $a=1-2\varepsilon$ and $r_t(k)=\varepsilon+ak/t$. The forward equation
+is
+\[
+ P_{t+1}(k)=(1-r_t(k))P_t(k)+r_t(k-1)P_t(k-1),
+ \qquad P_1=(1-q,q).
+\]
+Subtracting adjacent equations gives
+\begin{equation}\label{eq:bias-first-diff}
+ d_{t+1}(k)=r_t(k-1)d_t(k-1)+(1-r_t(k+1))d_t(k),
+ \qquad 1\le k\le t-1.
+\end{equation}
+Both coefficients are at least $\min(\varepsilon,1-\varepsilon)>0$,
+since $r_t(j)$ is a convex combination of $\varepsilon$ and
+$1-\varepsilon$ for $0\le j\le t$. It remains to check the two ends.
+
+Suppose first that $q<1$. Since
+$P_t(0)=(1-q)(1-\varepsilon)^{t-1}>0$, define
+\[
+ \xi_t=\frac{P_t(1)}{P_t(0)},\qquad
+ b=\frac{1-2\varepsilon}{1-\varepsilon}<1,\qquad
+ A=\frac{\varepsilon}{1-\varepsilon}>0.
+\]
+The boundary equation gives
+\[
+ \xi_{t+1}=(1-b/t)\xi_t+A,\qquad \xi_1=\frac q{1-q}.
+\]
+Thus $\delta_t=\xi_{t+1}-\xi_t$ obeys
+\begin{equation}\label{eq:bias-edge-increments}
+ \delta_{t+1}=\frac{t-b}{t+1}\delta_t+\frac A{t+1}.
+\end{equation}
+Once an increment is nonnegative, every later increment is positive.
+Thus $\xi_t$ first decreases and then increases (either part may be empty). For $\ell_t=d_t(0)=P_t(0)(\xi_t-1)$ this proves
+\[
+ \operatorname{sp}(\ell_1,\ldots,\ell_N)\preceq(+,-,+).
+\]
+If $q\le1/2$, then $\xi_1\le1$ and the sharper bound is
+$\operatorname{sp}(\ell_1,\ldots,\ell_N)\preceq(-,+)$.
+In particular, a positive $\ell_i$ cannot be followed by a negative
+$\ell_j$. Zeros do not affect either conclusion.
+
+Write $u_t=d_t(t-1)$. Reflection of the walk gives
+$u_t(q)=-\ell_t(1-q)$ and
+$d_t^{(1-q)}(t-1-k)=-d_t^{(q)}(k)$.
+For $0<q\le1/2$, the right boundary history therefore has pattern
+contained in $(-,+,-)$. For $q=0$ it is nonpositive throughout. The conditional count is at
+most $t-1$, so $u_t=-P_t(t-1)\le0$.
+
+We put the values arriving at the boundary in an augmented row, since
+they are not controlled by the interior recurrence. Fix $N$ and, for
+$1\le t\le N$, form
+\[
+ Z_t=(\ell_N,\ldots,\ell_{t+1},
+       d_t(0),\ldots,d_t(t-1),
+       u_{t+1},\ldots,u_N).
+\]
+The left history is read backwards while the right is read forwards,
+so every endpoint that arrives was already in the previous augmented
+row and the recurrence ends up controlling the entire row.
+For $q\le1/2$, its first row is contained in $(+,-,+,-)$.
+We must also allow zeros at $\ell_1=u_1=2q-1$. Suppose $Z_1$
+contained four ordered signs $-,+,-,+$. If the second lay in the
+reversed left history, the first two would give
+a positive left edge followed in time by a negative one, which is
+impossible. Otherwise the last three lie in the right history and have
+signs $+,-,+$. For $q>0$, their reflected negatives give the forbidden pattern
+$(-,+,-)$ in the left history at bias $1-q$. For $q=0$, they contradict
+the nonpositive right history. This also covers $N=1$.
+
+Every entry of $Z_{t+1}$ is a nonnegative combination of adjacent entries
+of $Z_t$. The interior entries use \eqref{eq:bias-first-diff}. The two new
+boundary entries and the remaining future edge values are copied,
+with coefficients $(1,0)$ or $(0,1)$. To check the ordering, number the augmented entries from left to
+right. Output entry $i$ uses input entries $i$ and $i+1$, with a zero
+coefficient when copied. A nonzero output
+has a parent of the same sign. Two neighbors in the subsequence with
+opposite signs cannot share a parent, since one entry has only one
+sign. So the parent indices strictly increase. Pick parents like this
+for an alternating subsequence of the output. We get the same signs,
+in the same order, in the input.
+An update therefore cannot add an alternating pattern, so
+$\operatorname{sp}(Z_N)\preceq(+,-,+,-)$. Reflection and sign
+reversal preserve this pattern, proving the claim also for $q\ge1/2$,
+including $q=1$.
+
+Finally, extension by zero adds $d_N(-1)=P_N(0)\ge0$ on the left and $d_N(N)=-P_N(N)\le0$ on the right. Neither enlarges the pattern.
+Every modal plateau contributes a positive-to-negative change, so there
+are at most two. If the statement's last inequalities held, telescoping
+on each of their four intervals would give an adjacent difference
+of the same strict sign. These four differences would
+have signs $-,+,-,+$, a contradiction.
+\end{proof}

@@ -1,0 +1,38 @@
+\section{Signs at the first lattice point}\label{app:signs}
+
+\label{app:signs-level}
+We prove Lemma~\ref{lem:level-one}. Put $\xi_t=P_t(1)/P_t(0)$. By \eqref{eq:P-rec}, $P_{t+1}(0)=(1-\varepsilon)P_t(0)$
+and $P_{t+1}(1)=(1-\varepsilon-\frac at)P_t(1)+\varepsilon P_t(0)$. So
+\[
+ \xi_{t+1}-\xi_t=\frac1{1-\varepsilon}\Bigl(\varepsilon-\frac{a\xi_t}t\Bigr),
+ \qquad\xi_2=\frac{2\varepsilon}{1-\varepsilon}.
+\]
+We claim that $\xi_t<\varepsilon t/a$ for $t\ge2$. For $t=2$ this holds
+because $a<1-\varepsilon$. If it holds for $t$, then
+$0<\xi_{t+1}-\xi_t\le\frac\varepsilon{1-\varepsilon}<\frac\varepsilon a$,
+and it holds for $t+1$. So $\xi_t$ is strictly increasing for $t\ge2$, and
+$\xi_t<1$ whenever $t\le a/\varepsilon$.
+
+Now \eqref{eq:D-rec} with $k=1$, and $D_t(0)=P_t(1)-2P_t(0)$, give for $t\ge2$
+\[
+ s_{t+1}=\bigl(1-r_t(2)\bigr)s_t+\sigma_t,\qquad
+ \sigma_t=\Bigl(\varepsilon-\frac at\Bigr)(\xi_t-2)\,P_t(0).
+\]
+Here $1-r_t(2)\ge1-\varepsilon-a=\varepsilon>0$. If $t<a/\varepsilon$, both
+factors of $\sigma_t$ are negative and $\sigma_t>0$. If $t>a/\varepsilon$, the
+first factor is positive, and the second is first negative and then positive,
+because $\xi_t$ increases. So
+$\operatorname{sp}(\sigma_2,\sigma_3,\dots)\preceq\Pi_3$. To remove the positive multiplier, let
+$\Phi_t=\prod_{u=2}^{t-1}(1-r_u(2))>0$. Then
+\[
+ \frac{s_t}{\Phi_t}=s_2+\sum_{u=2}^{t-1}\frac{\sigma_u}{\Phi_{u+1}},\qquad
+ s_2=1-3\varepsilon .
+\]
+If $\varepsilon<\frac13$, the terms $s_2,\sigma_2,\sigma_3,\dots$ are first
+nonnegative, then nonpositive, then nonnegative. Their partial sums are
+nonnegative and nondecreasing in the first stretch, nonincreasing in the
+second, and nondecreasing in the third. So the sign pattern of the partial
+sums is a subsequence of $\Pi_3$. If $\varepsilon\ge\frac13$, then
+$a/\varepsilon\le1$, so the terms are first nonpositive and then nonnegative,
+and the sign pattern of the partial sums is a subsequence of $(-,+)$. This
+proves the claim. \qed

@@ -1,0 +1,44 @@
+\subsection{Derivative limits}\label{app:derivative-limits}
+
+For $r=0,1$ the bounds and the local limit below are in Trinas and
+Valle~\cite[Proposition~2.1 and Theorem~3.1]{tv2026}. We need every
+$r$, and a fixed initial history, so we give the proof.
+
+\begin{lemma}[derivative limits]\label{lem:derivative-limits}
+Fix $a\in(1/2,1)$ and a finite initial history. Extend $P_n$ by zero
+outside $\{0,\ldots,n\}$. Suppose the rescaled
+count law converges weakly to a law with smooth density $f$.
+For each fixed integer $r\ge0$, linearly interpolate
+\[
+ \frac{n^{(r+1)a}}{2^{r+1}}\nabla^rP_n(k)
+ \quad\hbox{at}\quad (2k-n-r)n^{-a},
+ \qquad \nabla P_n(k)=P_n(k)-P_n(k-1).
+\]
+These interpolants converge locally uniformly to $f^{(r)}$.
+\end{lemma}
+
+\begin{proof}
+Apply $\nabla^r$ to \eqref{eq:P-rec}. This gives
+\[
+ \nabla^rP_{n+1}(k)
+ =\left(\frac{1+a}{2}-\frac{ak}{n}\right)\nabla^rP_n(k)
+ +\left(\frac{1-a}{2}+\frac{a(k-r-1)}n\right)\nabla^rP_n(k-1).
+\]
+For large $n$ and $1\le k\le n+r$, both coefficients are nonnegative
+with sum $1-(r+1)a/n$. For $k=0$ and $k=n+r+1$ one term is zero and
+the other has coefficient $(1+a)/2<1-(r+1)a/n$. Hence
+$\sup_k|\nabla^rP_{n+1}(k)|\le(1-(r+1)a/n)\sup_k|\nabla^rP_n(k)|$,
+and iterating,
+\[
+ \sup_k|\nabla^rP_n(k)|\le C_{a,r}n^{-(r+1)a}.
+\]
+Using this at orders $r$ and $r+1$, the interpolants are uniformly
+bounded and uniformly Lipschitz. So every subsequence has a further
+subsequence that converges locally uniformly. To find the limit, sum
+by parts against a smooth function with compact support and use weak
+convergence. What comes out is the $r$th distributional derivative of
+the limit law. Note that the lattice spacing is $2n^{-a}$, and the
+normalization above is exactly its $-(r+1)$ power. Since $f$ is
+smooth, the distributional derivative is $f^{(r)}$. All subsequences
+have this same limit, and the lemma follows.
+\end{proof}

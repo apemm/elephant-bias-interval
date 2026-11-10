@@ -1,0 +1,28 @@
+\section{Derivative limits and the bias interval}\label{app:modes}
+
+\input{app_derivative_limits.tex}
+
+\subsection{Sign patterns}
+
+This part has the sign lemma behind
+Theorem~\ref{thm:two-modes}. Notation is as in
+Sections~\ref{sec:convex} and~\ref{sec:modes}.
+Deleting entries can only remove signs from a list's pattern. An alternating list $p$ satisfies
+$p\preceq q$ for every alternating list $q$ with the same first sign and at
+least as many entries.
+
+\begin{lemma}[pointwise limits]\label{lem:sp-limit}
+Let $v_n$ and $v$ be real functions on $\mathbb R$ with $v_n(y)\to v(y)$ for
+every $y$, and let $\Pi$ be an alternating list. If every $v_n$ has values at
+most $\Pi$, then so has $v$.
+\end{lemma}
+
+\begin{proof}
+Let $y_1<\dots<y_j$, and let $I$ be the set of indices $i$ with $v(y_i)\ne0$.
+For all large $n$, $v_n(y_i)$ has the sign of $v(y_i)$ for every $i\in I$.
+Then $\operatorname{sp}(v(y_1),\dots,v(y_j))$ is the pattern of the list
+$(v_n(y_i))_{i\in I}$, which is a subsequence of
+$\operatorname{sp}(v_n(y_1),\dots,v_n(y_j))\preceq\Pi$.
+\end{proof}
+
+\input{app_bias_interval.tex}
