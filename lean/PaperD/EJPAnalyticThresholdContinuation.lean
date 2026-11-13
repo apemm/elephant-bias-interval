@@ -18,8 +18,7 @@ all boundary terms, and cubic decay. The existing identity theorem then extends
 the Mellin formula to the larger strip containing `s = 3`.
 
 At `s = 3`, real-power and real-Gamma compatibility turn the continued complex
-integral into an absolutely convergent real integral. The previously derived
-Fourier curvature formula gives its exact coefficient. Neither a narrow-strip
+integral into an absolutely convergent real integral. The Fourier curvature formula gives its exact coefficient. Neither a narrow-strip
 identity nor a curvature formula is assumed.
 
 `curvature_integral_chartOfRoot` is the assembly interface. It needs only

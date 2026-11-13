@@ -8,7 +8,7 @@ import Mathlib.Tactic
 /-!
 # Scalar bounds for the analytic fair-start threshold argument
 
-These results check the scalar arithmetic in `app_analytic_threshold.tex`.
+These results check the scalar arithmetic in the analytic-threshold appendix of `paper/bias_interval.tex`.
 `hThree` is only a rational polynomial truncation, not the analytic function H.
 Remainder decompositions, coefficient bounds, moment identities, and derivative
 data are explicit inputs. No theorem here instantiates the actual H series,

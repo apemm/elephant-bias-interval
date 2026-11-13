@@ -44,7 +44,7 @@ theorem hasDerivAt_charFun_of_exp_abs {ν : Measure ℝ} {δ : ℝ}
   have h := hM.comp (t : ℂ) ((hasDerivAt_id (t : ℂ)).mul_const I)
   simpa only [Function.comp_def, id_eq, one_mul, complexMGF_id_mul_I] using h.comp_ofReal
 
-/-- The old Model.MomentEquation input is now a conclusion of finite moments
+/-- The Model.MomentEquation input is a conclusion of finite moments
 and the natural GLRS coefficient recurrence. -/
 theorem momentEquation_of_recurrence {a : ℝ} {μ : Measure ℝ} [IsProbabilityMeasure μ]
     (ha : 1 / 2 < a) (ha1 : a ≤ 1)

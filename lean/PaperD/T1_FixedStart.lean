@@ -3,15 +3,15 @@ import PaperD.SignChain5
 /-!
 # Paper D, the sign chain for the fixed start law `f_N`
 
-Theorem `thm:five-blocks` of Paper D (`sec_erw_shape.tex`) says that the second difference of
+Theorem `thm:five-blocks` of the paper (`paper/bias_interval.tex`) says that the second difference of
 `P_N` and also that of `f_N` have a sign pattern below `(+,-,+,-,+)`. The half for `P_N` is
 `five_blocks` in `PaperD.SignChain4`. This module proves the half for `f_N`, following the
-paper's proof in `app_erw_signs.tex` (subsection "Proof of Theorem thm:five-blocks", last
+paper's proof (subsection "Proof of Theorem thm:five-blocks", last
 paragraph).
 
 The fixed start law is the actual count chain `law ε t m = P₊(M_t = m)` of `PaperD.Elephant`
 (paper, Lemma `lem:erw-reduction`: `f_t(m) = P₊(M_t = m)`), extended by `0` to all integers
-(`fZ`). No new model is introduced.
+(`fZ`).
 
 Proved here:
 * `fZ_succ`: the forward equation `f_{t+1}(m) = (1 - r_t(m)) f_t(m) + r_t(m-1) f_t(m-1)` for

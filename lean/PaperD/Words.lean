@@ -9,8 +9,6 @@ and `numL w` the `-1` steps. The file proves the elementary counting lemmas used
 appending a letter (`Fin.snoc`), `numR + numL = N`, the sign flip, and the word with a
 prescribed number of `+1` steps.
 
-The definitions of `Word`, `numR`, `numL`, `flip` and `sum_word_snoc` are copied from the
-Paper A library (`PaperA/Model.lean`) so that Paper D builds on its own.
 
 -/
 

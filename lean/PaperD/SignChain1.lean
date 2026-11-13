@@ -3,12 +3,12 @@ import PaperD.Elephant
 /-!
 # Paper D, the sign chain, stage 1: the actual law on the integers
 
-Paper D, Section 3.5 (`sec_erw_shape.tex`, Lemma `lem:D-rec`) works with the law
+Lemma `lem:D-rec` of the paper (`paper/bias_interval.tex`) works with the law
 `P_t(a) = P(A_t = a)` of the number of `+1` steps of the elephant walk with the symmetric start,
 extended by `0` to every integer `a`, and with its second difference
 `D_t(a) = P_t(a+1) - 2 P_t(a) + P_t(a-1)`.
 
-Here `P_t(a)` is built from the actual word law `ewBin` of `PaperD.Elephant` (no new model):
+Here `P_t(a)` is built from the actual word law `ewBin` of `PaperD.Elephant`:
 `lawZ ε t a = ewBin ε t a` for `a ≥ 0` and `0` for `a < 0`.
 
 Proved here:

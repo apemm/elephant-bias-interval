@@ -4,7 +4,7 @@ import PaperD.SignChain2
 /-!
 # Paper D, the sign chain, stage 3: the sequence next to the end
 
-Lemma `lem:level-one` of Paper D (`sec_erw_shape.tex`, proof in `app_erw_signs.tex`), for the
+Lemma `lem:level-one` of the paper (`paper/bias_interval.tex`), for the
 actual law `lawZ` (that is `ewBin`) and `s_t = D_t(1)`, with `0 < ε < 1/2` and `c = 1 - 2ε`.
 
 Proved here:

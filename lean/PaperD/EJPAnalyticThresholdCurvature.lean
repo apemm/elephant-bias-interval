@@ -1,5 +1,5 @@
 import PaperD.Modes.AnalyticDerivatives
-import PaperD.Modes.RevisionShape
+import PaperD.Modes.ConditionalFourier
 import Mathlib.Analysis.MellinTransform
 import Mathlib.MeasureTheory.Measure.Lebesgue.Integral
 import Mathlib.Tactic

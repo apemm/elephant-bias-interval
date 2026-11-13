@@ -3,7 +3,7 @@ import PaperD.Modes.SignTools
 /-!
 # Paper D, Lemma `lem:sp-limit` (pointwise limits)
 
-File: `paperD/app_modes.tex`. If `v_n → v` pointwise and every `v_n` has values (respectively
+If `v_n → v` pointwise and every `v_n` has values (respectively
 increments) at most `P`, then `v` has values (respectively increments) at most `P`.
 
 The finite core is `signPattern_le_of_tendsto`: for finitely many real sequences `a_i(n) → b_i`,

@@ -3,7 +3,7 @@ import PaperD.CenterConvex
 /-!
 # Paper D, Lemma `lem:interleave` (one step) in list form
 
-Lemma `lem:interleave` of Paper D (`sec_erw_shape.tex`, proof in `app_erw_signs.tex`): let
+Lemma `lem:interleave` of the paper (`paper/bias_interval.tex`): let
 `ζ = (ζ₁, …, ζₙ)` be real, `ηᵢ = Aᵢ ζᵢ + Bᵢ ζᵢ₊₁` with `Aᵢ, Bᵢ ≥ 0`, and
 `w = (ζ₁, η₁, ζ₂, η₂, …, ηₙ₋₁, ζₙ)`. Then `sp(w) = sp(ζ)` and `sp(η) ⪯ sp(ζ)`.
 

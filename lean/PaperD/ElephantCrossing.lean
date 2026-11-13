@@ -1,11 +1,11 @@
 import PaperD.ElephantFirstOrder
 
 /-!
-# Paper D, topic D1: monotone likelihood ratio, the crossing, and the endpoint dip
+# monotone likelihood ratio, the crossing, and the endpoint dip
 
 For the elephant count chain (`PaperD.Elephant`):
 
-* note D1, S9 (monotone likelihood ratio): for every `n` and every `1 ≤ k ≤ n - 1`,
+* Monotone likelihood ratio: for every `n` and every `1 ≤ k ≤ n - 1`,
   `ε ↦ P₊(b_n = k) / P₊(b_n = 0)` is strictly increasing on `(0, 1)` (`law_ratio_strictMonoOn`).
   Hence for every bin `1 ≤ k ≤ n - 1` of the walk with the symmetric start,
   `ε ↦ P(A_n = k) / P(A_n = n)` is strictly increasing (`ewBin_ratio_strictMonoOn`); the
@@ -13,14 +13,14 @@ For the elephant count chain (`PaperD.Elephant`):
   `(0, 1/2)` (`crossing_exists_unique`), in particular for the centre bin
   (`center_crossing_exists_unique`). For `ε ≥ 1/2`, `P(A_n = k) ≥ 2 P(A_n = n)`
   (`ewBin_ge_two_top`).
-* note D2, Theorem 1 (lower half) and note D1, S15(b): the endpoint dip
+* The endpoint dip
   `P(A_n = n-1) > (x / (2(1-ε))) P(A_n = n)` with `x = nε`, for `0 < ε < 1`
   (`endpoint_dip`); so the endpoint atom is strictly below its neighbour once
   `x ≥ 2(1-ε)` (`endpoint_below_neighbour`).
-* note D1, S15(b): if moreover `C_n ≤ E_n` (for instance at the crossing), the law of `A_n` is
+* If moreover `C_n ≤ E_n` (for instance at the crossing), the law of `A_n` is
   not unimodal (`not_unimodal_at_crossing`).
 
-The proofs follow the note's argument, written along the forward recursion of the count chain:
+The proofs are written along the forward recursion of the count chain:
 after dividing by `(1-ε)^(n-1)` each step multiplies by a stay factor that is nondecreasing
 in `ε` and an up factor that is strictly increasing in `ε`.
 
@@ -78,7 +78,7 @@ theorem lawRatio_pos {ε : ℝ} (h0 : 0 < ε) (h1 : ε < 1) {n k : ℕ} (hk : k 
 theorem lawRatio_of_lt (ε : ℝ) {n k : ℕ} (hk : n + 1 ≤ k) : lawRatio ε n k = 0 := by
   rw [lawRatio, law_eq_zero ε hk, zero_div]
 
-/-- Note D1, S9, in normalised form: `ε ↦ P₊(b_{n+1} = k)/P₊(b_{n+1} = 0)` is nondecreasing on
+/-- `ε ↦ P₊(b_{n+1} = k)/P₊(b_{n+1} = 0)` is nondecreasing on
 `(0,1)` for every `k`, and strictly increasing for `1 ≤ k ≤ n`. -/
 theorem lawRatio_mono {ε₁ ε₂ : ℝ} (h1 : 0 < ε₁) (h12 : ε₁ < ε₂) (h2 : ε₂ < 1) (n k : ℕ) :
     lawRatio ε₁ n k ≤ lawRatio ε₂ n k ∧ (1 ≤ k → k ≤ n → lawRatio ε₁ n k < lawRatio ε₂ n k) := by
@@ -129,7 +129,7 @@ theorem lawRatio_mono {ε₁ ε₂ : ℝ} (h1 : 0 < ε₁) (h12 : ε₁ < ε₂)
           simp
       exact ⟨by linarith, fun _ hk => by linarith [t2 (by omega)]⟩
 
-/-- Note D1, S9 (monotone likelihood ratio): for `1 ≤ k ≤ n - 1` the ratio
+/-- For `1 ≤ k ≤ n - 1` the ratio
 `P₊(b_n = k) / P₊(b_n = 0)` is strictly increasing in `ε` on `(0, 1)`. -/
 theorem law_ratio_strictMonoOn {n k : ℕ} (hk1 : 1 ≤ k) (hkn : k + 1 ≤ n) :
     StrictMonoOn (fun ε => law ε n k / law ε n 0) (Ioo 0 1) := by
@@ -146,7 +146,7 @@ theorem ewBin_ratio_eq {ε : ℝ} (hε : ε < 1) {n k : ℕ} (hk : k ≤ n + 1) 
   have : (1 - ε) ^ n ≠ 0 := pow_ne_zero _ (by linarith)
   field_simp
 
-/-- Note D1, S9: for the symmetric start and every bin `1 ≤ k ≤ n - 1`, the ratio
+/-- For the symmetric start and every bin `1 ≤ k ≤ n - 1`, the ratio
 `P(A_n = k) / P(A_n = n)` is strictly increasing in `ε` on `(0, 1)`. -/
 theorem ewBin_ratio_strictMonoOn {n k : ℕ} (hk1 : 1 ≤ k) (hkn : k + 1 ≤ n) :
     StrictMonoOn (fun ε => ewBin ε n k / ewBin ε n n) (Ioo 0 1) := by
@@ -191,7 +191,7 @@ theorem continuous_ewBin {n k : ℕ} (hn : 1 ≤ n) (hk : k ≤ n) :
   exact ((continuous_law _ _).add (continuous_law _ _)).div_const _
 
 /-- For `ε ≥ 1/2` every single path has probability at least `(1-ε)^(n-1)`, so every count
-`k ≤ n` has `P₊(b_{n+1} = k) ≥ (1-ε)^n` (note D1, proof of S9). -/
+`k ≤ n` has `P₊(b_{n+1} = k) ≥ (1-ε)^n`. -/
 theorem law_ge_of_half {ε : ℝ} (h0 : 1 / 2 ≤ ε) (h1 : ε ≤ 1) {n k : ℕ} (hk : k ≤ n) :
     (1 - ε) ^ n ≤ law ε (n + 1) k := by
   induction n generalizing k with
@@ -232,7 +232,7 @@ theorem law_ge_of_half {ε : ℝ} (h0 : 1 / 2 ≤ ε) (h1 : ε ≤ 1) {n k : ℕ
           mul_le_mul hA hup (by linarith) (law_nonneg (by linarith) h1 _ _)
         linarith
 
-/-- Note D1, S9: for `ε ≥ 1/2` every interior bin is at least twice the endpoint,
+/-- For `ε ≥ 1/2` every interior bin is at least twice the endpoint,
 `P(A_n = k) ≥ 2 P(A_n = n) = (1-ε)^(n-1)`. -/
 theorem ewBin_ge_two_top {ε : ℝ} (h0 : 1 / 2 ≤ ε) (h1 : ε ≤ 1) {n k : ℕ} (hk1 : 1 ≤ k)
     (hkn : k ≤ n) : 2 * ewBin ε (n + 1) (n + 1) ≤ ewBin ε (n + 1) k := by
@@ -243,7 +243,7 @@ theorem ewBin_ge_two_top {ε : ℝ} (h0 : 1 / 2 ≤ ε) (h1 : ε ≤ 1) {n k : �
 
 /-! ### The crossing -/
 
-/-- Note D1, S9: for every `n ≥ 2` and every bin `1 ≤ k ≤ n - 1` of the elephant walk with the
+/-- For every `n ≥ 2` and every bin `1 ≤ k ≤ n - 1` of the elephant walk with the
 symmetric start, the equation `P(A_n = k) = P(A_n = n)` has exactly one root `ε` in `(0, 1)`,
 and that root lies in `(0, 1/2)`. -/
 theorem crossing_exists_unique {n k : ℕ} (hk1 : 1 ≤ k) (hkn : k + 1 ≤ n) :
@@ -282,7 +282,7 @@ theorem crossing_exists_unique {n k : ℕ} (hk1 : 1 ≤ k) (hkn : k + 1 ≤ n) :
   have hε₀1 : ε₀ ∈ Ioo (0 : ℝ) 1 := ⟨hmem.1, by linarith [hmem.2]⟩
   exact hmono.injOn hε hε₀1 (by simp only [r1, r0])
 
-/-- Note D1, S9 for the centre bin: `C_n(ε) = E_n(ε)` has a unique root `ε_n` in `(0, 1)`,
+/-- `C_n(ε) = E_n(ε)` has a unique root `ε_n` in `(0, 1)`,
 and `ε_n < 1/2`. -/
 theorem center_crossing_exists_unique {h : ℕ} (hh : 1 ≤ h) :
     ∃ ε₀ ∈ Ioo (0 : ℝ) (1 / 2), ewBin ε₀ (2 * h) h = ewBin ε₀ (2 * h) (2 * h) ∧
@@ -292,7 +292,7 @@ theorem center_crossing_exists_unique {h : ℕ} (hh : 1 ≤ h) :
 /-! ### The endpoint dip -/
 
 /-- `P₊(b_{n+2} = 1) ≥ ε (1-ε)^n (n+2)/2`: the first `-1` step, then no further change,
-using `1 - r_s(1) ≥ (1-ε)(1 - 1/s)` (note D2, proof of Theorem 1; note D1, §3.16). -/
+using `1 - r_s(1) ≥ (1-ε)(1 - 1/s)`. -/
 theorem law_one_ge {ε : ℝ} (h0 : 0 ≤ ε) (h1 : ε ≤ 1) (n : ℕ) :
     ε * (1 - ε) ^ n * (((n : ℝ) + 2) / 2) ≤ law ε (n + 2) 1 := by
   induction n with
@@ -322,7 +322,7 @@ theorem law_one_ge {ε : ℝ} (h0 : 0 ≤ ε) (h1 : ε ≤ 1) (n : ℕ) :
     rw [e]
     linarith
 
-/-- Note D2, Theorem 1 (lower bound) and note D1, S15(b): for `0 < ε < 1` and `n ≥ 2`,
+/-- For `0 < ε < 1` and `n ≥ 2`,
 `P(A_n = n-1) > (x/(2(1-ε))) · P(A_n = n)` with `x = nε`. -/
 theorem endpoint_dip {ε : ℝ} (h0 : 0 < ε) (h1 : ε < 1) (n : ℕ) :
     ((n : ℝ) + 2) * ε / (2 * (1 - ε)) * ewBin ε (n + 2) (n + 2) < ewBin ε (n + 2) (n + 1) := by
@@ -337,7 +337,7 @@ theorem endpoint_dip {ε : ℝ} (h0 : 0 < ε) (h1 : ε < 1) (n : ℕ) :
   rw [e]
   linarith
 
-/-- Note D2, Theorem 1: the endpoint atom is strictly below its neighbour whenever
+/-- The endpoint atom is strictly below its neighbour whenever
 `x = nε ≥ 2(1-ε)`. -/
 theorem endpoint_below_neighbour {ε : ℝ} (h0 : 0 < ε) (h1 : ε < 1) (n : ℕ)
     (hx : 2 * (1 - ε) ≤ ((n : ℝ) + 2) * ε) :
@@ -357,7 +357,7 @@ def IsUnimodal (f : ℕ → ℝ) (N : ℕ) : Prop :=
   ∃ m ≤ N, (∀ i j, i ≤ j → j ≤ m → f i ≤ f j) ∧ (∀ i j, m ≤ i → i ≤ j → j ≤ N → f j ≤ f i)
 
 /-- A law on `{0, …, 2h}` that is symmetric about `h`, has its endpoint strictly below its
-neighbour, and has `f h ≤ f (2h)`, is not unimodal (note D1, S15(b)). -/
+neighbour, and has `f h ≤ f (2h)`, is not unimodal. -/
 theorem not_unimodal_of_dip (f : ℕ → ℝ) {h : ℕ} (hh : 1 ≤ h)
     (symm : ∀ k ≤ 2 * h, f (2 * h - k) = f k) (hdip : f (2 * h) < f (2 * h - 1))
     (hcross : f h ≤ f (2 * h)) : ¬ IsUnimodal f (2 * h) := by
@@ -370,7 +370,7 @@ theorem not_unimodal_of_dip (f : ℕ → ℝ) {h : ℕ} (hh : 1 ≤ h)
     rw [show 2 * h - (2 * h - 1) = 1 by omega] at e
     linarith
 
-/-- Note D1, S15(b): if `x = nε ≥ 2(1-ε)` and `C_n ≤ E_n` (in particular at the crossing,
+/-- If `x = nε ≥ 2(1-ε)` and `C_n ≤ E_n` (in particular at the crossing,
 where `C_n = E_n`), the law of `A_n` with the symmetric start is not unimodal. -/
 theorem not_unimodal_at_crossing {ε : ℝ} (h0 : 0 < ε) (h1 : ε < 1) {h : ℕ} (hh : 1 ≤ h)
     (hx : 2 * (1 - ε) ≤ (2 * (h : ℝ)) * ε)

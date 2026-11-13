@@ -1,22 +1,22 @@
 import PaperD.ElephantFirstOrder
 
 /-!
-# Paper D, topic D2: subtree sizes in the random recursive tree
+# subtree sizes in the random recursive tree
 
 In the random recursive tree (RRT) vertex `k+1` attaches to a uniform vertex of `{1, …, k}`.
 The subtree `T_v` of a vertex `v ≥ 2` starts with one vertex when `v` arrives, and when the tree
 has `k` vertices of which `s` lie in `T_v`, vertex `k+1` joins `T_v` with probability `s/k`
-(the Pólya urn of note D2, proof of Lemma 2.3(1)). `stLaw v m d` is the law of `|T_v|` after `m`
+(a Pólya urn). `stLaw v m d` is the law of `|T_v|` after `m`
 further arrivals (tree size `v + m`), defined by this chain.
 
 Proved here, for every tree size `n` and every `1 ≤ d ≤ n - 1`:
-* note D2, Lemma 2.3(5): `∑_{v=2}^{n} β_v(d) = n/(d(d+1))` (`subtreeCount_eq`), the expected
+* `∑_{v=2}^{n} β_v(d) = n/(d(d+1))` (`subtreeCount_eq`), the expected
   number of vertices with subtree size `d`;
-* note D2, Lemma 2.3(6): `∑_{v=2}^{n} (v-2) β_v(d) = 2n(n-d-1)/(d(d+1)(d+2))` (`subtreeCountW_eq`);
-* note D2, Lemma 3.3: with first-mark weights `w_j = ε(1-ε)^(j-2)` and `x = nε`,
+* `∑_{v=2}^{n} (v-2) β_v(d) = 2n(n-d-1)/(d(d+1)(d+2))` (`subtreeCountW_eq`);
+* With first-mark weights `w_j = ε(1-ε)^(j-2)` and `x = nε`,
   `x/(d(d+1)) (1 - 2x(n-d-1)/(n(d+2))) ≤ P(D = d) ≤ x/(d(d+1))` (`firstMark_bounds`) and
   `P(D ≥ d) ≤ x(1/d - 1/n)` (`firstMark_tail`);
-* the identity of Lemma 2.3(5) is the same function as the exact first-order coefficient of the
+* the subtree count identity is the same function as the exact first-order coefficient of the
   elephant walk: `∑_v β_v(d) = d/dε P₊(b_n = d)|_{ε=0}` (`subtreeCount_eq_coef1`).
 
 -/
@@ -121,7 +121,7 @@ theorem subtreeCount_zero_size (t : ℕ) : subtreeCount t 0 = 0 := by
 theorem subtreeCountW_zero_size (t : ℕ) : subtreeCountW t 0 = 0 := by
   unfold subtreeCountW; simp [stLaw_zero_size]
 
-/-- Note D2, Lemma 2.3(5): in a random recursive tree with `t ≥ 1` vertices, the expected number
+/-- In a random recursive tree with `t ≥ 1` vertices, the expected number
 of vertices `v ≥ 2` whose subtree has size `d` is `t/(d(d+1))` for `1 ≤ d ≤ t - 1` (and `0`
 otherwise). -/
 theorem subtreeCount_eq {t : ℕ} (ht : 1 ≤ t) (d : ℕ) :
@@ -167,7 +167,7 @@ theorem subtreeCount_eq {t : ℕ} (ht : 1 ≤ t) (d : ℕ) :
             if_neg (show ¬(1 ≤ d + 1 ∧ d + 1 + 1 ≤ t + 1) by omega)]
           ring
 
-/-- Note D2, Lemma 2.3(6): `∑_{v=2}^{t} (v-2) P(|T_v| = d) = 2t(t-d-1)/(d(d+1)(d+2))` for
+/-- `∑_{v=2}^{t} (v-2) P(|T_v| = d) = 2t(t-d-1)/(d(d+1)(d+2))` for
 `1 ≤ d ≤ t - 1`. -/
 theorem subtreeCountW_eq {t : ℕ} (ht : 1 ≤ t) (d : ℕ) :
     subtreeCountW t d =
@@ -213,7 +213,7 @@ theorem subtreeCountW_eq {t : ℕ} (ht : 1 ≤ t) (d : ℕ) :
             if_neg (show ¬(1 ≤ d + 1 ∧ d + 1 + 1 ≤ t + 1) by omega)]
           ring
 
-/-- The subtree identity is the elephant walk's first-order coefficient (note D2, §11 item 2):
+/-- The subtree identity is the elephant walk's first-order coefficient:
 `∑_v P(|T_v| = d) = d/dε P₊(b_t = d)|_{ε=0}` for `d ≥ 1`. -/
 theorem subtreeCount_eq_coef1 {t d : ℕ} (ht : 1 ≤ t) (hd : 1 ≤ d) :
     subtreeCount t d = coef1 t d := by
@@ -230,7 +230,7 @@ carrying a mark, when marks are i.i.d. `Bernoulli(ε)` and independent of the tr
 noncomputable def firstMark (ε : ℝ) (n d : ℕ) : ℝ :=
   ∑ j ∈ Icc 2 n, ε * (1 - ε) ^ (j - 2) * stLaw j (n - j) d
 
-/-- Note D2, Lemma 3.3: for `1 ≤ d ≤ n - 1`, `0 ≤ ε ≤ 1` and `x = nε`,
+/-- For `1 ≤ d ≤ n - 1`, `0 ≤ ε ≤ 1` and `x = nε`,
 `x/(d(d+1)) (1 - 2x(n-d-1)/(n(d+2))) ≤ P(D = d) ≤ x/(d(d+1))`. -/
 theorem firstMark_bounds {ε : ℝ} (h0 : 0 ≤ ε) (h1 : ε ≤ 1) {n d : ℕ} (hd1 : 1 ≤ d)
     (hdn : d + 1 ≤ n) :
@@ -298,7 +298,7 @@ theorem sum_Ico_inv_mul_succ {d n : ℕ} (hd : 1 ≤ d) (hdn : d ≤ n) :
     field_simp
     ring
 
-/-- Note D2, Lemma 3.3: `P(D ≥ d) ≤ x(1/d - 1/n)` for `1 ≤ d ≤ n`. -/
+/-- `P(D ≥ d) ≤ x(1/d - 1/n)` for `1 ≤ d ≤ n`. -/
 theorem firstMark_tail {ε : ℝ} (h0 : 0 ≤ ε) (h1 : ε ≤ 1) {n d : ℕ} (hd1 : 1 ≤ d) (hdn : d ≤ n) :
     ∑ k ∈ Ico d n, firstMark ε n k ≤ (n : ℝ) * ε * (1 / d - 1 / n) := by
   rw [← sum_Ico_inv_mul_succ hd1 hdn, Finset.mul_sum]

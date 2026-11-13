@@ -3,7 +3,7 @@ import PaperD.CenterConvex
 /-!
 # Paper D, sign patterns of lists and of functions
 
-Support for Appendix `app_modes.tex` (`lem:descartes`, `lem:sp-limit`, `lem:sp-derivative`) and for
+Support for the modes appendix of the paper (`paper/bias_interval.tex`; `lem:descartes`, `lem:sp-limit`, `lem:sp-derivative`) and for
 the sign pattern `sp` used in `thm:two-modes`. The pattern `signPattern` of a list is defined in
 `PaperD.CenterConvex`. Here we prove the rules the appendix uses without comment:
 
@@ -12,7 +12,7 @@ the sign pattern `sp` used in `thm:two-modes`. The pattern `signPattern` of a li
 * `signPattern_mul_pos`: multiplying entrywise by positive numbers keeps the pattern;
 * `signPattern_neg`, `signPattern_reverse`: negation negates the pattern, and reversal reverses it;
 
-and we define the two predicates of `app_modes.tex`:
+and we define the two predicates of that appendix:
 
 * `ValuesAtMost v P`: for all `y_1 < ⋯ < y_m` the pattern of `(v y_1, …, v y_m)` is a sublist of
   `P` (the relation `sp(v) ⪯ P`);

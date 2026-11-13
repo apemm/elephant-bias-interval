@@ -3,7 +3,7 @@ import PaperD.Modes.SpLimit
 /-!
 # Paper D, Theorem `thm:two-modes`, Step 5 (the dichotomy)
 
-File: `paperD/sec_bulk_applications.tex`. Let `g` be a continuous, even, nonnegative, integrable
+Let `g` be a continuous, even, nonnegative, integrable
 function with increments at most `Π₄ = (+,-,+,-)`. Then exactly one of the following holds:
 
 * (a) `g` is nondecreasing on `(-∞, 0]` and nonincreasing on `[0, ∞)`;

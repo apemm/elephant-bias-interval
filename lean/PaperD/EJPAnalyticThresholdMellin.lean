@@ -8,7 +8,7 @@ import Mathlib.MeasureTheory.Integral.IntegralEqImproper
 /-!
 # Mellin calculus for the analytic threshold argument
 
-This file checks the two integrations by parts in `app_analytic_threshold.tex`.
+This file checks the two integrations by parts in the analytic-threshold appendix of `paper/bias_interval.tex`.
 All transforms are Bochner integrals on `(0, ∞)`.
 The functions denoted `w₁`, `w₂` are certified derivatives, not formal symbols.
 Endpoint limits and absolute convergence are explicit analytic inputs.

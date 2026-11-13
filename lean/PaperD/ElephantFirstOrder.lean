@@ -1,7 +1,7 @@
 import PaperD.Elephant
 
 /-!
-# Paper D, topic D1: the exact first coefficient `c₁ = 4/(n+2)`
+# the exact first coefficient `c₁ = 4/(n+2)`
 
 For the elephant count chain every probability `P₊(b_n = k)` is a polynomial in `ε`
 (`law_polynomial`). At `ε = 0` the chain never leaves `0` (`law_at_zero`), and the first
@@ -14,9 +14,9 @@ it replaces the Pólya-urn sum and Chu–Vandermonde of the note by the invarian
 `n/(k(k+1))`, which the linearised recursion preserves.
 
 Consequences:
-* note D1, S3(b): `C_n(0) = 0` and `c₁ = C_n'(0) = 4/(n+2)` exactly, for the centre bin of the
+* `C_n(0) = 0` and `c₁ = C_n'(0) = 4/(n+2)` exactly, for the centre bin of the
   elephant walk with the symmetric start (`center_hasDerivAt`, `center_at_zero`);
-* note D2, §11 item 2 (the first-order term of the profile): the order-`ε` term of
+* The first-order term of the profile: the order-`ε` term of
   `h(m) = P(M_n = m)` is exactly `x/(m(m+1))` with `x = nε`, for every `1 ≤ m ≤ n-1`
   (`profile_hasDerivAt`).
 
@@ -42,7 +42,7 @@ theorem law_at_zero (n k : ℕ) : law 0 n k = if k = 0 then 1 else 0 := by
       simp only [upProb_at_zero]
       by_cases hb : b = 0 <;> simp [hb]
 
-/-- Note D1, S3(b): every `P₊(b_n = k)` is a polynomial in `ε`. -/
+/-- Every `P₊(b_n = k)` is a polynomial in `ε`. -/
 theorem law_polynomial (n k : ℕ) : ∃ p : Polynomial ℝ, ∀ ε, law ε n k = p.eval ε := by
   induction n generalizing k with
   | zero => exact ⟨Polynomial.C (if k = 0 then 1 else 0), fun ε => by simp only [law]; split_ifs <;> simp⟩
@@ -142,7 +142,7 @@ theorem hasDerivAt_law (n k : ℕ) : HasDerivAt (fun ε => law ε (n + 1) k) (co
 
 /-- The first-order coefficient of the minority-count law: for `1 ≤ m ≤ n - 1`,
 `d/dε P₊(b_n = m) |_{ε=0} = n/(m(m+1))`. With `x = nε` the order-`ε` term of
-`h(m) = P(M_n = m)` is `x/(m(m+1))` (note D2, §11 item 2; the ERW form of Lemma 2.3(5)). -/
+`h(m) = P(M_n = m)` is `x/(m(m+1))`. -/
 theorem profile_hasDerivAt {n m : ℕ} (hm1 : 1 ≤ m) (hmn : m + 1 ≤ n) :
     HasDerivAt (fun ε => law ε n m) ((n : ℝ) / (m * (m + 1))) 0 := by
   obtain ⟨t, rfl⟩ : ∃ t, n = t + 1 := ⟨n - 1, by omega⟩
@@ -151,11 +151,11 @@ theorem profile_hasDerivAt {n m : ℕ} (hm1 : 1 ≤ m) (hmn : m + 1 ≤ n) :
   rw [if_neg (by omega), if_pos hmn] at this
   exact this
 
-/-- Note D1, S3(b): `C_n(0) = 0` for the centre bin `C_n(ε) = P(A_n = n/2)`, `n = 2h`. -/
+/-- `C_n(0) = 0` for the centre bin `C_n(ε) = P(A_n = n/2)`, `n = 2h`. -/
 theorem center_at_zero {h : ℕ} (hh : 1 ≤ h) : ewBin 0 (2 * h) h = 0 := by
   rw [ewBin_center 0 hh, law_at_zero, if_neg (by omega)]
 
-/-- Note D1, S3(b): the exact first coefficient. For the elephant walk with the symmetric
+/-- The exact first coefficient. For the elephant walk with the symmetric
 start and `n = 2h` steps, `C_n'(0) = c₁ = 4/(n+2)`. -/
 theorem center_hasDerivAt {h : ℕ} (hh : 1 ≤ h) :
     HasDerivAt (fun ε => ewBin ε (2 * h) h) (4 / (2 * (h : ℝ) + 2)) 0 := by

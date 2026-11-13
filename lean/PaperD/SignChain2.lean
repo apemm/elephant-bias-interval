@@ -3,7 +3,7 @@ import Mathlib
 /-!
 # Paper D, the sign chain, stage 2: oriented sign patterns
 
-Generic finite lemmas behind Appendix D of Paper D (`app_erw_signs.tex`).
+Generic finite lemmas behind the sign-pattern appendix of the paper (`paper/bias_interval.tex`).
 
 Sign patterns are handled through the places where they occur. For a list `z`, the paper's
 `sp(z) ⪯ (+,-,+,-,+)` holds exactly when `z` has no five places `i₁ < ⋯ < i₅` with strict signs
@@ -25,7 +25,7 @@ Proved here:
   empty, then `s` has no `-,+,-` from `t₀` on.
 
 Not proved here. The first claim of Lemma `lem:interleave`, that the sign pattern of the
-interleaved list equals the sign pattern of the old list, is not formalized (the paper uses it
+interleaved list equals the sign pattern of the original list, is not formalized (the paper uses it
 only inside proofs, and the lifting `HasMPMPM.of_step` is what the later results need). The
 equivalence between "no places `-,+,-,+,-`" and `sp ⪯ (+,-,+,-,+)` is proved in
 `PaperD.SignChain5` (`alt_sublist_or`, `signPattern_sublist_piFive_of_no_places`), and the

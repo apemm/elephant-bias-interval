@@ -14,7 +14,7 @@ This file separates the order argument from the analytic construction of the
 weight. All expectations below are Bochner integrals. The score need only be
 integrable: no square-integrability assumption is used.
 
-The analytic inputs still needed for Paper D are the construction and full
+The analytic inputs needed for the threshold theorem are the construction and full
 support of its rescaled probability measures, strict increase of the score,
 dominated differentiation, continuity in the parameter, the two exterior sign
 bounds, and the positive curvature prefactor identity. None of covariance

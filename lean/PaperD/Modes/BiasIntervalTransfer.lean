@@ -3,7 +3,7 @@ import PaperD.Modes.BiasLimitTransfer
 import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 
 /-! The actual lattice local limit transfers dominant-half unimodality and
-reflection dominance. No new limiting shape hypothesis is assumed. -/
+reflection dominance. No limiting shape hypothesis is assumed. -/
 
 namespace Kagey131.PaperD.Modes
 

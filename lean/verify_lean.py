@@ -1,31 +1,26 @@
 """Build the Lean library and check the axioms of every theorem.
 
-For each requested library (default: every one of PaperA, PaperB, PaperC, PaperD,
-PaperAD whose root file exists in this folder) the script
+For the library PaperD the script
 
-1. collects the modules imported by the root file `<Lib>.lean`, and every
+1. collects the modules imported by the root file `PaperD.lean`, and every
    `theorem` and `lemma` declared in them,
-2. runs `lake build <Lib>` in a Lake workspace whose lakefile has
-   `lean_lib <Lib>` with `srcDir` equal to this folder (a workspace inside
-   OneDrive is refused, since Lake writes many files into `.lake`); for a
-   library that imports other libraries (PaperAD imports PaperA and PaperD,
-   see DEPENDS) the lakefile must also have those, with the same `srcDir`,
+2. runs `lake build PaperD` in a Lake workspace whose lakefile has
+   `lean_lib PaperD` with `srcDir` equal to this folder (a workspace inside
+   OneDrive is refused, since Lake writes many files into `.lake`),
 3. writes a temporary Lean file inside the workspace that imports the library,
    runs `#print axioms` on each declaration, and lists every theorem the
    library actually contains (so a declaration missed by the parser is caught),
 4. checks that the only axioms are propext, Classical.choice and Quot.sound,
 5. writes build-log.txt and verification-manifest.json in this folder.
 
-Entries for libraries that were not requested are kept in both output files.
-
 Examples (run from this folder):
-    python -B verify_lean.py                    # workspaces ~/lean-work/paperA, ...
-    python -B verify_lean.py PaperB
+    python -B verify_lean.py                    # workspace ~/lean-work/paperD
+    python -B verify_lean.py PaperD
     python -B verify_lean.py --workspace .      # use the lakefile in this folder
     python -B verify_lean.py --workspace D:/lean/{name}
 
-In --workspace, `{lib}` is replaced by the library name (PaperA) and `{name}`
-by the same name with a lower-case first letter (paperA).
+In --workspace, `{lib}` is replaced by the library name (PaperD) and `{name}`
+by the same name with a lower-case first letter (paperD).
 """
 from __future__ import annotations
 
@@ -43,10 +38,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent
-LIBS = ['PaperA', 'PaperB', 'PaperC', 'PaperD', 'PaperAD', 'PaperF']
-# Libraries whose modules import other libraries of this folder. PaperAD is the bridge between
-# Paper A and Paper D (Theorem 2.8 of Paper D with Paper A's Proposition 3.8).
-DEPENDS = {'PaperAD': ['PaperA', 'PaperD']}
+LIBS = ['PaperD']
 ALLOWED = {'propext', 'Classical.choice', 'Quot.sound'}
 LOG_FILE = BASE / 'build-log.txt'
 MANIFEST_FILE = BASE / 'verification-manifest.json'
@@ -63,7 +55,7 @@ def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
         description='Build the Lean library and check their axioms.')
     p.add_argument('libs', nargs='*', metavar='LIB',
-                   help='libraries to check (default: all of PaperA..PaperD, PaperAD that exist)')
+                   help='libraries to check (default: PaperD)')
     p.add_argument('--workspace', default=str(Path.home() / 'lean-work' / '{name}'),
                    help='Lake workspace, or a pattern with {lib} or {name} '
                         '(default: ~/lean-work/{name}). Use "." for this folder.')
@@ -155,7 +147,7 @@ def resolve_workspace(lib: str, pattern: str) -> Path:
     if toml.is_file():
         config = tomllib.loads(toml.read_text(encoding='utf-8'))
         libs = {entry.get('name'): entry for entry in config.get('lean_lib', [])}
-        for need in [lib] + DEPENDS.get(lib, []):
+        for need in [lib]:
             if need not in libs:
                 raise CheckFailed(f'{toml} has no lean_lib {need}')
             src = ws / libs[need].get('srcDir', '.')

@@ -1,7 +1,7 @@
 import PaperD.Words
 
 /-!
-# Paper D, topic D1: the elephant random walk and its count chain
+# the elephant random walk and its count chain
 
 The elephant random walk (ERW) with flip probability `ε` and a symmetric start: `X₁ = ±1`
 with probability `1/2` each, and for `t ≥ 1` the step `X_{t+1}` copies `X_U` for `U` uniform on
@@ -13,7 +13,7 @@ with probability `1/2` each, and for `t ≥ 1` the step `X_{t+1}` copies `X_U` f
 (`ewProb`). Conditioned on `X₁ = +1`, the number `b_t` of `-1` steps is a Markov chain on
 counts with up-probability `r_t(b) = ε + (1 - 2ε) b / t` (`upProb`); its law is `law ε t b`.
 
-Proved here (note D1, statement S1; note D2, Lemma 2.1):
+Proved here:
 * the word law is a probability law (`sum_ewProb`);
 * the restricted word sums are the count chain: `∑_{w₁ = +, numL w = b} P(w) = law_t(b) / 2`
   (`sum_plus_ewProb`), and the same for the flipped start (`sum_minus_ewProb`);
@@ -44,7 +44,7 @@ theorem ewProb_snoc (ε : ℝ) {t : ℕ} (v : Word (t + 1)) (x : Bool) :
     ewProb ε (t + 1) (Fin.snoc v x) = ewProb ε t v * stepProb ε v x := by
   simp [ewProb, Fin.init_snoc, Fin.snoc_last]
 
-/-- The up-probability of the minority count, `r_s(b) = ε + (1 - 2ε) b/s` (note D1, §1). -/
+/-- The up-probability of the minority count, `r_s(b) = ε + (1 - 2ε) b/s`. -/
 noncomputable def upProb (ε : ℝ) (s b : ℕ) : ℝ := ε + (1 - 2 * ε) * ((b : ℝ) / s)
 
 theorem stepProb_false (ε : ℝ) {t : ℕ} (v : Word (t + 1)) :
@@ -189,8 +189,7 @@ theorem plusSum_succ_succ (ε : ℝ) (t b : ℕ) :
       · simp [h0, h1, h2]
   · simp [h0]
 
-/-- The restricted word sums of the elephant walk are the count chain (note D1, S1;
-note D2, Lemma 2.1): `∑_{w₁ = +, numL w = b} P(w) = P₊(b_{t+1} = b) / 2`. -/
+/-- The restricted word sums of the elephant walk are the count chain: `∑_{w₁ = +, numL w = b} P(w) = P₊(b_{t+1} = b) / 2`. -/
 theorem sum_plus_ewProb (ε : ℝ) (t b : ℕ) : plusSum ε t b = law ε (t + 1) b / 2 := by
   induction t generalizing b with
   | zero => rw [plusSum_zero_len, law_one]; split_ifs <;> simp
@@ -218,7 +217,7 @@ noncomputable def ewBin (ε : ℝ) : ℕ → ℕ → ℝ
   | 0, k => if k = 0 then 1 else 0
   | t + 1, k => ∑ w : Word (t + 1), if numR w = k then ewProb ε t w else 0
 
-/-- Note D1, S1 (and note D2, Lemma 2.1): the symmetric start reduces to the fixed start,
+/-- The symmetric start reduces to the fixed start,
 `P(A_n = k) = (P₊(b_n = n - k) + P₊(b_n = k)) / 2` for `k ≤ n`. -/
 theorem ewBin_eq (ε : ℝ) {n k : ℕ} (hn : 1 ≤ n) (hk : k ≤ n) :
     ewBin ε n k = (law ε n (n - k) + law ε n k) / 2 := by
@@ -241,13 +240,13 @@ theorem ewBin_eq (ε : ℝ) {n k : ℕ} (hn : 1 ≤ n) (hk : k ≤ n) :
   rw [hsplit, sum_plus_ewProb, sum_minus_ewProb]
   ring
 
-/-- Note D1, S1: the centre bin with the symmetric start equals the fixed-start probability,
+/-- The centre bin with the symmetric start equals the fixed-start probability,
 `C_n = P(A_{2h} = h) = P₊(b_{2h} = h)`. -/
 theorem ewBin_center (ε : ℝ) {h : ℕ} (hh : 1 ≤ h) : ewBin ε (2 * h) h = law ε (2 * h) h := by
   rw [ewBin_eq ε (by omega) (by omega), show 2 * h - h = h by omega]
   ring
 
-/-- Note D1, S1: the endpoint `E_n = P(A_n = n) = P(all steps are +1) = (1/2)(1-ε)^(n-1)`. -/
+/-- The endpoint `E_n = P(A_n = n) = P(all steps are +1) = (1/2)(1-ε)^(n-1)`. -/
 theorem ewBin_top (ε : ℝ) (n : ℕ) : ewBin ε (n + 1) (n + 1) = (1 - ε) ^ n / 2 := by
   rw [ewBin_eq ε (by omega) le_rfl, Nat.sub_self, law_zero, law_eq_zero ε le_rfl]
   ring

@@ -3,8 +3,8 @@ import PaperD.SignChain3
 /-!
 # Paper D, the sign chain, stage 4: five blocks and no holes
 
-Theorems `thm:five-blocks` and `thm:no-holes` and Corollary `cor:one-point` of Paper D
-(`sec_erw_shape.tex`, proofs in `app_erw_signs.tex`) for the actual law `lawZ` (that is `ewBin`)
+Theorems `thm:five-blocks` and `thm:no-holes` and Corollary `cor:one-point` of the paper
+(`paper/bias_interval.tex`) for the actual law `lawZ` (that is `ewBin`)
 with the symmetric start and `0 < ε < 1/2`.
 
 The paper's lists `𝒵_t` are encoded by one integer-indexed function `Y ε t` (`Y`): its value at

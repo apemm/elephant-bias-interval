@@ -26,8 +26,8 @@ theorem normalizedMoment_randomized {a : ℝ} (ha : 0 ≤ a) (μ : Measure ℝ)
   rw [normalizedMoment, integral_randomized_power ha μ n]
   rfl
 
-/-- The original fixed point and ordinary finite moments suffice for the
-entire old MomentEquation package; neither a GLRS recurrence nor an
+/-- The fixed point and ordinary finite moments suffice for the
+entire MomentEquation package; neither a GLRS recurrence nor an
 analyticity/transform equation is an application premise. -/
 theorem momentEquation_of_fixedPoint {a : ℝ} {μ : Measure ℝ} [IsProbabilityMeasure μ]
     (ha : 1 / 2 < a) (ha1 : a ≤ 1) (hfix : μ = ModelFourier.fixedPointLaw a μ)

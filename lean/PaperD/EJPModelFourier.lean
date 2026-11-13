@@ -1,5 +1,5 @@
 import PaperD.EJPModelFourierSupport
-import PaperD.Modes.RevisionShape
+import PaperD.Modes.ConditionalFourier
 import Mathlib.Analysis.Fourier.Inversion
 import Mathlib.MeasureTheory.Measure.Haar.NormedSpace
 
