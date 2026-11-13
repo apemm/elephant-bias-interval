@@ -33,7 +33,7 @@ LaTeX log has an overfull box, an undefined reference or an error.
 ## Check the numerical values
 
 The numerical values are not used in any proof. To recompute their interval
-enclosures, install python-flint 0.9.0 and run, from `certificates/`:
+enclosures, install python-flint and run, from `certificates/`:
 
 ```text
 python -O check_critical_shape.py
@@ -43,8 +43,15 @@ python -O certify_transition.py --precision 1600 --moments 1100
 
 Each script writes a JSON record to `certificates/data/` with its version,
 arguments, precision and the hashes of its inputs. Compare a rerun with the
-committed record. `certificates/error_analysis.pdf` proves the truncation and
-tail bounds the scripts use. The phase figure comes from
+committed record. The record of `certify_transition.py` was made with
+python-flint 0.8.0, and the other two with 0.9.0.
+
+`certificates/error_analysis.pdf` proves the truncation and tail bounds the
+scripts use. Its source is in `certificates/error_analysis/`, and the file
+`or_transition_proofs.tex` there is the section that the docstrings of
+`certify_transition.py` and `certify_critical_constants.py` name. To rebuild
+the note, run `pdflatex error_analysis.tex` twice in that folder with
+`paper/` on `TEXINPUTS`, for the class file. The phase figure comes from
 `certificates/figures/make_phase_figure.py`, which needs NumPy, SciPy and
 Matplotlib. The figure is an illustration, not a certificate.
 

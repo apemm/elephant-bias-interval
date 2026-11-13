@@ -81,18 +81,54 @@ neighboring output masses is zero, and there is nothing to check. We
 start from the point mass at one and induct. The recurrence also
 shows the masses are strictly positive on the support.
 
+Next we identify the limit. For $t\ge1$, join step $t+1$ to the
+earlier step $X_i$ that it copies or reverses, and give this edge the
+sign $X_{t+1}X_i$. This builds a random recursive tree on the steps.
+The edge signs are independent of the tree and of each other, and each
+is $+1$ with probability $(1+a)/2$. Remove the edge from step $2$ to
+step $1$. This splits the steps into the part of step $1$ and the part
+of step $2$. A new step joins a part with probability equal to the
+share of that part among the steps so far. Hence the sizes of the two
+parts form a P\'olya urn started from one ball of each color, and the
+share of the part of step $1$ converges almost surely to a uniform
+variable $U$. Given the sequence of parts that the steps join, each
+part is a random recursive tree in its own time, with its own
+independent edge signs. So the sum of the steps in the part of step
+$1$ is an elephant walk with a positive first step, observed at the
+size of that part. The sum in the part of step $2$ is minus an
+independent copy of such a walk. Both sizes tend to infinity. By the
+almost sure convergence of $S_k/k^a$ given $X_1=1$~\cite[Theorem~3.7]{bercu2018},
+\[
+ \frac{S_n}{n^a}\longrightarrow
+ \mathcal L_a^{+-}:=U^a\mathcal L_a'-(1-U)^a\mathcal L_a''
+ \qquad\text{almost surely},
+\]
+where $\mathcal L_a'$ and $\mathcal L_a''$ are copies of $\mathcal L_a$
+and $U$, $\mathcal L_a'$, $\mathcal L_a''$ are independent. With two
+positive first steps the same split gives the limit
+$\mathcal L_a^{++}=U^a\mathcal L_a'+(1-U)^a\mathcal L_a''$.
+
+These limits have entire densities. Let $\phi_a$ be the characteristic
+function of $\mathcal L_a$, and take $1<r<1/a$. Since $ra<1$, we have
+$v^{ra}+(1-v)^{ra}\ge1$ for $0\le v\le1$. Hence the bound of
+Lemma~\ref{lem:analytic-density} gives
+\[
+ \bigl|\E e^{it\mathcal L_a^{+\pm}}\bigr|
+ \le\int_0^1|\phi_a(tv^a)|\,|\phi_a(t(1-v)^a)|\,dv
+ \le4e^{-c|t|^r}.
+\]
+So, exactly as in the proof of that lemma, Fourier inversion gives
+densities $f_a^{+-}$ and $f_a^{++}$ that extend to entire functions.
+In particular they are smooth, so Lemma~\ref{lem:derivative-limits}
+applies to both starts.
+
 Now interpolate the lattice masses log-linearly. The result is
 log-concave. Its integral is within twice the largest atom of the
-step interpolation's, and the largest atom goes to zero because the
-limit law has a continuous density. So the limit is log-concave too.
-Splitting the walk into two subtrees gives
-\[
- \mathcal L_a^{+-}\ \stackrel d=\ U^a\mathcal L_a'-(1-U)^a\mathcal L_a'',
-\]
-with independent copies and an independent uniform $U$.
-Symmetry is clear from this. Since $h_a>0$, also $f_a^{+-}>0$, and by
-the Fourier bound of Lemma~\ref{lem:analytic-density}, $f_a^{+-}$ is
-entire. Now $(\log f_a^{+-})'$ is nonincreasing and is zero at zero.
+step interpolation's. The largest atom goes to zero, because the
+count laws converge weakly to a law with a continuous density.
+Hence the limit is log-concave too. Symmetry follows from the
+representation of $\mathcal L_a^{+-}$. Since $h_a>0$, also
+$f_a^{+-}>0$. Now $(\log f_a^{+-})'$ is nonincreasing and is zero at zero.
 Suppose it were also zero at some $t>0$. Then the density would be
 constant on $[0,t]$, which analyticity rules out. Hence
 $(f_a^{+-})'<0$ for $t>0$.

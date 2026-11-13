@@ -56,7 +56,12 @@ Fix $a\in(1/2,1)$. Lemma~\ref{lem:derivative-limits} at order two
 passes the five-block bound of Theorem~\ref{thm:five-blocks} to
 $g_a''$. Indeed, the interpolant's values are positive sums of
 adjacent second differences, and its lattice fills every fixed
-compact interval as $N\to\infty$. Lemmas~\ref{lem:interleave}
+compact interval as $N\to\infty$. The four values $D_N(0)$, $D_N(-1)$,
+$D_N(N)$, and $D_N(N+1)$ near the ends sit at the points
+$(2j-N)N^{-a}$ with $j\in\{-1,0,N,N+1\}$, since $\nabla^2P_N(k)=D_N(k-1)$.
+Their absolute values are at least $N^{1-a}$. Since $a<1$, these points leave every compact
+interval. Hence on a fixed compact interval the interpolant uses only
+interior second differences for large $N$. Lemmas~\ref{lem:interleave}
 and~\ref{lem:sp-limit} therefore give values at most $\Pi_5$.
 
 

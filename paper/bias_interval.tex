@@ -16,7 +16,7 @@ Claremont, CA 91711, USA. \mbox{\EMAIL{apemmasani@hmc.edu}}\newline
 ORCID \href{https://orcid.org/0009-0001-2776-6298}{0009-0001-2776-6298}.}}
 \KEYWORDS{elephant random walk; bimodality; shape transition; variation diminution; initial bias}
 \AMSSUBJ{60G50}
-\AMSSUBJSECONDARY{60F05; 60C05; 65G30}
+\AMSSUBJSECONDARY{60F05; 60C05}
 \ABSTRACT{Gu\'erin, Laulin, Raschel, and Simon conjectured that the
 initial biases giving the superdiffusive elephant random walk a
 bimodal limit law form an interval centered at one half, and they
@@ -49,10 +49,11 @@ helpful conversations.
 
 \section*{Code and data}
 The repository
-\url{https://github.com/apemm/elephant-bias-interval/tree/v1.0}
+\url{https://github.com/apemm/elephant-bias-interval/tree/v1.1}
 has the sources of this paper, the scripts that compute the numerical
 values in Remark~\ref{rem:numerics} with their interval certificates
-and records, and the Lean files. The file
+and records, and the Lean files. It is archived at Zenodo,
+\href{https://doi.org/10.5281/zenodo.24095945}{doi:10.5281/zenodo.24095945}. The file
 \nolinkurl{certificates/data/critical_constants_certificate.json}
 holds the enclosures of the constants.
 
@@ -71,7 +72,7 @@ reviews informed the framing and the shortening of an earlier combined
 manuscript, and suggested proving without computation that the bias
 boundary is positive, that the transition is unique, and that the critical
 top is quartic. All proofs in the paper were written by me, and the aforementioned suggestions are the only Claude suggestions that led to a new proof or result. The Lean files and their coverage map in
-\nolinkurl{kagey-problems/problem131/lean/PaperD} were generated with
+\nolinkurl{lean/PaperD} were generated with
 Claude Opus 5.5 from my statements and proofs; I checked that they build
 and audited their axioms. GPT-6 Astra (OpenAI, through Codex) edited my
 drafts for grammar, concision, and consistent notation, checked the
