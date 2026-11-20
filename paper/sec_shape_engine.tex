@@ -15,7 +15,11 @@ $P_t(k)=\Prob(A_t=k)$, which is $0$ unless $0\le k\le t$, and
 \[
  D_t(k)=P_t(k+1)-2P_t(k)+P_t(k-1).
 \]
-We also put $s_t=D_t(1)=P_t(0)-2P_t(1)+P_t(2)$ for $t\ge2$.
+We also put $s_t=D_t(1)=P_t(0)-2P_t(1)+P_t(2)$ for $t\ge2$. So
+$D_t(k)$ is the discrete curvature of the count law at $k$. Where it
+is positive the law is convex, and where it is negative the law is
+concave. The number $s_t$ is the curvature next to the left end, and
+by symmetry also next to the right end.
 
 \begin{lemma}[recurrence for the second difference]\label{lem:D-rec}
 For every $t\ge1$ and every integer $k$,
@@ -46,12 +50,10 @@ so the coefficients of $P_t(k)$ and $P_t(k-1)$ agree with the
 right side of~\eqref{eq:D-rec}. The outer two coefficients agree directly.
 \end{proof}
 
-Trinas and Valle~\cite[(2.2)]{tv2026} use \eqref{eq:P-rec}, the forward equation, for a superdiffusive local
-limit theorem. Their higher-difference
-recurrence~\cite[(4.10)]{tv2026} is the basis of a computer-certified
-study of log-concavity at fixed memory. We use \eqref{eq:D-rec} for a different
-purpose, to count sign changes. For $2\le k\le t-1$ its coefficients
-are positive. So new changes can only come in at the ends.
+The forward equation~\eqref{eq:P-rec} and a higher-difference
+recurrence are also in Trinas and Valle~\cite[(2.2) and (4.10)]{tv2026}.
+We use \eqref{eq:D-rec} to count sign changes. For $2\le k\le t-1$ its
+coefficients are positive. So new changes can only come in at the ends.
 Lemma~\ref{lem:interleave} shows that positive sums of neighbors never add a change
 (see~\cite{karlin1968,karlin1964} for the general theory).
 
@@ -78,10 +80,24 @@ For the second, obtain $\eta$ from $w$ by deleting the entries
 $\zeta_i$. Deletion can only remove signs from the pattern.
 \end{proof}
 
-For the walk we apply Lemma~\ref{lem:interleave} to the augmented
-rows of Figure~\ref{fig:augmented-rows}, drawn there for first
-differences. Proposition~\ref{prop:all-bias-modes} treats the whole
-row and Proposition~\ref{prop:dominant-half} the half $2k+1\ge t$.
+The values that arrive at the two ends are not controlled by the
+recurrence, so we put them in the list from the start. Fix the final
+length $N$. At time $t$ we write the end values of the times
+$t+1,\dots,N$ on both sides of the differences of time $t$. The left
+ones are read backwards in time and the right ones forwards. Then
+every end value that arrives at the next step is already next to the
+place where it arrives, and the recurrence controls the whole list. We
+call it the augmented row (Figure~\ref{fig:augmented-rows}, drawn for
+first differences). Proposition~\ref{prop:all-bias-modes} treats the
+whole row and Proposition~\ref{prop:dominant-half} the half
+$2k+1\ge t$.
+
+Two words describe the shape of a law $P$ on the integers. A
+\emph{modal plateau} is a maximal run of consecutive integers on which
+$P$ is constant and which has a strictly smaller value on each side.
+A \emph{strict valley} is a triple $i<j<k$ with
+$P(j)<\min\{P(i),P(k)\}$. For a function on the line a strict valley
+is a triple of points $x<y<z$ with the same inequality.
 
 \begin{figure}[ht]
 \centering
@@ -220,17 +236,12 @@ For $0<q\le1/2$, the right boundary history therefore has pattern
 contained in $(-,+,-)$. For $q=0$ it is nonpositive throughout. The conditional count is at
 most $t-1$, so $u_t=-P_t(t-1)\le0$.
 
-We put the values arriving at the boundary in an augmented row, since
-they are not controlled by the interior recurrence. Fix $N$ and, for
-$1\le t\le N$, form
+Fix $N$ and, for $1\le t\le N$, form the augmented row
 \[
  Z_t=(\ell_N,\ldots,\ell_{t+1},
        d_t(0),\ldots,d_t(t-1),
        u_{t+1},\ldots,u_N).
 \]
-The left history is read backwards while the right is read forwards,
-so every endpoint that arrives was already in the previous augmented
-row and the recurrence ends up controlling the entire row.
 For $q\le1/2$, its first row is contained in $(+,-,+,-)$.
 We must also allow zeros at $\ell_1=u_1=2q-1$. Suppose $Z_1$
 contained four ordered signs $-,+,-,+$. If the second lay in the

@@ -1,14 +1,25 @@
-\section{The limit density at fixed memory}\label{sec:bulk-applications}
+\section{The shape of the limit density}\label{sec:bulk-applications}
+
+This section has four parts. Section~\ref{sec:modes} passes the finite
+bounds to the limit for a fair start and states the threshold. The
+next part does the same for every bias and finds the bias interval.
+The third studies the bias boundary $b_a$, and the last the density at
+the threshold. To pass a bound to the limit means the following. The
+rescaled count law and its differences converge, locally uniformly, to
+$g_{a,q}$ and its derivatives (Lemma~\ref{lem:derivative-limits}), and
+a bound on the sign pattern of a sequence of functions holds for their
+pointwise limit (Lemma~\ref{lem:sp-limit}).
 
 Fix $\varepsilon\in(0,\frac14)$, so $a=1-2\varepsilon\in(\frac12,1)$.
+The finite bounds of Section~\ref{sec:convex} hold for
+$\varepsilon<\frac12$ and $\varepsilon<1$, and only the superdiffusive
+range $\varepsilon<\frac14$ has the limit density.
 Conditional on $X_1=1$, $S_k/k^a$ converges almost surely to
 $\mathcal L_a$~\cite[Theorem~3.7]{bercu2018}. The fair-start limit
 $\mathcal L^\circ_a$ has the law of $\xi\mathcal L_a$, where $\xi$ is a fair sign independent of
-$\mathcal L_a$~\cite[(1.3) and (1.6)]{glr2026}. Gu\'erin, Laulin, and Raschel
-prove that both limits have positive, bounded, and smooth
-densities~\cite[Theorem~1.3]{glr2026}, denoted by $h_a$ and $g_a$ as before.
-Gu\'erin, Laulin, Raschel, and Simon prove
-that $\mathcal L_a$ is unimodal~\cite[Theorem~1.1]{glrs2025}.
+$\mathcal L_a$~\cite[(1.3) and (1.6)]{glr2026}. Both limits have positive,
+bounded, and smooth densities~\cite[Theorem~1.3]{glr2026}, the
+densities $h_a$ and $g_a$ of the introduction.
 We also use two regularity facts, proved in
 Lemma~\ref{lem:analytic-density} of Appendix~\ref{app:regularity}. For
 every bias $q$, the limit density extends to an entire function, so it
@@ -115,13 +126,15 @@ The density $g_a$ is unimodal for $a\le a_*$ and bimodal for
 $a>a_*$. In particular, the critical density is unimodal.
 \end{theorem}
 
-To rule out a second crossing, Appendix~\ref{app:analytic-threshold}
-expresses the curvature sign as a comparison of positive weighted
-means, without numerical input. Rational bounds fix the sign outside
-$[2/3,69/100]$. On this interval the score is increasing, and a
-covariance identity shows that the weighted mean is strictly
-increasing in $a$. Hence there is exactly one crossing.
-Numerically $a_*\approx0.66881$ (Remark~\ref{rem:numerics}).
+The proof is in Appendix~\ref{app:analytic-threshold}. The interval
+$[2/3,69/100]$ comes from the proof. The weight in the formula for the
+curvature has a factor with the exponent $2-3a$, which changes sign at
+$a=2/3$. For $a\le2/3$ this factor lowers the weighted mean and the
+curvature is negative. For $a\ge2/3$ it raises the mean, and the lower
+bound that this gives for $\mathcal R(a)$ exceeds $1$ from $a=69/100$
+on. Between the two values the proof shows that $\mathcal R$ is
+increasing. Numerically $a_*\approx0.66881$
+(Remark~\ref{rem:numerics}).
 
 \subsection{Arbitrary initial bias}
 
@@ -164,8 +177,7 @@ toward the other one. Since the density is not constant on an
 interval, some point there has strictly smaller value. This gives
 the two forbidden valleys.
 
-\emph{The bias interval.} Fix $a$, write $f_q=g_{a,q}$ and $h=h_a$,
-and call $x<y<z$ a strict valley if $f_q(y)<\min\{f_q(x),f_q(z)\}$.
+\emph{The bias interval.} Fix $a$, and write $f_q=g_{a,q}$ and $h=h_a$.
 Proposition~\ref{prop:dominant-half} and the same density convergence show that,
 for $q\ge1/2$, $f_q$ has no strict valley on $[0,\infty)$ and
 $f_q(-x)\le f_q(x)$ for $x\ge0$.

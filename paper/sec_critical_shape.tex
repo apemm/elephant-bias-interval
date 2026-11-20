@@ -210,7 +210,8 @@ As $a\uparrow1$,
 \end{proposition}
 
 \begin{proof}
-Let $p=1-\varepsilon$, fix an integer $k\ge1$, and let
+Write $\Prob_+$ for the law of the walk given $X_1=1$. Let
+$p=1-\varepsilon$, fix an integer $k\ge1$, and let
 $E_k=\{X_1=\dots=X_k=1\}$. Given $X_1=1$, each of the next $k-1$ steps
 copies a positive step with probability $1-\varepsilon$ or flips a
 positive step with probability $\varepsilon$, so
@@ -295,7 +296,7 @@ $2\pi-1\to2e^{-\delta}(1-K^{-2})-1>0$. Hence
 \]
 \end{proof}
 
-\subsection{The density at the threshold}
+\subsection{The density at the threshold}\label{sec:critical-density}
 
 How far apart are the two modes just after the transition?
 We compute this from derivatives at the threshold. As in the proof
@@ -388,9 +389,3 @@ convergence is uniform and the cubic has only one maximum. Hence
 every scaled maximizer tends to $\sqrt{2C_*/B_*}$, which is the claim
 for $t_a$.
 \end{proof}
-
-Both exponents can be read off from $c(t)=C_*(a-a_*)t-B_*t^3/6$, the
-leading part of $g_a'(t)$ near zero. Its positive zero is
-$\sqrt{6C_*(a-a_*)/B_*}$, the leading term of $\kappa_a$. Its maximum
-over $t>0$ is $(2\sqrt2/3)C_*^{3/2}B_*^{-1/2}(a-a_*)^{3/2}$, and
-dividing by $2H_*$ gives $Q_*(a-a_*)^{3/2}$.
