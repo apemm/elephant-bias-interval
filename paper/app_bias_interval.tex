@@ -12,6 +12,12 @@ when $q\le1/2$.
 \end{proposition}
 
 \begin{proof}
+The proof has two parts. First we show by induction that the law is
+at least its reflection on the upper half. Then we run the induction
+of Proposition~\ref{prop:all-bias-modes} on the right half of the
+augmented row
+$Z_t=(\ell_N,\ldots,\ell_{t+1},d_t(0),\ldots,d_t(t-1),u_{t+1},\ldots,u_N)$
+of that proof. The first part is used at one entry only.
 Write the bias explicitly as $P_{n,q}$ and put
 \[
  \Delta_n(k)=P_{n,q}(k)-P_{n,1-q}(k)
@@ -19,8 +25,8 @@ Write the bias explicitly as $P_{n,q}$ and put
 \]
 The forward equation gives
 $\Delta_{n+1}(k)=(1-r_n(k))\Delta_n(k)+r_n(k-1)\Delta_n(k-1)$.
-At $n=1$, $\Delta_1(1)=2q-1\ge0$. Suppose the assertion holds at
-length $n$. At a point strictly above the new center, both parents lie in
+At $n=1$, $\Delta_1(1)=2q-1\ge0$. Suppose that $\Delta_n(k)\ge0$
+for $2k\ge n$. At a point strictly above the new center, both parents lie in
 the preceding upper half and both coefficients are nonnegative.
 At an integer center $\Delta_{n+1}(k)=0$ by reflection. Terms outside the
 support vanish. This proves the induction. In particular, the
@@ -34,7 +40,7 @@ $1-q\le1/2$, their pattern is contained in $(+,-)$ by
 \eqref{eq:bias-edge-increments}. We now rule out a negative difference followed by a positive one,
 also among the future boundary entries. Suppose such a pair first
 appeared in the next row. Choose a same-sign parent for each entry.
-The preceding proof shows that the first parent comes before the second.
+The proof of Proposition~\ref{prop:all-bias-modes} shows that the first parent comes before the second.
 The sole possible parent outside the previous half occurs at the new
 central difference of an odd row. That entry is nonnegative, so it
 cannot begin the forbidden pair. More explicitly, if a negative entry
@@ -60,6 +66,13 @@ Consequently the density conditional on a positive first step satisfies
 \end{lemma}
 
 \begin{proof}
+Given $X_1=1$, the second step is $+1$ with probability $(1+a)/2$. So
+$h_a$ is a mixture of the limit densities $f_a^{++}$ and $f_a^{+-}$ of
+the starts $+,+$ and $+,-$. We show that $f_a^{+-}$ is strictly
+increasing on the negative half-line and that $f_a^{++}$ is
+nondecreasing there. The proof has four steps. They are the
+log-concavity of the count law for the start $+,-$, the limit of that
+start, the log-concavity of the limit, and the start $+,+$.
 Starting with one step in each direction removes the boundary obstruction
 to the log-concavity induction of~\cite[Proposition~2.2]{glrs2025}.
 Write one update as
@@ -122,13 +135,15 @@ densities $f_a^{+-}$ and $f_a^{++}$ that extend to entire functions.
 In particular they are smooth, so Lemma~\ref{lem:derivative-limits}
 applies to both starts.
 
-Now interpolate the lattice masses log-linearly. The result is
-log-concave. Its integral is within twice the largest atom of the
-step interpolation's. The largest atom goes to zero, because the
-count laws converge weakly to a law with a continuous density.
-Hence the limit is log-concave too. Symmetry follows from the
-representation of $\mathcal L_a^{+-}$. Since $h_a>0$, also
-$f_a^{+-}>0$. Now $(\log f_a^{+-})'$ is nonincreasing and is zero at zero.
+Now interpolate the rescaled lattice masses log-linearly. The result
+is log-concave. By Lemma~\ref{lem:derivative-limits} with $r=0$ the
+rescaled masses converge locally uniformly to $f_a^{+-}$. The
+log-linear interpolant lies between adjacent masses, so it has the
+same limit. A pointwise limit of log-concave functions is log-concave.
+Hence $f_a^{+-}$ is log-concave. Symmetry follows from the
+representation of $\mathcal L_a^{+-}$. The law of $\mathcal L_a^{+-}$
+is a mixture over $U$ of convolutions of two positive densities, since
+$h_a>0$. So $f_a^{+-}>0$. Now $(\log f_a^{+-})'$ is nonincreasing and is zero at zero.
 Suppose it were also zero at some $t>0$. Then the density would be
 constant on $[0,t]$, which analyticity rules out. Hence
 $(f_a^{+-})'<0$ for $t>0$.
@@ -138,7 +153,10 @@ are nonnegative on the negative half-line, and use induction from the
 point mass at count two. Each entry on the negative half-line has
 both parents in the lower half of the previous row. The one exception is the central
 difference of an odd row, and there reflection dominance gives the
-sign. The derivative limit of Lemma~\ref{lem:derivative-limits} then
+sign. The induction of Proposition~\ref{prop:dominant-half} runs in
+the same way from the point mass at count two. The left end causes no
+trouble, because the support starts at count two and the differences
+at the left end are nonnegative. The derivative limit of Lemma~\ref{lem:derivative-limits} then
 gives $(f_a^{++})'(t)\ge0$ for $t<0$.
 Finally
 $h_a=((1+a)/2)f_a^{++}+((1-a)/2)f_a^{+-}$.
@@ -156,8 +174,13 @@ conditional mode lies strictly to the right of zero.
 \end{lemma}
 
 \begin{proof}
-The idea is to bound the reflection difference from below by
-something that survives rescaling. Write $f_n(k)=\Prob_+(A_n=k)$, with $\Prob_+$ the law given $X_1=1$, and,
+For $z=1$ or $z=2$ the number $N^{2a}d_N(z)/z$ defined below is a
+rescaled central first difference, and it tends to $4h_a'(0)$. We show
+that its lower limit is positive. After division by $z$ and a product
+normalization, the reflection differences become averages of earlier
+rows along a backward chain. The chain stays in a diffusive band with
+probability above one half, and on the band the values at a fixed row
+$n_0$ are bounded below. Write $f_n(k)=\Prob_+(A_n=k)$, with $\Prob_+$ the law given $X_1=1$, and,
 for $z\equiv n\pmod2$,
 $d_n(z)=f_n((n+z)/2)-f_n((n-z)/2)$.
 With a positive start, the reflection induction of
@@ -178,7 +201,8 @@ They satisfy a backward averaging equation, with weights
 \]
 In the band we use below, these weights are nonnegative and add up to
 one. At $z=1$ the parent $0$ gets weight zero. Let $z_n$ be the
-backward chain with these weights. Then
+backward chain with these weights. Where the weights are nonnegative,
+$v_n(z_n)$ is a martingale in the backward time. Then
 \[
  \E[z_n^2\mid z_{n+1}=z]
  =\frac{n-4a}{n-2a}z^2+\frac{3n-4a}{n-2a}.
@@ -206,15 +230,18 @@ by the strict reflection induction. The band states of row $n_0$ are
 the finitely many $z$ with $0<z\le R\sqrt{\gamma_{n_0}}$, and at row
 $n_0$ the normalizing product is empty, so $v_{n_0}(z)=d_{n_0}(z)/z$.
 Their minimum $m_0>0$ depends only on $n_0$ and $R$, not on $N$. The
-chain stops in this row with probability above one half. Since
-stopping is bounded, $v_N(z_N)\ge m_0/2$. The
+chain stops in this row with probability above one half. The
+stopping time is bounded, so $v_N(z_N)$ is the mean of the stopped
+value, and $v_N(z_N)\ge m_0/2$. The
 product normalizer is a positive constant times $N^{2a}$ in the
 limit. Hence
 \[
  \liminf_N N^{2a}\frac{d_N(z_N)}{z_N}>0.
 \]
 By Lemma~\ref{lem:derivative-limits} for the conditional start,
-the first differences converge, and this limit is $4h_a'(0)$. So
+the first differences converge, and this limit is $4h_a'(0)$. For
+even $N$ we use that $d_N(2)$ is the sum of two adjacent central first
+differences. So
 $h_a'(0)>0$. Since $h_a$ is unimodal, its mode is to the right of
 zero.
 \end{proof}

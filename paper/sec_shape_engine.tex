@@ -90,7 +90,8 @@ place where it arrives, and the recurrence controls the whole list. We
 call it the augmented row (Figure~\ref{fig:augmented-rows}, drawn for
 first differences). Proposition~\ref{prop:all-bias-modes} treats the
 whole row and Proposition~\ref{prop:dominant-half} the half
-$2k+1\ge t$.
+$2k+1\ge t$. Theorem~\ref{thm:five-blocks} uses the same row for
+second differences, where both histories consist of the values $s_t$.
 
 Two words describe the shape of a law $P$ on the integers. A
 \emph{modal plateau} is a maximal run of consecutive integers on which
@@ -189,6 +190,10 @@ modes. Moreover, there are no integers $i_0<\cdots<i_4$ for which
 \end{proposition}
 
 \begin{proof}
+The proof has three steps. We bound the sign pattern of the left
+end values. We bound the pattern of the first augmented row for
+$q\le1/2$. We show that one step of the walk adds no sign. Reflection
+then gives $q\ge1/2$.
 Put $a=1-2\varepsilon$ and $r_t(k)=\varepsilon+ak/t$. The forward equation
 is
 \[
@@ -211,7 +216,7 @@ $P_t(0)=(1-q)(1-\varepsilon)^{t-1}>0$, define
  b=\frac{1-2\varepsilon}{1-\varepsilon}<1,\qquad
  A=\frac{\varepsilon}{1-\varepsilon}>0.
 \]
-The boundary equation gives
+The forward equation at $k=0$ and $k=1$ gives
 \[
  \xi_{t+1}=(1-b/t)\xi_t+A,\qquad \xi_1=\frac q{1-q}.
 \]
@@ -242,7 +247,7 @@ Fix $N$ and, for $1\le t\le N$, form the augmented row
        d_t(0),\ldots,d_t(t-1),
        u_{t+1},\ldots,u_N).
 \]
-For $q\le1/2$, its first row is contained in $(+,-,+,-)$.
+We claim that for $q\le1/2$ its first row is contained in $(+,-,+,-)$.
 We must also allow zeros at $\ell_1=u_1=2q-1$. Suppose $Z_1$
 contained four ordered signs $-,+,-,+$. If the second lay in the
 reversed left history, the first two would give
@@ -268,7 +273,8 @@ $\operatorname{sp}(Z_N)\preceq(+,-,+,-)$. Reflection and sign
 reversal preserve this pattern, proving the claim also for $q\ge1/2$,
 including $q=1$.
 
-Finally, extension by zero adds $d_N(-1)=P_N(0)\ge0$ on the left and $d_N(N)=-P_N(N)\le0$ on the right. Neither enlarges the pattern.
+Finally, extension by zero adds $d_N(-1)=P_N(0)\ge0$ on the left and $d_N(N)=-P_N(N)\le0$ on the right. The pattern $(+,-,+,-)$ starts with $+$ and ends with $-$, so the
+longer list is still contained in it.
 Every modal plateau contributes a positive-to-negative change, so there
 are at most two. If the statement's last inequalities held, telescoping
 on each of their four intervals would give an adjacent difference

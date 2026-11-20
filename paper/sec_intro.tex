@@ -22,8 +22,8 @@ memory parameter $a$ is near one, the one-peak density sits away from
 zero and the fair mixture has two peaks. When $a$ is near $1/2$ the
 density is spread out and the two peaks merge. But nothing general
 makes this simple. A mixture of a one-peak density and its mirror image
-can have more than two peaks, and the weights that give two peaks need
-not form an interval. The weights giving two peaks are known for normal
+can have more than two peaks, and nothing forces the weights that give
+two peaks to form an interval. The weights giving two peaks are known for normal
 mixtures~\cite{eisenberger1964,robertsonfryer1969}, but here the
 density is not Gaussian. Gu\'erin, Laulin, Raschel, and Simon
 conjecture that the biases $q$ with two peaks form an open interval
@@ -144,23 +144,25 @@ diminution~\cite{karlin1968,karlin1964}. The two ends are different. At
 each step a new value enters at each end, and a new value at an end can
 add a sign change. So we fix the final length $N$ and carry, on both
 sides of the differences at time $t$, the end values that will enter
-before time $N$ (Figure~\ref{fig:augmented-rows}). We bound the sign
+up to time $N$ (Figure~\ref{fig:augmented-rows}). We bound the sign
 changes of these end values on their own. After that, every new end
 value is already in the list, and the induction runs over the longer
 list with no new sign change. For a fair start the second difference
 changes sign at most 4 times. For every bias the first difference
-changes sign at most 3 times. These bounds pass to $g_a''$ and
-$g_{a,q}'$.
+changes sign at most 3 times. The first bound passes to $g_a''$. The
+second shows in the limit that $g_{a,q}$ does not have two strict
+valleys in a row, in the sense defined next.
 
 \emph{The interval.} We say that a function has a strict valley if it
 takes at some point a value strictly below its values at a point on
 each side. Let $q\ge1/2$. On $[0,\infty)$ the density $g_{a,q}$ has no
-strict valley, and $g_{a,q}(-x)\le g_{a,q}(x)$. Hence $g_{a,q}$ has two
+strict valley, and $g_{a,q}(-x)\le g_{a,q}(x)$ for $x\ge0$. Hence $g_{a,q}$ has two
 peaks if and only if $g_{a,q}(x)>g_{a,q}(y)$ for some $x<y\le0$. For
 fixed $x,y$ this difference is affine in $q$ and is $\le0$ at $q=1$. If
 it is positive at some $q$, it is positive on $[1/2,q]$. Taking the
 union over $x,y$ and reflecting gives an interval $(b_a,1-b_a)$. Since
-$h_a'(0)>0$ for every $a\in(1/2,1)$, we can conclude $b_a>0$.
+$h_a'>0$ on $(-\infty,0]$ for every $a\in(1/2,1)$, and the supremum
+that defines the interval is attained, we can conclude $b_a>0$.
 
 \emph{The threshold.} Let $E$ be an independent exponential variable.
 The moments of $E^a\mathcal L_a$, where $\mathcal L_a$ is the limit of
@@ -189,9 +191,11 @@ values for second differences, and the proof of
 Proposition~\ref{prop:all-bias-modes} bounds them for first differences.
 The two finite bounds are Theorem~\ref{thm:five-blocks} and
 Proposition~\ref{prop:all-bias-modes}, and
-Lemma~\ref{lem:derivative-limits} passes them to the limit.
+Lemmas~\ref{lem:derivative-limits} and~\ref{lem:sp-limit} pass them
+to the limit.
 Proposition~\ref{prop:dominant-half} excludes a strict valley on the
 right half, and Theorem~\ref{thm:biased-limit-modes} gives the interval.
+Lemma~\ref{lem:balanced-start} proves $h_a'(t)>0$ for $t<0$, and
 Lemma~\ref{lem:positive-conditional-mode} proves $h_a'(0)>0$. The
 formula for the curvature is Lemma~\ref{lem:curvature-weight}, and
 Appendix~\ref{app:analytic-threshold} proves

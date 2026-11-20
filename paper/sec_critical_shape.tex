@@ -34,9 +34,9 @@ $g_{a,q}'(-t)<0$ for some $t>0$. Here
 \]
 This expression can be negative only if $t\in U_a$, in which case
 it is negative exactly when
-$1-q>h_a'(-t)/(h_a'(t)+h_a'(-t))$. Taking the union over $t$ gives
-\eqref{eq:bias-boundary}, with equality excluded as in
-Theorem~\ref{thm:biased-limit-modes}. At an interior minimizer the
+$1-q>h_a'(-t)/(h_a'(t)+h_a'(-t))$. The inequality is strict for each $t$, so the set of
+$q\ge1/2$ with two modes is the set where $1-q$ exceeds the infimum.
+Comparing with $q<1-b_a$ gives \eqref{eq:bias-boundary}. At an interior minimizer the
 ratio has derivative zero. Differentiating its numerator and
 denominator gives the two displayed equations.
 \end{proof}
@@ -52,6 +52,12 @@ This minimizer depends continuously on $a$ throughout $(a_*,1)$.
 \end{theorem}
 
 \begin{proof}
+The proof has six steps. We reduce the infimum to $(0,\kappa_a)$ and
+rewrite it as the maximum of a ratio $R_a$. We show that $R_a$ has no
+strict valley. This gives a unique maximizer and $b_a>0$. Then come
+the continuity above $a_*$, the continuity at $a_*$, and the
+derivative with its sign near $a_*$.
+
 For $a>a_*$, the curvature partition in Theorem~\ref{thm:two-modes}
 gives $g_a'(t)>0$ on $(0,\kappa_a)$ and $g_a'(t)<0$ on
 $(\kappa_a,\infty)$. For $t\ge\kappa_a$ in $U_a$, the ratio in
@@ -210,6 +216,12 @@ As $a\uparrow1$,
 \end{proposition}
 
 \begin{proof}
+We compare the mass of $g_{a,q}$ on two adjacent intervals $J_1$
+and $J_2$ of equal length to the left of zero. The reflected law puts
+mass at least $\pi$ on $J_1$, and the direct law puts mass at most
+$A$ on $J_2$. The number $A$ is the product of two factors of order
+$1-a$, the relative width of a window and the probability that
+$\mathcal L_a\le0$. This is why the rate is quadratic.
 Write $\Prob_+$ for the law of the walk given $X_1=1$. Let
 $p=1-\varepsilon$, fix an integer $k\ge1$, and let
 $E_k=\{X_1=\dots=X_k=1\}$. Given $X_1=1$, each of the next $k-1$ steps
@@ -273,7 +285,8 @@ $-J_2\subset(-\infty,x_0]$. Then
    +(1-q)\bigl(\Prob_+(\mathcal L_a\in W)-\Prob_+(\mathcal L_a<x_0)\bigr)\\
  &\ge-qA+(1-q)(2\pi-1).
 \end{align*}
-If $1-q>A/(2\pi-1+A)$, the right side is positive. The intervals $J_1$
+If $A\ge2\pi-1$, the bound below holds because $b_a\le1/2$. So let
+$A<2\pi-1$. If $1-q>A/(2\pi-1+A)$, the right side is positive. The intervals $J_1$
 and $J_2$ are adjacent, have equal length, and lie in $(-\infty,0)$
 with $J_1$ on the left, so $g_{a,q}$ is not nondecreasing on
 $(-\infty,0]$. Thus $g_{a,q}'(-t)=qh_a'(-t)-(1-q)h_a'(t)<0$ for some

@@ -12,7 +12,7 @@ pointwise limit (Lemma~\ref{lem:sp-limit}).
 
 Fix $\varepsilon\in(0,\frac14)$, so $a=1-2\varepsilon\in(\frac12,1)$.
 The finite bounds of Section~\ref{sec:convex} hold for
-$\varepsilon<\frac12$ and $\varepsilon<1$, and only the superdiffusive
+$\varepsilon<\frac12$ and $\varepsilon<1$ respectively, and only the superdiffusive
 range $\varepsilon<\frac14$ has the limit density.
 Conditional on $X_1=1$, $S_k/k^a$ converges almost surely to
 $\mathcal L_a$~\cite[Theorem~3.7]{bercu2018}. The fair-start limit
@@ -63,6 +63,11 @@ $\operatorname{sp}(v(y_1),\ldots,v(y_j))\preceq\Pi$ for every
 $y_1<\cdots<y_j$.
 
 \begin{proof}
+The proof has three steps. First $g_a''$ has values at most $\Pi_5$.
+Second $g_a$ has no strict valley on $[0,\infty)$, which gives the two
+cases. Third the $\Pi_5$ bound and the behavior at zero and at
+infinity fix the sign pattern of $g_a''$.
+
 Fix $a\in(1/2,1)$. Lemma~\ref{lem:derivative-limits} at order two
 passes the five-block bound of Theorem~\ref{thm:five-blocks} to
 $g_a''$. Indeed, the interpolant's values are positive sums of
@@ -70,13 +75,15 @@ adjacent second differences, and its lattice fills every fixed
 compact interval as $N\to\infty$. The four values $D_N(0)$, $D_N(-1)$,
 $D_N(N)$, and $D_N(N+1)$ near the ends sit at the points
 $(2j-N)N^{-a}$ with $j\in\{-1,0,N,N+1\}$, since $\nabla^2P_N(k)=D_N(k-1)$.
-Their absolute values are at least $N^{1-a}$. Since $a<1$, these points leave every compact
+These points have absolute value at least $N^{1-a}$. Since $a<1$, these points leave every compact
 interval. Hence on a fixed compact interval the interpolant uses only
-interior second differences for large $N$. Lemmas~\ref{lem:interleave}
+interior second differences for large $N$. The lattice spacing is
+$2N^{-a}$, so for large $N$ any fixed points $y_1<\cdots<y_j$ lie in
+different lattice cells. Lemmas~\ref{lem:interleave}
 and~\ref{lem:sp-limit} therefore give values at most $\Pi_5$.
 
 
-\emph{Symmetry.} Proposition~\ref{prop:dominant-half} and
+\emph{Monotone shape.} Proposition~\ref{prop:dominant-half} and
 Lemma~\ref{lem:derivative-limits}, with $r=0$, show that $g_a$
 has no strict valley on $[0,\infty)$. Such a valley would persist
 at nearby lattice points under locally uniform convergence.
@@ -127,12 +134,14 @@ $a>a_*$. In particular, the critical density is unimodal.
 \end{theorem}
 
 The proof is in Appendix~\ref{app:analytic-threshold}. The interval
-$[2/3,69/100]$ comes from the proof. The weight in the formula for the
+$[2/3,69/100]$ comes from the proof. The weight in the formula~\eqref{eq:an-curvature} for the
 curvature has a factor with the exponent $2-3a$, which changes sign at
-$a=2/3$. For $a\le2/3$ this factor lowers the weighted mean and the
-curvature is negative. For $a\ge2/3$ it raises the mean, and the lower
-bound that this gives for $\mathcal R(a)$ exceeds $1$ from $a=69/100$
-on. Between the two values the proof shows that $\mathcal R$ is
+$a=2/3$. Let $\mathcal R(a)$ be $(1+a)^2$ times the mean of the
+integration variable under this weight, so that $g_a''(0)$ has the
+sign of $\mathcal R(a)-1$. For $a\le2/3$ the factor lowers the mean
+and the curvature is negative. For $a\ge2/3$ it raises the mean, and
+the lower bound that this gives for $\mathcal R(a)$ exceeds $1$ from
+$a=69/100$ on. Between the two values the proof shows that $\mathcal R$ is
 increasing. Numerically $a_*\approx0.66881$
 (Remark~\ref{rem:numerics}).
 
@@ -183,10 +192,11 @@ for $q\ge1/2$, $f_q$ has no strict valley on $[0,\infty)$ and
 $f_q(-x)\le f_q(x)$ for $x\ge0$.
 Thus it has a strict valley if and only if
 $f_q(x)>f_q(y)$ for some $x<y\le0$. Reflection dominance turns
-such a descent into the valley $(x,y,-x)$. Conversely, a valley
-must start at $x<0$. If its middle point $y$ is positive,
-the no-valley property at $(0,y,z)$ gives
-$f_q(0)\le f_q(y)<f_q(x)$.
+such a descent into the valley $(x,y,-x)$. Conversely, let
+$(x',y',z')$ be a strict valley. Then $x'<0$. If $y'\le0$, the pair
+$(x',y')$ is a descent. If $y'>0$, the triple $(0,y',z')$ is not a
+strict valley, so $f_q(0)\le f_q(y')<f_q(x')$, and the pair $(x',0)$
+is a descent.
 
 At $q=1$, conditional unimodality~\cite{glrs2025} and reflection
 dominance place the mode in $[0,\infty)$. A negative mode would have
