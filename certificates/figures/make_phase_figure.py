@@ -142,37 +142,42 @@ def smooth_boundary(a,b):
 
 def draw():
     d=np.load(CACHE)
-    plt.rcParams.update({'font.family':'serif','font.size':9,'axes.spines.top':False,'axes.spines.right':False,'pdf.fonttype':42,'mathtext.fontset':'dejavuserif'})
-    fig=plt.figure(figsize=(6.3,5.0),layout='constrained')
-    gs=fig.add_gridspec(2,3,height_ratios=[1.25,1])
+    # Plain black curves with the fonts of the paper. The panels have no titles,
+    # since the caption of the figure describes them.
+    plt.rcParams.update({'font.family':'serif','font.serif':['cmr10','Computer Modern Roman','DejaVu Serif'],
+        'mathtext.fontset':'cm','axes.formatter.use_mathtext':True,'axes.unicode_minus':False,
+        'font.size':9,'axes.labelsize':9,'xtick.labelsize':8,'ytick.labelsize':8,
+        'lines.linewidth':0.9,'axes.linewidth':0.5,'xtick.major.width':0.5,'ytick.major.width':0.5,
+        'xtick.major.size':2.5,'ytick.major.size':2.5,
+        'axes.spines.top':False,'axes.spines.right':False,'pdf.fonttype':42})
+    fig=plt.figure(figsize=(6.0,4.3),layout='constrained')
+    gs=fig.add_gridspec(2,3,height_ratios=[1.2,1])
     ax=fig.add_subplot(gs[0,:2])
     a,b=smooth_boundary(d['a'],d['b'])
-    ax.fill_between(a,b,1-b,color='#76b8c5',alpha=.65)
-    ax.plot(a,b,color='#00566b',lw=1.5); ax.plot(a,1-b,color='#00566b',lw=1.5)
-    ax.axvline(ASTAR,color='.3',ls=':',lw=1)
-    ax.plot([ASTAR],[.5],'o',color='#ae4a27',ms=4)
-    ax.text(.805,.51,'two modes',ha='center')
-    ax.text(.73,.96,'one mode',ha='center',va='top')
-    ax.text(.73,.04,'one mode',ha='center',va='bottom')
-    ax.annotate(r'$a_*$',(ASTAR,.5),xytext=(ASTAR-.025,.65),arrowprops={'arrowstyle':'-','lw':.7})
-    ax.set(xlabel=r'memory $a$',ylabel=r'initial bias $q$',xlim=(.62,.9),ylim=(0,1),title='Numerical boundary')
+    ax.fill_between(a,b,1-b,color='0.85',linewidth=0)
+    ax.plot(a,b,color='k'); ax.plot(a,1-b,color='k')
+    ax.axvline(ASTAR,color='k',ls=':',lw=0.6)
+    ax.text(.805,.5,'two modes',ha='center',va='center')
+    ax.text(.73,.95,'one mode',ha='center',va='top')
+    ax.text(.73,.05,'one mode',ha='center',va='bottom')
+    ax.set_xticks([.65,.70,.75,.80,.85,.90])
+    ax.text(ASTAR,-.105,r'$a_*$',ha='center',va='top',transform=ax.get_xaxis_transform())
+    ax.set(xlabel=r'$a$',ylabel=r'$q$',xlim=(.62,.9),ylim=(0,1))
     # The conditional density, its reflection and their fair mixture.
     ax=fig.add_subplot(gs[0,2])
     c=np.load(COND_CACHE)
     u,h=c['u'],c['h']
-    ax.plot(u,h,color='#397849',lw=1.2)
-    ax.plot(u,h[::-1],color='#397849',lw=1.2,ls='--')
-    ax.plot(u,(h+h[::-1])/2,color='#00566b',lw=1.5)
-    ax.axvline(0,color='.65',ls=':',lw=.7)
+    ax.plot(u,h,color='k',lw=0.7)
+    ax.plot(u,h[::-1],color='k',lw=0.7,ls='--')
+    ax.plot(u,(h+h[::-1])/2,color='k',lw=1.2)
     ax.text(1.5,float(h.max())*1.06,r'$h_a(u)$',ha='center',fontsize=8)
     ax.text(-1.5,float(h.max())*1.06,r'$h_a(-u)$',ha='center',fontsize=8)
-    ax.set(xlabel=r'$u$',xlim=(-3.4,3.4),ylim=(0,float(h.max())*1.2),title=rf'Mixture, $a={float(c["a"]):.2f}$')
-    titles=['below the transition','at the transition','above the transition']
-    for k,(a,y,title) in enumerate(zip(d['curve_a'],d['density'],titles)):
-        ax=fig.add_subplot(gs[1,k]); ax.plot(d['u'],y,color='#00566b',lw=1.5)
-        ax.axvline(0,color='.65',ls=':',lw=.7)
-        ax.set(xlim=(-3.4,3.4),ylim=(0,None),xlabel=r'$u$',title=title+'\n'+(r'$a=a_*$' if k==1 else rf'$a={a:.2f}$'))
-        if k==0: ax.set_ylabel(r'fair density $g_a(u)$')
+    ax.set(xlabel=r'$u$',xlim=(-3.4,3.4),ylim=(0,float(h.max())*1.2))
+    for k,(a,y) in enumerate(zip(d['curve_a'],d['density'])):
+        ax=fig.add_subplot(gs[1,k]); ax.plot(d['u'],y,color='k')
+        ax.text(.04,.93,r'$a=a_*$' if k==1 else rf'$a={a:.2f}$',transform=ax.transAxes,ha='left',va='top',fontsize=8)
+        ax.set(xlim=(-3.4,3.4),ylim=(0,float(np.max(y))*1.18),xlabel=r'$u$')
+        if k==0: ax.set_ylabel(r'$g_a(u)$')
     fig.savefig(OUT/'phase.pdf')
     fig.savefig(OUT/'phase.png',dpi=180)
     print('Wrote',OUT/'phase.pdf',flush=True)
