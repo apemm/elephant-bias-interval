@@ -41,14 +41,17 @@ neighboring output masses is zero, and there is nothing to check. We
 start from the point mass at one and induct. The recurrence also
 shows the masses are strictly positive on the support.
 
-Next we identify the limit. For $t\ge1$, join step $t+1$ to the
-earlier step $X_i$ that it copies or reverses, and give this edge the
-sign $X_{t+1}X_i$. This builds a random recursive tree on the steps.
-The edge signs are independent of the tree and of each other, and each
-is $+1$ with probability $(1+a)/2$. Remove the edge from step $2$ to
-step $1$. This splits the steps into the part of step $1$ and the part
-of step $2$. A new step joins a part with probability equal to the
-share of that part among the steps so far. Hence the sizes of the two
+Next we identify the limit. Step $t+1$ copies or reverses an earlier
+step $X_i$. For $t\ge1$, join step $t+1$ to $X_i$ and give the
+resulting edge the sign $X_{t+1}X_i$. Doing so creates a random
+recursive tree on the steps, where the edge signs are independent both
+of the tree and of each other. Each of these edge signs is $+1$ with
+probability $(1+a)/2$. Removing the edge from step $2$ to step $1$
+splits the steps into the part of step $1$ and the part of step $2$. A
+new step joins the part that contains the step it copies or reverses.
+Since that step is chosen uniformly, the new step joins a part with
+probability equal to the fraction of the earlier steps that lie in
+that part. Hence the sizes of the two
 parts form a P\'olya urn started from one ball of each color, and the
 share of the part of step $1$ converges almost surely to a uniform
 variable $U$. Given the sequence of parts that the steps join, each
