@@ -11,9 +11,9 @@ a bound on the sign pattern of a sequence of functions holds for their
 pointwise limit (Lemma~\ref{lem:sp-limit}).
 
 Fix $\varepsilon\in(0,\frac14)$, so $a=1-2\varepsilon\in(\frac12,1)$.
-The finite bounds of Section~\ref{sec:convex} hold for
-$\varepsilon<\frac12$ and $\varepsilon<1$ respectively, and only the superdiffusive
-range $\varepsilon<\frac14$ has the limit density.
+Theorem~\ref{thm:five-blocks} holds for $\varepsilon<\frac12$ and
+Proposition~\ref{prop:all-bias-modes} for $\varepsilon<1$. The limit
+density exists only in the superdiffusive range $\varepsilon<\frac14$.
 Conditional on $X_1=1$, $S_k/k^a$ converges almost surely to
 $\mathcal L_a$~\cite[Theorem~3.7]{bercu2018}. The fair-start limit
 $\mathcal L^\circ_a$ has the law of $\xi\mathcal L_a$, where $\xi$ is a fair sign independent of
@@ -57,6 +57,10 @@ on each tail beyond $\pm d_2$, and strictly concave on
 $(-d_2,-d_1)$ and $(d_1,d_2)$. Thus it has exactly two inflection points
 in case (a) and four in case (b).
 \end{theorem}
+
+We call the statement on convexity in Theorem~\ref{thm:two-modes} the
+curvature partition. The proof of Theorem~\ref{thm:bias-continuity}
+uses it for the sign of $g_a'$ on each side of the mode.
 
 A real function $v$ has \emph{values at most} $\Pi$ if
 $\operatorname{sp}(v(y_1),\ldots,v(y_j))\preceq\Pi$ for every
@@ -191,8 +195,10 @@ Proposition~\ref{prop:dominant-half} and the same density convergence show that,
 for $q\ge1/2$, $f_q$ has no strict valley on $[0,\infty)$ and
 $f_q(-x)\le f_q(x)$ for $x\ge0$.
 Thus it has a strict valley if and only if
-$f_q(x)>f_q(y)$ for some $x<y\le0$. Reflection dominance turns
-such a descent into the valley $(x,y,-x)$. Conversely, let
+$f_q(x)>f_q(y)$ for some $x<y\le0$. We call the inequality
+$f_q(-x)\le f_q(x)$ for $x\ge0$ reflection dominance, and we call a
+pair $x<y\le0$ with $f_q(x)>f_q(y)$ a descent. If $(x,y)$ is a descent
+then $f_q(-x)\ge f_q(x)>f_q(y)$, so $(x,y,-x)$ is a strict valley. Conversely, let
 $(x',y',z')$ be a strict valley. Then $x'<0$. If $y'\le0$, the pair
 $(x',y')$ is a descent. If $y'>0$, the triple $(0,y',z')$ is not a
 strict valley, so $f_q(0)\le f_q(y')<f_q(x')$, and the pair $(x',0)$

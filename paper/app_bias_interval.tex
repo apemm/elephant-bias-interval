@@ -20,8 +20,12 @@ increasing on the negative half-line and that $f_a^{++}$ is
 nondecreasing there. We prove the log-concavity of the count law for the
 start $+,-$, identify its limit, pass the log-concavity to the limit,
 and then treat the start $+,+$.
-Starting with one step in each direction removes the boundary obstruction
-to the log-concavity induction of~\cite[Proposition~2.2]{glrs2025}.
+We run the log-concavity induction of~\cite[Proposition~2.2]{glrs2025} at
+the points where $A,B\ge d$ below. Starting
+with one step in each direction keeps the support inside
+$\{1,\ldots,n-1\}$, so the two ends of the support need no check. The count law given $X_1=1$ is not
+log-concave~\cite{tv2026}, so this induction cannot be run from one
+fixed step.
 Write one update as
 $g_k=Af_k+Bf_{k-1}$, where
 \[
@@ -142,6 +146,10 @@ positive parent with a positive coefficient. The recurrence is
  \alpha_n(z)=\frac12-\frac{a(z+1)}{2n},\qquad
  \beta_n(z)=\frac12+\frac{a(z-1)}{2n}.
 \end{gather*}
+Since $\alpha_n(z)(z+1)+\beta_n(z)(z-1)=z(1-2a/n)$, the function $z$
+is reproduced by the recurrence up to the factor $1-2a/n$. So dividing
+by $z$ and by these factors turns the recurrence into an average, and
+$e_N(z)/z$ is the slope of the count law at the center.
 Fix $n_0>4a$. Divide by $z$ and multiply by
 $\prod_{j=n_0}^{n-1}(1-2a/j)^{-1}$. Call the new values $v_n(z)$.
 They satisfy a backward averaging equation, with weights

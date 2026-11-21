@@ -50,8 +50,12 @@ right side of~\eqref{eq:D-rec}. The outer two coefficients agree directly.
 The forward equation~\eqref{eq:P-rec} and a higher-difference
 recurrence are also in Trinas and Valle~\cite[(2.2) and (4.10)]{tv2026}.
 We use \eqref{eq:D-rec} to count sign changes. For $2\le k\le t-1$ its
-coefficients are positive. Hence, new changes are only able to come
-in at the ends. Furthermore, Lemma~\ref{lem:interleave} shows that
+coefficients are positive. At $k=1$ it reads
+$D_{t+1}(1)=(1-r_t(2))D_t(1)+r_t(-1)D_t(0)$, where
+$r_t(-1)=\varepsilon-a/t$ is negative for $t<a/\varepsilon$ and
+$D_t(0)$ lies outside the list $D_t(1),\dots,D_t(t-1)$. So $s_{t+1}$ is
+not a positive combination of neighbors. Hence, new changes are only
+able to come in at the ends. Furthermore, Lemma~\ref{lem:interleave} shows that
 positive sums of neighbors never add a change
 (see~\cite{karlin1968,karlin1964} for general theory).
 
@@ -279,9 +283,15 @@ of the same strict sign. These four differences would
 have signs $-,+,-,+$, a contradiction.
 \end{proof}
 
-The next proposition keeps only the half of the row that the start
-favors. It is used for the limit shape in
-Theorems~\ref{thm:two-modes} and~\ref{thm:biased-limit-modes}.
+The last claim of Proposition~\ref{prop:all-bias-modes} is the form
+that passes to the limit, since strict inequalities at five fixed
+points survive a locally uniform limit and a count of plateaus does
+not. The next proposition keeps only the half of the row that the
+start favors. With no strict valley on that half, and with the
+inequality $P_n(n-k)\le P_n(k)$, the law has two modes only if it
+decreases somewhere on the other half. For each pair of points this
+is a condition that is affine in $q$, which is why the biases with two
+modes form an interval (Theorem~\ref{thm:biased-limit-modes}).
 
 \begin{proposition}[the dominant half]\label{prop:dominant-half}
 Under the hypotheses of Proposition~\ref{prop:all-bias-modes}, suppose
