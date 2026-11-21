@@ -115,10 +115,11 @@ The integral defining $J$ diverges at $s=3$, the value needed for curvature.
 Two integrations by parts give a convergent expression there.
 
 As $t\to\infty$ the function $A(t)$ decays only like $t^{-1/a}$, since
-$H_a$ has a simple zero at $Y_a$, so $J(s)$ diverges at that end once
+$A(t)=y^{1/(2a)}\sqrt{1-y}\,t^{-1/a}$ by~\eqref{eq:an-param} and
+$y\to Y_a$. So $J(s)$ diverges at that end once
 $\operatorname{Re}s\ge1/a$. We change to the variable $u=t^{-1/a}$,
-which moves that end to $u=0$, where the integrand is smooth. Each
-integration by parts then gains a power of $u$. Set $\theta=\arcsin\sqrt y$ and
+which moves that end to $u=0$, where the function $w$ below is smooth.
+Each integration by parts then gains a power of $u$. Set $\theta=\arcsin\sqrt y$ and
 \[
  u=F(\theta)=\sin^{-1/a}\theta\,H_a(\sin^2\theta),\qquad
  w(u)=a\cos\theta\sin^{1/a}\theta.
@@ -229,8 +230,8 @@ the covariance identity for the derivative of an expectation.
 In the derivative of the score in $u$, the factor $(1-u)^{-s_a}$
 contributes $3/(1-u)\ge3$. The kernel $K_a$ contributes at most
 $63/32$, and a term of size at most $45/4$ that is multiplied by
-$s_a$. So the argument needs $s_a$ small, and $s_a\le7/100$ is what
-the bound $45/4$ allows. This is why the interval $I$ is short.
+$s_a$. So the argument needs $s_a<11/120$, and $s_a\le7/100$ on $I$
+suffices. This is why the interval $I$ is short.
 
 First, $Y_a<2/3$ on $I$. The first three terms give
 \[
