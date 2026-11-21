@@ -29,7 +29,7 @@ PAPER = Path(__file__).resolve().parent
 ROOT = PAPER.parent
 DIST = ROOT / 'dist'
 MAIN = 'bias_interval.tex'
-DISCLOSURE_SHA256 = '15ec1226231a7af2d30d705f75ded719fec79e5e93ad56f9a5a4a2c26f668ff5'
+DISCLOSURE_SHA256 = 'd70158ec85194efabc281f3dbbf04a8d32b9de763d2103b6ddeb92edc3b9fd44'
 
 
 def require(value, message):
