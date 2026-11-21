@@ -52,13 +52,13 @@ This minimizer depends continuously on $a$ throughout $(a_*,1)$.
 \end{theorem}
 
 \begin{proof}
-The proof has six steps. We reduce the infimum to $(0,\kappa_a)$ and
-rewrite it as the maximum of a ratio $R_a$. We show that $R_a$ has no
+The proof has seven steps. We reduce the infimum to $(0,\kappa_a)$ and
+rewrite it as the maximum of a ratio $\Lambda_a$. We show that $\Lambda_a$ has no
 strict valley. This gives a unique maximizer and $b_a>0$. Then come
 the continuity above $a_*$, the continuity at $a_*$, and the
 derivative with its sign near $a_*$.
 
-For $a>a_*$, the curvature partition in Theorem~\ref{thm:two-modes}
+\emph{Reduction.} For $a>a_*$, the curvature partition in Theorem~\ref{thm:two-modes}
 gives $g_a'(t)>0$ on $(0,\kappa_a)$ and $g_a'(t)<0$ on
 $(\kappa_a,\infty)$. For $t\ge\kappa_a$ in $U_a$, the ratio in
 \eqref{eq:bias-boundary} is therefore at least $1/2$.
@@ -66,79 +66,79 @@ Since $b_a<1/2$, it is enough to search $(0,\kappa_a)$
 (we still have to show the infimum is attained).
 Put
 \[
- D_a(t)=h_a'(t)+h_a'(-t),\qquad
- R_a(t)=\frac{g_a'(t)}{D_a(t)}\quad(0<t<\kappa_a).
+ \Sigma_a(t)=h_a'(t)+h_a'(-t),\qquad
+ \Lambda_a(t)=\frac{g_a'(t)}{\Sigma_a(t)}\quad(0<t<\kappa_a).
 \]
 Lemmas~\ref{lem:balanced-start} and~\ref{lem:positive-conditional-mode}
 give $h_a'(-t)>0$ for every $t\ge0$.
-We therefore have $D_a>0$, $0<R_a<1/2$, and
-$1/2-b_a=\sup_{0<t<\kappa_a}R_a(t)$. Also $R_a(0+)=0$.
+We therefore have $\Sigma_a>0$, $0<\Lambda_a<1/2$, and
+$1/2-b_a=\sup_{0<t<\kappa_a}\Lambda_a(t)$. Also $\Lambda_a(0+)=0$.
 
-We first rule out a strict valley in the ratio. We claim that
+\emph{No strict valley.} We first rule out a strict valley in the ratio. We claim that
 \begin{equation}\label{eq:bias-quasiconcave}
- R_a(v)\ge\min\{R_a(u),R_a(w)\}
+ \Lambda_a(v)\ge\min\{\Lambda_a(u),\Lambda_a(w)\}
  \qquad(0<u<v<w<\kappa_a).
 \end{equation}
-Otherwise, choose $s\in(0,1/2)$ strictly between the middle value
-and both outer values. With $q=1/2+s$,
-$g_{a,q}'(-t)=D_a(t)(s-R_a(t))$ then has signs $-,+,-$
+Otherwise, choose $\sigma\in(0,1/2)$ strictly between the middle value
+and both outer values. With $q=1/2+\sigma$,
+$g_{a,q}'(-t)=\Sigma_a(t)(\sigma-\Lambda_a(t))$ then has signs $-,+,-$
 at $-w,-v,-u$, and is positive sufficiently close to zero on the left.
 Positivity of the density
 and its zero limits at infinity supply a positive derivative farther
 left and a negative derivative farther right. There would be three
 local maxima, contrary to Theorem~\ref{thm:biased-limit-modes}.
 
-At $\kappa_a$, we have $D_a(\kappa_a)=2h_a'(-\kappa_a)>0$.
-Thus $R_a$ extends continuously to $[0,\kappa_a]$, with value
+\emph{The maximizer.} At $\kappa_a$, we have $\Sigma_a(\kappa_a)=2h_a'(-\kappa_a)>0$.
+Thus $\Lambda_a$ extends continuously to $[0,\kappa_a]$, with value
 zero at both endpoints. Its positive maximum is attained in the
 interior. At that point $h_a'(-t)>0$, so the maximum is strictly
 below $1/2$. Hence $b_a>0$. We need attainment here (pointwise strict
 inequality on an open interval would not suffice).
 Equation~\eqref{eq:bias-quasiconcave} and analyticity make this
 maximum unique, since two maximizers would force a constant interval.
-They also make $R_a$ strictly increasing before its maximizer and
+They also make $\Lambda_a$ strictly increasing before its maximizer and
 strictly decreasing after it.
 
-Lemma~\ref{lem:analytic-density} gives joint continuity of all the
+\emph{Continuity above $a_*$.} Lemma~\ref{lem:analytic-density} gives joint continuity of all the
 derivatives used here. The signs of $g_a'$ on either side of its
 unique positive zero give continuity of $\kappa_a$. Fix $a_0>a_*$
 and choose
 $0<l<t_{a_0}<r<\kappa_{a_0}$. The strict inequalities
-$R_a(l),R_a(r)<R_a(t_{a_0})$ persist near $a_0$.
+$\Lambda_a(l),\Lambda_a(r)<\Lambda_a(t_{a_0})$ persist near $a_0$.
 For $v<l$, apply \eqref{eq:bias-quasiconcave} to
-$v,l,t_{a_0}$. Since $R_a(l)<R_a(t_{a_0})$, it gives
-$R_a(v)\le R_a(l)$. Applying it to $t_{a_0},r,v$ gives
-$R_a(v)\le R_a(r)$ for $v>r$.
+$v,l,t_{a_0}$. Since $\Lambda_a(l)<\Lambda_a(t_{a_0})$, it gives
+$\Lambda_a(v)\le \Lambda_a(l)$. Applying it to $t_{a_0},r,v$ gives
+$\Lambda_a(v)\le \Lambda_a(r)$ for $v>r$.
 Thus every nearby global maximum lies in the fixed interval $[l,r]$.
 The ratios converge uniformly on this fixed compact interval,
 so their maxima converge. Uniqueness gives convergence of the
 maximizers too. This proves continuity above $a_*$.
 
-At $a_*$, the curvature partition in Theorem~\ref{thm:two-modes}(a)
+\emph{Continuity at $a_*$.} At $a_*$, the curvature partition in Theorem~\ref{thm:two-modes}(a)
 makes $g_{a_*}'$ strictly decrease from zero and then strictly increase
-to zero. Thus $g_{a_*}'(r)<0$ for every $r>0$.
-Joint continuity gives $g_a'(r)<0$ for all $a>a_*$ sufficiently close
-to $a_*$, so $\kappa_a<r$. Since $r$ was arbitrary, $\kappa_a\to0$.
+to zero. Thus $g_{a_*}'(x)<0$ for every $x>0$.
+Joint continuity gives $g_a'(x)<0$ for all $a>a_*$ sufficiently close
+to $a_*$, so $\kappa_a<x$. Since $x$ was arbitrary, $\kappa_a\to0$.
 On the shrinking interval $[0,\kappa_a]$, joint continuity now gives
 \[
  \sup_{0\le t\le\kappa_a}|g_a'(t)|\longrightarrow0,\qquad
- \inf_{0\le t\le\kappa_a}D_a(t)\longrightarrow2h_{a_*}'(0)>0,
+ \inf_{0\le t\le\kappa_a}\Sigma_a(t)\longrightarrow2h_{a_*}'(0)>0,
 \]
 where the strict inequality is Lemma~\ref{lem:positive-conditional-mode}.
-Consequently $1/2-b_a=\max R_a\to0$. Below the threshold $b_a=1/2$,
+Consequently $1/2-b_a=\max \Lambda_a\to0$. Below the threshold $b_a=1/2$,
 so this proves continuity at $a_*$ without the critical expansion.
 Corollary~\ref{cor:bias-boundary-rate} gives the limit at one.
 
-For differentiability, the same three-point argument puts all nearby
+\emph{The derivative.} For differentiability, the same three-point argument puts all nearby
 maximizers in one compact interval. If $M(a)=1/2-b_a$, maximality gives,
 for $s>0$,
 \[
- R_{a+s}(t_a)-R_a(t_a)
+ \Lambda_{a+s}(t_a)-\Lambda_a(t_a)
  \le M(a+s)-M(a)
- \le R_{a+s}(t_{a+s})-R_a(t_{a+s}).
+ \le \Lambda_{a+s}(t_{a+s})-\Lambda_a(t_{a+s}).
 \]
 Divide by $s$ and use the continuity of $t_a$ and
-$\partial_aR_a$ from Lemma~\ref{lem:analytic-density}. The argument
+$\partial_a\Lambda_a$ from Lemma~\ref{lem:analytic-density}. The argument
 for $s<0$ is the same. Thus
 \begin{equation}\label{eq:bias-envelope-derivative}
  -b_a'=
@@ -148,21 +148,21 @@ for $s<0$ is the same. Thus
 \end{equation}
 The right side is continuous. No derivative of $t_a$ is needed.
 
-Finally, put $C_*=\partial_a g_a''(0)|_{a=a_*}>0$ and
+\emph{The sign near $a_*$.} Put $C_*=\partial_a g_a''(0)|_{a=a_*}>0$ and
 $H_*=h_{a_*}'(0)>0$, by Theorem~\ref{thm:threshold} and
 Lemma~\ref{lem:positive-conditional-mode}.
-Extend $R_a=g_a'/D_a$ to a fixed neighborhood of zero, where
-$D_a>0$ for $a$ close to $a_*$. Evenness and
+Extend $\Lambda_a=g_a'/\Sigma_a$ to a fixed neighborhood of zero, where
+$\Sigma_a>0$ for $a$ close to $a_*$. Evenness and
 Lemma~\ref{lem:analytic-density} give, jointly as $(a,t)\to(a_*,0)$,
 \[
  g_a'(t)=o(t),\qquad \partial_a g_a'(t)=(C_*+o(1))t,\qquad
- D_a(t)=2H_*+o(1),\qquad \partial_aD_a(t)=O(1).
+ \Sigma_a(t)=2H_*+o(1),\qquad \partial_a\Sigma_a(t)=O(1).
 \]
 For the first two relations, integrate $g_a''$ and $\partial_a g_a''$
 from zero to $t$, using $g_{a_*}''(0)=0$.
 It follows that
 \[
- \partial_aR_a(t)=\left(\frac{C_*}{2H_*}+o(1)\right)t>0
+ \partial_a\Lambda_a(t)=\left(\frac{C_*}{2H_*}+o(1)\right)t>0
 \]
 for all sufficiently small $t>0$ and $a$ sufficiently close to $a_*$.
 Since $0<t_a<\kappa_a\to0$, the envelope formula gives $b_a'<0$
@@ -183,10 +183,10 @@ $b_a\le8(1-a)+O((1-a)^2)$.
 \end{corollary}
 
 \begin{proof}
-The conditional limit has mean $\mu_a=1/\Gamma(1+a)>0$ and variance
-$\rho_a\mu_a^2$, by the moment formulas of~\cite[Theorem~1.4]{glr2026}.
-Consider the three adjacent intervals of length $\mu_a$ centered at
-$-\mu_a$, $0$, and $\mu_a$. Chebyshev's inequality puts at least
+The conditional limit has mean $m_a=1/\Gamma(1+a)>0$ and variance
+$\rho_am_a^2$, by the moment formulas of~\cite[Theorem~1.4]{glr2026}.
+Consider the three adjacent intervals of length $m_a$ centered at
+$-m_a$, $0$, and $m_a$. Chebyshev's inequality puts at least
 $1-4\rho_a$ of the conditional law in the right interval and at most
 $4\rho_a$ in the middle. For a start to the left, reflect these
 intervals. After mixing, the left interval has mass at least
@@ -215,99 +215,9 @@ As $a\uparrow1$,
 \]
 \end{proposition}
 
-\begin{proof}
-We compare the mass of $g_{a,q}$ on two adjacent intervals $J_1$
-and $J_2$ of equal length to the left of zero. The reflected law puts
-mass at least $\pi$ on $J_1$, and the direct law puts mass at most
-$A$ on $J_2$. The number $A$ is the product of two factors of order
-$1-a$, the relative width of a window and the probability that
-$\mathcal L_a\le0$. This is why the rate is quadratic.
-Write $\Prob_+$ for the law of the walk given $X_1=1$. Let
-$p=1-\varepsilon$, fix an integer $k\ge1$, and let
-$E_k=\{X_1=\dots=X_k=1\}$. Given $X_1=1$, each of the next $k-1$ steps
-copies a positive step with probability $1-\varepsilon$ or flips a
-positive step with probability $\varepsilon$, so
-$\Prob_+(E_k)=p^{k-1}$. After time $k$, the step $n+1$ is $+1$ with
-probability $\frac12+\frac{aS_n}{2n}$. Hence
-\[
- \E[S_{n+1}\mid\mathcal F_n]=\Bigl(1+\frac an\Bigr)S_n,\qquad
- \E[S_{n+1}^2\mid\mathcal F_n]=\Bigl(1+\frac{2a}n\Bigr)S_n^2+1.
-\]
-Put $\gamma_n=\prod_{j=k}^{n-1}(1+a/j)$ and
-$\beta_n=\prod_{j=k}^{n-1}(1+2a/j)$. Given $E_k$, the first relation
-makes $S_n/\gamma_n$ a martingale with mean $k$, and the second gives
-$\E[S_n^2\mid E_k]=\beta_n\bigl(k^2+\sum_{m=k+1}^n\beta_m^{-1}\bigr)$.
-The identity
-\[
- (2a-1)\frac{\Gamma(m)}{\Gamma(m+2a)}
- =\frac{\Gamma(m)}{\Gamma(m+2a-1)}-\frac{\Gamma(m+1)}{\Gamma(m+2a)}
-\]
-telescopes to $\sum_{m>k}\beta_m^{-1}=k/(2a-1)$. Since
-$\gamma_n/n^a\to\Gamma(k)/\Gamma(k+a)$ and
-$\beta_n/\gamma_n^2\to c_k=\Gamma(k+a)^2/(\Gamma(k)\Gamma(k+2a))$, the
-martingale is bounded in $L^2$. Its limit gives, given $E_k$,
-\[
- \E[\mathcal L_a\mid E_k]=m_k=\frac{\Gamma(k+1)}{\Gamma(k+a)},\qquad
- \Var(\mathcal L_a\mid E_k)=r_km_k^2,\qquad
- r_k=c_k\Bigl(1+\frac1{(2a-1)k}\Bigr)-1.
-\]
-For $k=1$ this is $r_1=\rho_a$. To bound $r_k$, let $\varphi(s)$ be
-$\log(1+r_k)$ with $a$ replaced by $s$. Then $\varphi(1)=0$ and
-\[
- \varphi'(s)=-2\bigl(\psi(k+2s)-\psi(k+s)\bigr)
- -\frac2{(2s-1)\{(2s-1)k+1\}}<0.
-\]
-Since $\psi'(x)<1/(x-1)$ for $x>1$, we have
-$\psi(k+2s)-\psi(k+s)\le s\psi'(k+s)\le1/k$ for $s\le1$. Also
-$(2s-1)k+1\ge(2s-1)(k+1)$. So $0\le\log(1+r_k)\le(1-a)\theta_k$ with
-$\theta_k=2/k+2/((2a-1)^2(k+1))$.
-
-Now fix $K>1$, put $v=\sqrt{r_k}$, and assume $3Kv<1$ and
-$\pi=p^{k-1}(1-K^{-2})>1/2$. Let $x_0=m_k(1-Kv)$ and $\ell=2Km_kv$, so
-$x_0-\ell=m_k(1-3Kv)>0$. By Chebyshev's inequality given $E_k$, the
-window $W=[x_0,x_0+\ell]$ has $\Prob_+(\mathcal L_a\in W)\ge\pi$, and
-so $\Prob_+(\mathcal L_a<x_0)\le1-\pi$. By
-Lemmas~\ref{lem:balanced-start} and~\ref{lem:positive-conditional-mode},
-$h_a$ is increasing on $(-\infty,0]$. So for $y<0$ we have
-$|y|h_a(y)\le\Prob_+(\mathcal L_a\le0)$, and Cantelli's inequality
-gives $\Prob_+(\mathcal L_a\le0)\le\rho_a/(1+\rho_a)$. On
-$J_2=[-x_0,-x_0+\ell]$ this gives
-\[
- \Prob_+(\mathcal L_a\in J_2)\le\frac{\ell}{x_0-\ell}\cdot
- \frac{\rho_a}{1+\rho_a}
- =\frac{2Kv}{1-3Kv}\cdot\frac{\rho_a}{1+\rho_a}=:A.
-\]
-Let $q\in[1/2,1)$ and $J_1=[-x_0-\ell,-x_0]$, so $-J_1=W$ and
-$-J_2\subset(-\infty,x_0]$. Then
-\begin{align*}
- \int_{J_1}g_{a,q}-\int_{J_2}g_{a,q}
- &\ge-q\,\Prob_+(\mathcal L_a\in J_2)
-   +(1-q)\bigl(\Prob_+(\mathcal L_a\in W)-\Prob_+(\mathcal L_a<x_0)\bigr)\\
- &\ge-qA+(1-q)(2\pi-1).
-\end{align*}
-If $A\ge2\pi-1$, the bound below holds because $b_a\le1/2$. So let
-$A<2\pi-1$. If $1-q>A/(2\pi-1+A)$, the right side is positive. The intervals $J_1$
-and $J_2$ are adjacent, have equal length, and lie in $(-\infty,0)$
-with $J_1$ on the left, so $g_{a,q}$ is not nondecreasing on
-$(-\infty,0]$. Thus $g_{a,q}'(-t)=qh_a'(-t)-(1-q)h_a'(t)<0$ for some
-$t>0$. Since $h_a'(-t)>0$, this forces $t\in U_a$ and
-$h_a'(-t)/(h_a'(t)+h_a'(-t))<1-q$. By~\eqref{eq:bias-boundary},
-$b_a<1-q$, and therefore
-\[
- b_a\le\frac{A}{2\pi-1+A}\le\frac A{2\pi-1}.
-\]
-
-Finally let $a\uparrow1$. Take $\delta=4/25$, $K=27/10$, and
-$k=\lceil2\delta/(1-a)\rceil$. Then $p^{k-1}\to e^{-\delta}$ and
-$k\theta_k\to4$, so $v^2\le e^{(1-a)\theta_k}-1=(2/\delta+o(1))(1-a)^2$.
-With $\rho_a=2(1-a)+O((1-a)^2)$ this gives
-$A=(4K\sqrt{2/\delta}+o(1))(1-a)^2$ and
-$2\pi-1\to2e^{-\delta}(1-K^{-2})-1>0$. Hence
-\[
- \limsup_{a\uparrow1}\frac{b_a}{(1-a)^2}
- \le\frac{4K\sqrt{2/\delta}}{2e^{-\delta}(1-K^{-2})-1}<82.
-\]
-\end{proof}
+The proof is in Appendix~\ref{app:quadratic-rate}. It compares the mass
+of $g_{a,q}$ on two adjacent intervals of equal length to the left of
+zero.
 
 \subsection{The density at the threshold}\label{sec:critical-density}
 

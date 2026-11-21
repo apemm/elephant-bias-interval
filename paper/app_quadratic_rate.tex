@@ -1,0 +1,95 @@
+\section{The quadratic rate near one}\label{app:quadratic-rate}
+
+\begin{proof}[Proof of Proposition~\ref{prop:quadratic-rate}]
+We compare the mass of $g_{a,q}$ on two adjacent intervals $J_1$
+and $J_2$ of equal length to the left of zero. The reflected law puts
+mass at least $\varpi$ on $J_1$, and the direct law puts mass at most
+$A$ on $J_2$. The number $A$ is the product of two factors of order
+$1-a$, the relative width of a window and the probability that
+$\mathcal L_a\le0$. This is why the rate is quadratic.
+Write $\Prob_+$ for the law of the walk given $X_1=1$. Let
+$p=1-\varepsilon$, fix an integer $k\ge1$, and let
+$E_k=\{X_1=\dots=X_k=1\}$. Given $X_1=1$, each of the next $k-1$ steps
+copies a positive step with probability $1-\varepsilon$ or flips a
+positive step with probability $\varepsilon$, so
+$\Prob_+(E_k)=p^{k-1}$. After time $k$, the step $n+1$ is $+1$ with
+probability $\frac12+\frac{aS_n}{2n}$. Hence
+\[
+ \E[S_{n+1}\mid\mathcal F_n]=\Bigl(1+\frac an\Bigr)S_n,\qquad
+ \E[S_{n+1}^2\mid\mathcal F_n]=\Bigl(1+\frac{2a}n\Bigr)S_n^2+1.
+\]
+Put $\gamma_n=\prod_{j=k}^{n-1}(1+a/j)$ and
+$\beta_n=\prod_{j=k}^{n-1}(1+2a/j)$. Given $E_k$, the first relation
+makes $S_n/\gamma_n$ a martingale with mean $k$, and the second gives
+$\E[S_n^2\mid E_k]=\beta_n\bigl(k^2+\sum_{m=k+1}^n\beta_m^{-1}\bigr)$.
+The identity
+\[
+ (2a-1)\frac{\Gamma(m)}{\Gamma(m+2a)}
+ =\frac{\Gamma(m)}{\Gamma(m+2a-1)}-\frac{\Gamma(m+1)}{\Gamma(m+2a)}
+\]
+telescopes to $\sum_{m>k}\beta_m^{-1}=k/(2a-1)$. Since
+$\gamma_n/n^a\to\Gamma(k)/\Gamma(k+a)$ and
+$\beta_n/\gamma_n^2\to c_k=\Gamma(k+a)^2/(\Gamma(k)\Gamma(k+2a))$, the
+martingale is bounded in $L^2$. Its limit gives, given $E_k$,
+\[
+ \E[\mathcal L_a\mid E_k]=m_k=\frac{\Gamma(k+1)}{\Gamma(k+a)},\qquad
+ \Var(\mathcal L_a\mid E_k)=r_km_k^2,\qquad
+ r_k=c_k\Bigl(1+\frac1{(2a-1)k}\Bigr)-1.
+\]
+For $k=1$ this is $r_1=\rho_a$. To bound $r_k$, let $\varphi(s)$ be
+$\log(1+r_k)$ with $a$ replaced by $s$. Then $\varphi(1)=0$ and
+\[
+ \varphi'(s)=-2\bigl(\psi(k+2s)-\psi(k+s)\bigr)
+ -\frac2{(2s-1)\{(2s-1)k+1\}}<0.
+\]
+Since $\psi'(x)<1/(x-1)$ for $x>1$, we have
+$\psi(k+2s)-\psi(k+s)\le s\psi'(k+s)\le1/k$ for $s\le1$. Also
+$(2s-1)k+1\ge(2s-1)(k+1)$. So $0\le\log(1+r_k)\le(1-a)\theta_k$ with
+$\theta_k=2/k+2/((2a-1)^2(k+1))$.
+
+Now fix $K>1$, put $v=\sqrt{r_k}$, and assume $3Kv<1$ and
+$\varpi=p^{k-1}(1-K^{-2})>1/2$. Let $x_0=m_k(1-Kv)$ and $\ell=2Km_kv$, so
+$x_0-\ell=m_k(1-3Kv)>0$. By Chebyshev's inequality given $E_k$, the
+window $W=[x_0,x_0+\ell]$ has $\Prob_+(\mathcal L_a\in W)\ge\varpi$, and
+so $\Prob_+(\mathcal L_a<x_0)\le1-\varpi$. By
+Lemmas~\ref{lem:balanced-start} and~\ref{lem:positive-conditional-mode},
+$h_a$ is increasing on $(-\infty,0]$. So for $y<0$ we have
+$|y|h_a(y)\le\Prob_+(\mathcal L_a\le0)$, and Cantelli's inequality
+gives $\Prob_+(\mathcal L_a\le0)\le\rho_a/(1+\rho_a)$. On
+$J_2=[-x_0,-x_0+\ell]$ this gives
+\[
+ \Prob_+(\mathcal L_a\in J_2)\le\frac{\ell}{x_0-\ell}\cdot
+ \frac{\rho_a}{1+\rho_a}
+ =\frac{2Kv}{1-3Kv}\cdot\frac{\rho_a}{1+\rho_a}=:A.
+\]
+Let $q\in[1/2,1)$ and $J_1=[-x_0-\ell,-x_0]$, so $-J_1=W$ and
+$-J_2\subset(-\infty,x_0]$. Then
+\begin{align*}
+ \int_{J_1}g_{a,q}-\int_{J_2}g_{a,q}
+ &\ge-q\,\Prob_+(\mathcal L_a\in J_2)
+   +(1-q)\bigl(\Prob_+(\mathcal L_a\in W)-\Prob_+(\mathcal L_a<x_0)\bigr)\\
+ &\ge-qA+(1-q)(2\varpi-1).
+\end{align*}
+If $A\ge2\varpi-1$, the bound below holds because $b_a\le1/2$. So let
+$A<2\varpi-1$. If $1-q>A/(2\varpi-1+A)$, the right side is positive. The intervals $J_1$
+and $J_2$ are adjacent, have equal length, and lie in $(-\infty,0)$
+with $J_1$ on the left, so $g_{a,q}$ is not nondecreasing on
+$(-\infty,0]$. Thus $g_{a,q}'(-t)=qh_a'(-t)-(1-q)h_a'(t)<0$ for some
+$t>0$. Since $h_a'(-t)>0$, this forces $t\in U_a$ and
+$h_a'(-t)/(h_a'(t)+h_a'(-t))<1-q$. By~\eqref{eq:bias-boundary},
+$b_a<1-q$, and therefore
+\[
+ b_a\le\frac{A}{2\varpi-1+A}\le\frac A{2\varpi-1}.
+\]
+
+Finally let $a\uparrow1$. Take $\delta=4/25$, $K=27/10$, and
+$k=\lceil2\delta/(1-a)\rceil$. Then $p^{k-1}\to e^{-\delta}$ and
+$k\theta_k\to4$, so $v^2\le e^{(1-a)\theta_k}-1=(2/\delta+o(1))(1-a)^2$.
+With $\rho_a=2(1-a)+O((1-a)^2)$ this gives
+$A=(4K\sqrt{2/\delta}+o(1))(1-a)^2$ and
+$2\varpi-1\to2e^{-\delta}(1-K^{-2})-1>0$. Hence
+\[
+ \limsup_{a\uparrow1}\frac{b_a}{(1-a)^2}
+ \le\frac{4K\sqrt{2/\delta}}{2e^{-\delta}(1-K^{-2})-1}<82.
+\]
+\end{proof}

@@ -79,6 +79,11 @@ For the second, obtain $\eta$ from $w$ by deleting the entries
 $\zeta_i$. Deletion can only remove signs from the pattern.
 \end{proof}
 
+We also use the proof in the following form. Each nonzero $\eta_i$
+has the sign of $\zeta_i$ or of $\zeta_{i+1}$. We call such an entry
+a parent of $\eta_i$. Two entries of $\eta$ with opposite signs have
+different parents, so their parents come in the same order.
+
 The recurrence does not control the values that arrive at the two
 ends. Hence we put them in the list from the start. Fix the final
 length $N$ and take $t<N$. To the left of the differences of time $t$
@@ -208,20 +213,20 @@ Both coefficients are at least $\min(\varepsilon,1-\varepsilon)>0$,
 since $r_t(j)$ is a convex combination of $\varepsilon$ and
 $1-\varepsilon$ for $0\le j\le t$. It remains to check the two ends.
 
-Suppose first that $q<1$. Since
+\emph{The left end values.} Suppose first that $q<1$. Since
 $P_t(0)=(1-q)(1-\varepsilon)^{t-1}>0$, define
 \[
  \xi_t=\frac{P_t(1)}{P_t(0)},\qquad
- b=\frac{1-2\varepsilon}{1-\varepsilon}<1,\qquad
- A=\frac{\varepsilon}{1-\varepsilon}>0.
+ \beta=\frac{1-2\varepsilon}{1-\varepsilon}<1,\qquad
+ \alpha=\frac{\varepsilon}{1-\varepsilon}>0.
 \]
 The forward equation at $k=0$ and $k=1$ gives
 \[
- \xi_{t+1}=(1-b/t)\xi_t+A,\qquad \xi_1=\frac q{1-q}.
+ \xi_{t+1}=(1-\beta/t)\xi_t+\alpha,\qquad \xi_1=\frac q{1-q}.
 \]
 Thus $\delta_t=\xi_{t+1}-\xi_t$ obeys
 \begin{equation}\label{eq:bias-edge-increments}
- \delta_{t+1}=\frac{t-b}{t+1}\delta_t+\frac A{t+1}.
+ \delta_{t+1}=\frac{t-\beta}{t+1}\delta_t+\frac\alpha{t+1}.
 \end{equation}
 Once an increment is nonnegative, every later increment is positive.
 Thus $\xi_t$ first decreases and then increases (either part may be empty). For $\ell_t=d_t(0)=P_t(0)(\xi_t-1)$ this proves
@@ -233,14 +238,14 @@ $\operatorname{sp}(\ell_1,\ldots,\ell_N)\preceq(-,+)$.
 In particular, a positive $\ell_i$ cannot be followed by a negative
 $\ell_j$. Zeros do not affect either conclusion.
 
-Write $u_t=d_t(t-1)$. Reflection of the walk gives
+\emph{The right end values.} Write $u_t=d_t(t-1)$. Reflection of the walk gives
 $u_t(q)=-\ell_t(1-q)$ and
 $d_t^{(1-q)}(t-1-k)=-d_t^{(q)}(k)$.
 For $0<q\le1/2$, the right boundary history therefore has pattern
 contained in $(-,+,-)$. For $q=0$ it is nonpositive throughout. The conditional count is at
 most $t-1$, so $u_t=-P_t(t-1)\le0$.
 
-Fix $N$ and, for $1\le t\le N$, form the augmented row
+\emph{The first augmented row.} Fix $N$ and, for $1\le t\le N$, form the augmented row
 \[
  Z_t=(\ell_N,\ldots,\ell_{t+1},
        d_t(0),\ldots,d_t(t-1),
@@ -256,27 +261,79 @@ signs $+,-,+$. For $q>0$, their reflected negatives give the forbidden pattern
 $(-,+,-)$ in the left history at bias $1-q$. For $q=0$, they contradict
 the nonpositive right history. This also covers $N=1$.
 
-Every entry of $Z_{t+1}$ is a nonnegative combination of adjacent entries
+\emph{One step.} Every entry of $Z_{t+1}$ is a nonnegative combination of adjacent entries
 of $Z_t$. The interior entries use \eqref{eq:bias-first-diff}. The two new
 boundary entries and the remaining future edge values are copied,
-with coefficients $(1,0)$ or $(0,1)$. To check the ordering, number the augmented entries from left to
+with coefficients $(1,0)$ or $(0,1)$. Number the augmented entries from left to
 right. Output entry $i$ uses input entries $i$ and $i+1$, with a zero
-coefficient when copied. A nonzero output
-has a parent of the same sign. Two neighbors in the subsequence with
-opposite signs cannot share a parent, since one entry has only one
-sign. So the parent indices strictly increase. Pick parents like this
-for an alternating subsequence of the output. We get the same signs,
-in the same order, in the input.
-An update therefore cannot add an alternating pattern, so
+coefficient when copied. Hence Lemma~\ref{lem:interleave} gives
+$\operatorname{sp}(Z_{t+1})\preceq\operatorname{sp}(Z_t)$, and so
 $\operatorname{sp}(Z_N)\preceq(+,-,+,-)$. Reflection and sign
 reversal preserve this pattern, proving the claim also for $q\ge1/2$,
 including $q=1$.
 
-Finally, extension by zero adds $d_N(-1)=P_N(0)\ge0$ on the left and $d_N(N)=-P_N(N)\le0$ on the right. The pattern $(+,-,+,-)$ starts with $+$ and ends with $-$, so the
+\emph{Conclusion.} Extension by zero adds $d_N(-1)=P_N(0)\ge0$ on the left and $d_N(N)=-P_N(N)\le0$ on the right. The pattern $(+,-,+,-)$ starts with $+$ and ends with $-$, so the
 longer list is still contained in it.
 Every modal plateau contributes a positive-to-negative change, so there
 are at most two. If the statement's last inequalities held, telescoping
 on each of their four intervals would give an adjacent difference
 of the same strict sign. These four differences would
 have signs $-,+,-,+$, a contradiction.
+\end{proof}
+
+The next proposition keeps only the half of the row that the start
+favors. It is used for the limit shape in
+Theorems~\ref{thm:two-modes} and~\ref{thm:biased-limit-modes}.
+
+\begin{proposition}[the dominant half]\label{prop:dominant-half}
+Under the hypotheses of Proposition~\ref{prop:all-bias-modes}, suppose
+$q\ge1/2$. Then $P_n(n-k)\le P_n(k)$ for $2k\ge n$, and the right half has
+no strict valley. That is,
+\[
+ P_n(j)\ge\min\{P_n(i),P_n(k)\}
+ \qquad\text{if }i<j<k\text{ and }2i+1\ge n.
+\]
+Equivalently, its first differences contain no negative value followed
+by a positive one. Reflection gives the corresponding left-half result
+when $q\le1/2$.
+\end{proposition}
+
+\begin{proof}
+The proof has two parts. First we show by induction that the law is
+at least its reflection on the upper half. Then we run the induction
+of Proposition~\ref{prop:all-bias-modes} on the right half of the
+augmented row
+$Z_t=(\ell_N,\ldots,\ell_{t+1},d_t(0),\ldots,d_t(t-1),u_{t+1},\ldots,u_N)$
+of that proof. The first part is used at one entry only.
+Write the bias explicitly as $P_{n,q}$ and put
+\[
+ \Delta_n(k)=P_{n,q}(k)-P_{n,1-q}(k)
+       =P_{n,q}(k)-P_{n,q}(n-k).
+\]
+The forward equation gives
+$\Delta_{n+1}(k)=(1-r_n(k))\Delta_n(k)+r_n(k-1)\Delta_n(k-1)$.
+At $n=1$, $\Delta_1(1)=2q-1\ge0$. Suppose that $\Delta_n(k)\ge0$
+for $2k\ge n$. At a point strictly above the new center, both parents lie in
+the preceding upper half and both coefficients are nonnegative.
+At an integer center $\Delta_{n+1}(k)=0$ by reflection. Terms outside the
+support vanish. This proves the induction. In particular, the
+central first difference of an odd row is nonnegative.
+
+We now keep only the half favored by the start, namely the spatial
+indices $2k+1\ge t$ in $Z_t$. At $t=1$ its pattern is contained in $(+,-)$. The central entry is
+$2q-1\ge0$, followed by the future right boundary values
+$u_s(q)=-\ell_s(1-q)$. Since
+$1-q\le1/2$, their pattern is contained in $(+,-)$ by
+\eqref{eq:bias-edge-increments}. We now rule out a negative difference followed by a positive one,
+also among the future boundary entries. Suppose such a pair first
+appeared in the next row. Choose a same-sign parent for each entry.
+By the remark after Lemma~\ref{lem:interleave} the first parent comes before the second.
+The sole possible parent outside the previous half occurs at the new
+central difference of an odd row. That entry is nonnegative, so it
+cannot begin the forbidden pair. More explicitly, if a negative entry
+at index $i$ of row $t+1$ satisfies $2i+1\ge t+1$, then $2i>t$, so both its parents satisfy $2k+1\ge t$. A positive entry further
+right has its parents strictly after these, as before. By induction,
+no restricted augmented row contains the pair.
+A strict valley would contain such two adjacent differences by
+telescoping, which proves the claim.
 \end{proof}

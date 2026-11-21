@@ -27,6 +27,9 @@ ASTAR=0.6688128600145994
 QSTAR=9.86698769
 OUT=Path(__file__).parent
 CACHE=P/'data/limit_phase_illustration.npz'
+# The conditional density h_a and its reflection, for the upper right panel.
+COND_A=0.72
+COND_CACHE=P/'data/limit_phase_conditional.npz'
 
 def cf_grid(a):
     # The decay slows near memory one. The last grid sample is checked below.
@@ -107,6 +110,23 @@ def compute():
     np.savez(CACHE,a=bounds[:,0],b=bounds[:,1],u=u,curve_a=np.array([c[0] for c in curves]),density=np.array([c[1] for c in curves]))
     (P/'data/limit_phase_illustration.json').write_text(json.dumps({'scope':'illustration, not a certificate','quadrature':'composite Simpson, 2049 and 1025 frequencies','precision_bits':2000,'moments':1600,'runs':audit,'elapsed_seconds':time.monotonic()-start},indent=2)+'\n')
 
+def compute_conditional():
+    # h_a(u) is the density of the limit given a positive first step.
+    u=np.linspace(-3.4,3.4,1001)
+    checkpoint=OUT/'phase_work'
+    checkpoint.mkdir(exist_ok=True)
+    name=checkpoint/f'{COND_A:.16f}.npz'
+    if name.exists():
+        saved=np.load(name)
+        t,z=saved['t'],saved['z']
+    else:
+        t,z,record=cf_grid(COND_A)
+        np.savez(name,t=t,z=z,record=json.dumps(record))
+    h=densities(t,z,u)
+    coarse=densities(t,z,u,2)
+    if float(np.max(np.abs(h-coarse)))>2e-6: raise RuntimeError('Unstable conditional density')
+    np.savez(COND_CACHE,a=COND_A,u=u,h=h)
+
 def smooth_boundary(a,b):
     # Interpolate (1/2-b)/(a-a_*)^(3/2) in s=sqrt(a-a_*), anchored at Q_* for s=0.
     # The curve passes through every computed point and leaves q=1/2 with zero slope.
@@ -136,18 +156,17 @@ def draw():
     ax.text(.73,.04,'one mode',ha='center',va='bottom')
     ax.annotate(r'$a_*$',(ASTAR,.5),xytext=(ASTAR-.025,.65),arrowprops={'arrowstyle':'-','lw':.7})
     ax.set(xlabel=r'memory $a$',ylabel=r'initial bias $q$',xlim=(.62,.9),ylim=(0,1),title='Numerical boundary')
-    # Plot the explicit theorem's inner region, without solving for b_a.
+    # The conditional density, its reflection and their fair mixture.
     ax=fig.add_subplot(gs[0,2])
-    a1=np.linspace(.96,.99999,600)
-    rho=np.expm1(2*gammaln(1+a1)-np.log(2*a1-1)-gammaln(2*a1))
-    ok=rho<1/12
-    a1,rho=a1[ok],rho[ok]
-    bound=4*rho/(1-4*rho)
-    ax.fill_between(a1,bound,1-bound,color='#afd0b0',alpha=.8,linewidth=0)
-    ax.plot(a1,bound,color='#397849',lw=1.2)
-    ax.plot(a1,1-bound,color='#397849',lw=1.2)
-    ax.text(.985,.5,'two modes',ha='center',fontsize=8)
-    ax.set(xlabel=r'memory $a$',xlim=(.96,1),ylim=(0,1),title='Proved inner region',xticks=[.96,.98,1])
+    c=np.load(COND_CACHE)
+    u,h=c['u'],c['h']
+    ax.plot(u,h,color='#397849',lw=1.2)
+    ax.plot(u,h[::-1],color='#397849',lw=1.2,ls='--')
+    ax.plot(u,(h+h[::-1])/2,color='#00566b',lw=1.5)
+    ax.axvline(0,color='.65',ls=':',lw=.7)
+    ax.text(1.5,float(h.max())*1.06,r'$h_a(u)$',ha='center',fontsize=8)
+    ax.text(-1.5,float(h.max())*1.06,r'$h_a(-u)$',ha='center',fontsize=8)
+    ax.set(xlabel=r'$u$',xlim=(-3.4,3.4),ylim=(0,float(h.max())*1.2),title=rf'Mixture, $a={float(c["a"]):.2f}$')
     titles=['below the transition','at the transition','above the transition']
     for k,(a,y,title) in enumerate(zip(d['curve_a'],d['density'],titles)):
         ax=fig.add_subplot(gs[1,k]); ax.plot(d['u'],y,color='#00566b',lw=1.5)
@@ -160,4 +179,5 @@ def draw():
 
 if __name__=='__main__':
     if '--rebuild' in sys.argv or not CACHE.exists(): compute()
+    if '--rebuild' in sys.argv or not COND_CACHE.exists(): compute_conditional()
     draw()

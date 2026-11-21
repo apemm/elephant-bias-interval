@@ -1,56 +1,3 @@
-\begin{proposition}[the dominant half]\label{prop:dominant-half}
-Under the hypotheses of Proposition~\ref{prop:all-bias-modes}, suppose
-$q\ge1/2$. Then $P_n(n-k)\le P_n(k)$ for $2k\ge n$, and the right half has
-no strict valley. That is,
-\[
- P_n(j)\ge\min\{P_n(i),P_n(k)\}
- \qquad\text{if }i<j<k\text{ and }2i+1\ge n.
-\]
-Equivalently, its first differences contain no negative value followed
-by a positive one. Reflection gives the corresponding left-half result
-when $q\le1/2$.
-\end{proposition}
-
-\begin{proof}
-The proof has two parts. First we show by induction that the law is
-at least its reflection on the upper half. Then we run the induction
-of Proposition~\ref{prop:all-bias-modes} on the right half of the
-augmented row
-$Z_t=(\ell_N,\ldots,\ell_{t+1},d_t(0),\ldots,d_t(t-1),u_{t+1},\ldots,u_N)$
-of that proof. The first part is used at one entry only.
-Write the bias explicitly as $P_{n,q}$ and put
-\[
- \Delta_n(k)=P_{n,q}(k)-P_{n,1-q}(k)
-       =P_{n,q}(k)-P_{n,q}(n-k).
-\]
-The forward equation gives
-$\Delta_{n+1}(k)=(1-r_n(k))\Delta_n(k)+r_n(k-1)\Delta_n(k-1)$.
-At $n=1$, $\Delta_1(1)=2q-1\ge0$. Suppose that $\Delta_n(k)\ge0$
-for $2k\ge n$. At a point strictly above the new center, both parents lie in
-the preceding upper half and both coefficients are nonnegative.
-At an integer center $\Delta_{n+1}(k)=0$ by reflection. Terms outside the
-support vanish. This proves the induction. In particular, the
-central first difference of an odd row is nonnegative.
-
-We now keep only the half favored by the start, namely the spatial
-indices $2k+1\ge t$ in $Z_t$. At $t=1$ its pattern is contained in $(+,-)$. The central entry is
-$2q-1\ge0$, followed by the future right boundary values
-$u_s(q)=-\ell_s(1-q)$. Since
-$1-q\le1/2$, their pattern is contained in $(+,-)$ by
-\eqref{eq:bias-edge-increments}. We now rule out a negative difference followed by a positive one,
-also among the future boundary entries. Suppose such a pair first
-appeared in the next row. Choose a same-sign parent for each entry.
-The proof of Proposition~\ref{prop:all-bias-modes} shows that the first parent comes before the second.
-The sole possible parent outside the previous half occurs at the new
-central difference of an odd row. That entry is nonnegative, so it
-cannot begin the forbidden pair. More explicitly, if a negative entry
-at index $i$ of row $t+1$ satisfies $2i+1\ge t+1$, then $2i>t$, so both its parents satisfy $2k+1\ge t$. A positive entry further
-right has its parents strictly after these, as before. By induction,
-no restricted augmented row contains the pair.
-A strict valley would contain such two adjacent differences by
-telescoping, which proves the claim.
-\end{proof}
-
 \subsection{The conditional density increases at zero}
 
 \begin{lemma}[a balanced start]\label{lem:balanced-start}
@@ -174,7 +121,7 @@ conditional mode lies strictly to the right of zero.
 \end{lemma}
 
 \begin{proof}
-For $z=1$ or $z=2$ the number $N^{2a}d_N(z)/z$ defined below is a
+For $z=1$ or $z=2$ the number $N^{2a}e_N(z)/z$ defined below is a
 rescaled central first difference, and it tends to $4h_a'(0)$. We show
 that its lower limit is positive. After division by $z$ and a product
 normalization, the reflection differences become averages of earlier
@@ -182,13 +129,13 @@ rows along a backward chain. The chain stays in a diffusive band with
 probability above one half, and on the band the values at a fixed row
 $n_0$ are bounded below. Write $f_n(k)=\Prob_+(A_n=k)$, with $\Prob_+$ the law given $X_1=1$, and,
 for $z\equiv n\pmod2$,
-$d_n(z)=f_n((n+z)/2)-f_n((n-z)/2)$.
+$e_n(z)=f_n((n+z)/2)-f_n((n-z)/2)$.
 With a positive start, the reflection induction of
 Proposition~\ref{prop:dominant-half} is strict for $0<z\le n$. Indeed
-$d_1(1)=1$, and each noncentral entry of the upper half has a
+$e_1(1)=1$, and each noncentral entry of the upper half has a
 positive parent with a positive coefficient. The recurrence is
 \begin{gather*}
- d_{n+1}(z)=\alpha_n(z)d_n(z+1)+\beta_n(z)d_n(z-1),\\
+ e_{n+1}(z)=\alpha_n(z)e_n(z+1)+\beta_n(z)e_n(z-1),\\
  \alpha_n(z)=\frac12-\frac{a(z+1)}{2n},\qquad
  \beta_n(z)=\frac12+\frac{a(z-1)}{2n}.
 \end{gather*}
@@ -196,8 +143,8 @@ Fix $n_0>4a$. Divide by $z$ and multiply by
 $\prod_{j=n_0}^{n-1}(1-2a/j)^{-1}$. Call the new values $v_n(z)$.
 They satisfy a backward averaging equation, with weights
 \[
- q_+=\frac{\alpha_n(z)(z+1)}{z(1-2a/n)},\qquad
- q_-=\frac{\beta_n(z)(z-1)}{z(1-2a/n)}.
+ w_+=\frac{\alpha_n(z)(z+1)}{z(1-2a/n)},\qquad
+ w_-=\frac{\beta_n(z)(z-1)}{z(1-2a/n)}.
 \]
 In the band we use below, these weights are nonnegative and add up to
 one. At $z=1$ the parent $0$ gets weight zero. Let $z_n$ be the
@@ -228,7 +175,7 @@ large, Markov's inequality shows that the chain leaves the band with
 probability below one half. Every stopped value of $v$ is positive,
 by the strict reflection induction. The band states of row $n_0$ are
 the finitely many $z$ with $0<z\le R\sqrt{\gamma_{n_0}}$, and at row
-$n_0$ the normalizing product is empty, so $v_{n_0}(z)=d_{n_0}(z)/z$.
+$n_0$ the normalizing product is empty, so $v_{n_0}(z)=e_{n_0}(z)/z$.
 Their minimum $m_0>0$ depends only on $n_0$ and $R$, not on $N$. The
 chain stops in this row with probability above one half. The
 stopping time is bounded, so $v_N(z_N)$ is the mean of the stopped
@@ -236,11 +183,11 @@ value, and $v_N(z_N)\ge m_0/2$. The
 product normalizer is a positive constant times $N^{2a}$ in the
 limit. Hence
 \[
- \liminf_N N^{2a}\frac{d_N(z_N)}{z_N}>0.
+ \liminf_N N^{2a}\frac{e_N(z_N)}{z_N}>0.
 \]
 By Lemma~\ref{lem:derivative-limits} for the conditional start,
 the first differences converge, and this limit is $4h_a'(0)$. For
-even $N$ we use that $d_N(2)$ is the sum of two adjacent central first
+even $N$ we use that $e_N(2)$ is the sum of two adjacent central first
 differences. So
 $h_a'(0)>0$. Since $h_a$ is unimodal, its mode is to the right of
 zero.
