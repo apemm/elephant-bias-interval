@@ -244,8 +244,8 @@ $\ell_j$. Zeros do not affect either conclusion.
 $u_t(q)=-\ell_t(1-q)$ and
 $d_t^{(1-q)}(t-1-k)=-d_t^{(q)}(k)$.
 For $0<q\le1/2$, the right boundary history therefore has pattern
-contained in $(-,+,-)$. For $q=0$ it is nonpositive throughout. The conditional count is at
-most $t-1$, so $u_t=-P_t(t-1)\le0$.
+contained in $(-,+,-)$. If $q=0$ then $A_t\le t-1$, so $P_t(t)=0$ and
+$u_t=-P_t(t-1)\le0$.
 
 \emph{The first augmented row.} Fix $N$ and, for $1\le t\le N$, form the augmented row
 \[
@@ -253,15 +253,13 @@ most $t-1$, so $u_t=-P_t(t-1)\le0$.
        d_t(0),\ldots,d_t(t-1),
        u_{t+1},\ldots,u_N).
 \]
-We claim that for $q\le1/2$ its first row is contained in $(+,-,+,-)$.
-We must also allow zeros at $\ell_1=u_1=2q-1$. Suppose $Z_1$
-contained four ordered signs $-,+,-,+$. If the second lay in the
-reversed left history, the first two would give
-a positive left edge followed in time by a negative one, which is
-impossible. Otherwise the last three lie in the right history and have
-signs $+,-,+$. For $q>0$, their reflected negatives give the forbidden pattern
-$(-,+,-)$ in the left history at bias $1-q$. For $q=0$, they contradict
-the nonpositive right history. This also covers $N=1$.
+Let $q\le1/2$. The first row $Z_1$ is the left history read
+backwards, followed by the right history, and the two share the entry
+$\ell_1=u_1=2q-1$. The left history has pattern contained in $(-,+)$,
+so read backwards its pattern is contained in $(+,-)$. The right
+history has pattern contained in $(-,+,-)$, or in $(-)$ when $q=0$.
+Hence the pattern of $Z_1$ is contained in $(+,-,+,-)$. This is where
+the four signs of the proposition come from.
 
 \emph{One step.} Every entry of $Z_{t+1}$ is a nonnegative combination of adjacent entries
 of $Z_t$. The interior entries use \eqref{eq:bias-first-diff}. The two new
@@ -327,21 +325,22 @@ At an integer center $\Delta_{n+1}(k)=0$ by reflection. Terms outside the
 support vanish. This proves the induction. In particular, the
 central first difference of an odd row is nonnegative.
 
-We now keep only the half favored by the start, namely the spatial
-indices $2k+1\ge t$ in $Z_t$. At $t=1$ its pattern is contained in $(+,-)$. The central entry is
-$2q-1\ge0$, followed by the future right boundary values
-$u_s(q)=-\ell_s(1-q)$. Since
-$1-q\le1/2$, their pattern is contained in $(+,-)$ by
-\eqref{eq:bias-edge-increments}. We now rule out a negative difference followed by a positive one,
-also among the future boundary entries. Suppose such a pair first
-appeared in the next row. Choose a same-sign parent for each entry.
-By the remark after Lemma~\ref{lem:interleave} the first parent comes before the second.
-The sole possible parent outside the previous half occurs at the new
-central difference of an odd row. That entry is nonnegative, so it
-cannot begin the forbidden pair. More explicitly, if a negative entry
-at index $i$ of row $t+1$ satisfies $2i+1\ge t+1$, then $2i>t$, so both its parents satisfy $2k+1\ge t$. A positive entry further
-right has its parents strictly after these, as before. By induction,
-no restricted augmented row contains the pair.
-A strict valley would contain such two adjacent differences by
-telescoping, which proves the claim.
+We now keep only the half favored by the start, namely the entries
+of $Z_t$ with spatial index $2k+1\ge t$ together with the right
+history. At $t=1$ this list is the central entry $2q-1\ge0$ followed
+by the future right end values $u_s(q)=-\ell_s(1-q)$. Since
+$1-q\le1/2$, its pattern is contained in $(+,-)$ by
+\eqref{eq:bias-edge-increments}, so it has no negative entry followed
+by a positive one. Suppose that such a pair first appears at time
+$t+1$, with the negative entry at index $i$. Choose a parent of the
+same sign for each of the two entries. By the remark after
+Lemma~\ref{lem:interleave} the first parent comes before the second.
+The only entry of the half at time $t+1$ that has a parent outside the
+half at time $t$ is the central difference of an odd row, and it is
+nonnegative by the first part. So it is not the negative entry. Hence
+$2i>t$, and both parents of the negative entry satisfy $2k+1\ge t$.
+The two parents then form a negative entry followed by a positive one
+in the half at time $t$, which is a contradiction. A strict valley
+would contain two such differences by telescoping, which proves the
+claim.
 \end{proof}

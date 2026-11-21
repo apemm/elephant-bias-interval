@@ -16,7 +16,7 @@ Proposition~\ref{prop:all-bias-modes} for $\varepsilon<1$. The limit
 density exists only in the superdiffusive range $\varepsilon<\frac14$.
 Conditional on $X_1=1$, $S_k/k^a$ converges almost surely to
 $\mathcal L_a$~\cite[Theorem~3.7]{bercu2018}. The fair-start limit
-$\mathcal L^\circ_a$ has the law of $\xi\mathcal L_a$, where $\xi$ is a fair sign independent of
+$\mathcal L^\circ_a$ has the law of $\varsigma\mathcal L_a$, where $\varsigma$ is a fair sign independent of
 $\mathcal L_a$~\cite[(1.3) and (1.6)]{glr2026}. Both limits have positive,
 bounded, and smooth densities~\cite[Theorem~1.3]{glr2026}, the
 densities $h_a$ and $g_a$ of the introduction.
@@ -62,12 +62,12 @@ We call the statement on convexity in Theorem~\ref{thm:two-modes} the
 curvature partition. The proof of Theorem~\ref{thm:bias-continuity}
 uses it for the sign of $g_a'$ on each side of the mode.
 
-A real function $v$ has \emph{values at most} $\Pi$ if
+A real function $v$ has \emph{sign pattern at most} $\Pi$ if
 $\operatorname{sp}(v(y_1),\ldots,v(y_j))\preceq\Pi$ for every
 $y_1<\cdots<y_j$.
 
 \begin{proof}
-We first show that $g_a''$ has values at most $\Pi_5$. Then we show
+We first show that $g_a''$ has sign pattern at most $\Pi_5$. Then we show
 that $g_a$ has no strict valley on $[0,\infty)$, which gives the two
 cases. Finally the $\Pi_5$ bound and the behavior of $g_a$ at zero and
 at infinity give the sign pattern of $g_a''$.
@@ -84,7 +84,7 @@ interval. Hence on a fixed compact interval the interpolant uses only
 interior second differences for large $N$. The lattice spacing is
 $2N^{-a}$, so for large $N$ any fixed points $y_1<\cdots<y_j$ lie in
 different lattice cells. Lemmas~\ref{lem:interleave}
-and~\ref{lem:sp-limit} therefore give values at most $\Pi_5$.
+and~\ref{lem:sp-limit} therefore give sign pattern at most $\Pi_5$.
 
 
 \emph{Monotone shape.} Proposition~\ref{prop:dominant-half} and
@@ -92,13 +92,13 @@ Lemma~\ref{lem:derivative-limits}, with $r=0$, show that $g_a$
 has no strict valley on $[0,\infty)$. Such a valley would persist
 at nearby lattice points under locally uniform convergence.
 
-If every increment on $[0,\infty)$ is nonpositive, case (a)
+If $g_a$ is nonincreasing on $[0,\infty)$, case (a)
 holds. Otherwise choose $y_1<y_2$ with $g_a(y_1)<g_a(y_2)$.
-Integrability supplies $y_3<y_4$, both beyond $y_2$, with
+Since $g_a$ is integrable, there are $y_3<y_4$, both beyond $y_2$, with
 $g_a(y_3)>g_a(y_4)$. The no-valley property excludes any later increase,
 so $g_a$ attains a maximum on $[0,\infty)$ at some $\kappa$.
 The absence of a strict valley makes it nondecreasing before
-$\kappa$ and nonincreasing afterward. The positive increment forces
+$\kappa$ and nonincreasing afterward. Since $g_a(y_1)<g_a(y_2)$, we have
 $\kappa>0$. If $g_a(0)=g_a(\kappa)$,
 it would be constant on $[0,\kappa]$, contrary to analyticity
 and the positive increment. Thus case (b) holds.
@@ -151,9 +151,8 @@ increasing. Numerically $a_*\approx0.66881$
 
 \subsection{Arbitrary initial bias}
 
-Write $h_a$ for the density of $\mathcal L_a$ and
-$g_{a,q}(x)=q h_a(x)+(1-q)h_a(-x)$ for initial bias
-$\Prob(X_1=1)=q$. Thus $g_{a,1/2}=g_a$.
+Recall that $g_{a,q}(x)=q h_a(x)+(1-q)h_a(-x)$ is the limit density
+for the initial bias $q$, and that $g_{a,1/2}=g_a$.
 
 \begin{theorem}[the interval of bimodal biases]\label{thm:biased-limit-modes}
 For every $a\in(1/2,1)$ and $q\in[0,1]$, the density $g_{a,q}$ has at

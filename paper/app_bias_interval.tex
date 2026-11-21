@@ -1,15 +1,20 @@
 \subsection{The conditional density increases at zero}
 
+Theorem~\ref{thm:bias-continuity} needs $h_a'>0$ on the whole negative
+half-line. Unimodality of $h_a$~\cite{glrs2025} gives only
+$h_a'\ge0$ there.
+
 \begin{lemma}[a balanced start]\label{lem:balanced-start}
-Fix the first two steps to be $+1,-1$. For $0\le a\le1$, the count
-law at each length $n\ge2$ is log-concave, with positive support
-$\{1,\ldots,n-1\}$. If $1/2<a<1$, its limiting density
-$f_a^{+-}$ is symmetric and log-concave, with
-$(f_a^{+-})'(t)<0$ for $t>0$.
-Consequently the density conditional on a positive first step satisfies
+For $1/2<a<1$ the density conditional on a positive first step
+satisfies
 \[
  h_a'(t)>0\qquad(t<0).
 \]
+The proof uses the walk whose first two steps are $+1,-1$. For
+$0\le a\le1$ its count law at each length $n\ge2$ is log-concave, with
+positive support $\{1,\ldots,n-1\}$. For $1/2<a<1$ its limiting density
+$f_a^{+-}$ is symmetric and log-concave, with $(f_a^{+-})'(t)<0$ for
+$t>0$.
 \end{lemma}
 
 \begin{proof}
