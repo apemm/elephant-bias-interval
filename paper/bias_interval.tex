@@ -72,10 +72,16 @@ quartic-top proofs, and made final copy edits and link updates. The
 reviews informed the framing and the shortening of an earlier combined
 manuscript, and suggested proving without computation that the bias
 boundary is positive, that the transition is unique, and that the critical
-top is quartic. All proofs in the paper were written by me, and the aforementioned suggestions are the only Claude suggestions that led to a new proof or result. The Lean files and their coverage map in
-\nolinkurl{lean/PaperD} were generated with
-Claude Opus 5.5 from my statements and proofs; I checked that they build
-and audited their axioms. GPT-6 Astra (OpenAI, through Codex) edited my
+top is quartic. Later reviews of the exposition led me to reorder the
+paper, add plans to the long proofs, rename several symbols, and they pointed out the gaps that I closed in the proofs of
+Lemmas~A.3 and~A.4 and of the proposition in Appendix~E. All proofs in
+the paper were written by me, and the aforementioned suggestions are the
+only Claude suggestions that led to a new proof or result. I wrote the
+Python scripts in \nolinkurl{certificates}, and Claude Opus 5.5 revised
+them and redrew Figure~1 to be more descriptive. The Lean files and their coverage map in
+\nolinkurl{lean/PaperD} were generated with Claude Opus 5.5 from my
+statements and proofs, and I checked that they build and audited their
+axioms. GPT-6 Astra (OpenAI, through Codex) edited my
 drafts for grammar, concision, and consistent notation, checked the
 citations, and read the proofs for errors. It reported inconsistent
 notation, and it helped me close a gap, after the setup, in my first proof
