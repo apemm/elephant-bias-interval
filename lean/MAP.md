@@ -4,7 +4,7 @@ The Lean library `PaperD` (root `PaperD.lean`) checks the finite sign
 arguments of Section 2 and the analytic threshold of Theorem 3.2. This table
 lists, for each result of the paper, the formal statement and its explicit
 inputs. Results are named by their LaTeX labels, with the theorem numbers of
-version 1.2 in parentheses. A row marked "written proof" has no Lean theorem.
+version 1.3 in parentheses. A row marked "written proof" has no Lean theorem.
 
 The only axioms are `propext`, `Classical.choice` and `Quot.sound`. The audit
 is in [`verification-manifest.json`](verification-manifest.json) and
