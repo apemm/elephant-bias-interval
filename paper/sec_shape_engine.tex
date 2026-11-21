@@ -83,24 +83,23 @@ a parent of $\eta_i$. Two entries of $\eta$ with opposite signs have
 different parents, so their parents come in the same order.
 
 The recurrence does not control the values that arrive at the two
-ends. Hence we put them in the list from the start. Fix the final
-length $N$ and take $t<N$. To the left of the differences of time $t$
-we write the left end values of the times $N,N-1,\dots,t+1$. To the
-right we write the right end values of the times $t+1,\dots,N$. We
-call this list the augmented row (Figure~\ref{fig:augmented-rows},
-drawn for first differences). The end value that arrives at time
-$t+1$ is then already next to its place. Hence the recurrence controls
+ends, so we carry them along from the start. Fix the final length $N$
+and let $t<N$. To the left of the differences of time $t$ we write the
+left end values of the times $N,N-1,\dots,t+1$, and to the right we
+write the right end values of the times $t+1,\dots,N$. We call this
+list the augmented row (Figure~\ref{fig:augmented-rows}, drawn for
+first differences). The end value that arrives at time $t+1$ is
+already next to its place in this list, so the recurrence controls
 the whole list. Proposition~\ref{prop:all-bias-modes} treats the
 whole row and Proposition~\ref{prop:dominant-half} the half
 $2k+1\ge t$. Theorem~\ref{thm:five-blocks} uses the same row for
 second differences, where both histories consist of the values $s_t$.
 
-We need two definitions for a law $P$ on the integers. A
-\emph{modal plateau} is a maximal run of consecutive integers on which
-$P$ is constant and which has a strictly smaller value on each side.
-A \emph{strict valley} is a triple $i<j<k$ with
-$P(j)<\min\{P(i),P(k)\}$. For a function on the line a strict valley
-is a triple of points $x<y<z$ with the same inequality.
+Let $P$ be a law on the integers. We call a maximal run of
+consecutive integers on which $P$ is constant a \emph{modal plateau}
+of $P$ if $P$ is strictly smaller on each side of it. We call a triple
+$i<j<k$ a \emph{strict valley} of $P$ if $P(j)<\min\{P(i),P(k)\}$, and
+we use the same words for a function on the line and points $x<y<z$.
 
 \begin{figure}[ht]
 \centering
@@ -192,10 +191,9 @@ modes. Moreover, there are no integers $i_0<\cdots<i_4$ for which
 \end{proposition}
 
 \begin{proof}
-The proof has three steps. We bound the sign pattern of the left
-end values. We bound the pattern of the first augmented row for
-$q\le1/2$. We show that one step of the walk adds no sign. Reflection
-then gives $q\ge1/2$.
+We first bound the sign pattern of the left end values, and then
+that of the first augmented row when $q\le1/2$. Then we show that one
+step of the walk adds no sign. Reflection gives the case $q\ge1/2$.
 Put $a=1-2\varepsilon$ and $r_t(k)=\varepsilon+ak/t$. The forward equation
 is
 \[
@@ -297,12 +295,12 @@ when $q\le1/2$.
 \end{proposition}
 
 \begin{proof}
-The proof has two parts. First we show by induction that the law is
+We first show by induction that the law is
 at least its reflection on the upper half. Then we run the induction
 of Proposition~\ref{prop:all-bias-modes} on the right half of the
 augmented row
 $Z_t=(\ell_N,\ldots,\ell_{t+1},d_t(0),\ldots,d_t(t-1),u_{t+1},\ldots,u_N)$
-of that proof. The first part is used at one entry only.
+of that proof, where the first part is used at one entry only.
 Write the bias explicitly as $P_{n,q}$ and put
 \[
  \Delta_n(k)=P_{n,q}(k)-P_{n,1-q}(k)

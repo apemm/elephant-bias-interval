@@ -11,19 +11,21 @@ at once which one the ant is in. The ant's shoes are outside the door.
 \end{minipage}
 
 The elephant random walk repeats or reverses one of its own earlier
-steps, chosen uniformly. With enough memory it is superdiffusive, and
-its rescaled position has a random limit that is not
-Gaussian~\cite{dasilva2013}. If the first step is $+1$, the limit has a
-density with one peak~\cite{glrs2025}. If the first step is $+1$ with
-probability $q$, the limit density mixes this density, with weight $q$,
-and its mirror image, with weight $1-q$. We ask for which $q$ the
-mixture has two peaks. Figure~\ref{fig:phase} shows the answer. When the
-memory parameter $a$ is near one, the one-peak density sits away from
-zero and the fair mixture has two peaks. When $a$ is near $1/2$ the
-density is spread out and the two peaks merge. This picture
-is not a proof. A mixture of a one-peak density and its mirror image
-can have more than two peaks. Also the weights that give two peaks do
-not have to form an interval. The weights giving two peaks are known for normal
+steps, chosen uniformly. If its first step is $+1$ with probability
+$q$, for which $q$ does its limit law have two peaks? When the memory is
+strong enough the walk is superdiffusive, and its rescaled position
+converges to a random limit that is not
+Gaussian~\cite{dasilva2013}. Given that the first step is $+1$, this
+limit has a density with one peak~\cite{glrs2025}. So with initial bias
+$q$ the limit density is a mixture of this density, with weight $q$,
+and of its mirror image, with weight $1-q$ (Figure~\ref{fig:phase}).
+When the memory parameter $a$ is close to one the one-peak density lies
+far from zero, so the fair mixture has two peaks, and when $a$ is close
+to $1/2$ the density is spread out and the two peaks merge. But a
+mixture of a one-peak density and its mirror image can have more than
+two peaks, and the weights that give two peaks do not have to form an
+interval. The weights giving two peaks
+are known for normal
 mixtures~\cite{eisenberger1964,robertsonfryer1969}, but here the
 density is not Gaussian. Gu\'erin, Laulin, Raschel, and Simon
 conjecture that the biases $q$ with two peaks form an open interval
@@ -124,20 +126,17 @@ at $a_*$ is quartic by Lemma~\ref{lem:analytic-quartic}.}
 
 \subsection{From finite signs to the limiting shape}\label{sec:architecture}
 
-Our proof starts from the induction of Gu\'erin, Laulin, Raschel, and
-Simon for the count law given $X_1=1$. We need this induction for
-every initial bias, and for second differences when the start is fair.
-For this we have to control the values at the two ends of the count
-law. We also need the sign of $g_a''(0)$, and we get it from an
-integral with a positive weight. These two parts are new. The hard
-steps are the end values, the inequality $h_a'(0)>0$, and the proof
-that $g_a''(0)$ changes sign only once. The passage to the limit and
-the regularity of the densities are routine.
+Gu\'erin, Laulin, Raschel, and Simon prove that $h_a$ has one peak by
+an induction on the number of steps, for the count law given $X_1=1$.
+We use the same induction for every initial bias, and for second
+differences when the start is fair. It then fails at the two ends of
+the count law. We control the values there, and this is the first new
+part of the proof. The second new part is a formula for $g_a''(0)$ as
+an integral with a positive weight, which we use to show that
+$g_a''(0)$ changes sign only once. Passing to the limit is routine, and so is the
+regularity of the densities.
 
-\emph{Counting sign changes.} Gu\'erin, Laulin, Raschel, and Simon
-prove unimodality by induction on the number of steps, for the count
-law given $X_1=1$. We run such an induction for every $q$, and for a
-fair start also for second differences. One step of the walk replaces
+\emph{Counting sign changes.} One step of the walk replaces
 each difference of the count law, away from the two ends, by a positive
 combination of two neighboring differences. Such a step cannot add a
 sign change. This is classical variation
