@@ -7,9 +7,7 @@ difference of the count law changes sign at most four times. For
 every initial bias, Proposition~\ref{prop:all-bias-modes} shows
 that the count law has at most two modal plateaus. The limit
 transfer is Lemma~\ref{lem:derivative-limits} in
-Appendix~\ref{app:modes}. The number of steps is called $t$ in the
-recursions, $n$ in statements about one fixed length, and $N$ when a
-final length is fixed and earlier times are compared with it.
+Appendix~\ref{app:modes}.
 
 We first treat second differences under a fair start. Let
 $0<\varepsilon<\frac12$, $a=1-2\varepsilon$, and $r_t(k)=\varepsilon+ak/t$. For $t\ge1$ and every integer $k$ we write
@@ -17,10 +15,8 @@ $P_t(k)=\Prob(A_t=k)$, which is $0$ unless $0\le k\le t$, and
 \[
  D_t(k)=P_t(k+1)-2P_t(k)+P_t(k-1).
 \]
-We also put $s_t=D_t(1)=P_t(0)-2P_t(1)+P_t(2)$ for $t\ge2$. Note
-that $D_t(k)>0$ means that the count law is convex at $k$, and
-$D_t(k)<0$ means that it is concave there. By symmetry $s_t$ is the
-value of $D_t$ next to each end.
+We also put $s_t=D_t(1)=P_t(0)-2P_t(1)+P_t(2)$ for $t\ge2$. Thus $D_t$ is the second difference of the count law, and $s_t$ is
+its value next to an end.
 
 \begin{lemma}[recurrence for the second difference]\label{lem:D-rec}
 For every $t\ge1$ and every integer $k$,
