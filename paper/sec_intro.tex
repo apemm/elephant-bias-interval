@@ -20,10 +20,10 @@ and its mirror image, with weight $1-q$. We ask for which $q$ the
 mixture has two peaks. Figure~\ref{fig:phase} shows the answer. When the
 memory parameter $a$ is near one, the one-peak density sits away from
 zero and the fair mixture has two peaks. When $a$ is near $1/2$ the
-density is spread out and the two peaks merge. But nothing general
-makes this simple. A mixture of a one-peak density and its mirror image
-can have more than two peaks, and nothing forces the weights that give
-two peaks to form an interval. The weights giving two peaks are known for normal
+density is spread out and the two peaks merge. This picture
+is not a proof. A mixture of a one-peak density and its mirror image
+can have more than two peaks. Also the weights that give two peaks do
+not have to form an interval. The weights giving two peaks are known for normal
 mixtures~\cite{eisenberger1964,robertsonfryer1969}, but here the
 density is not Gaussian. Gu\'erin, Laulin, Raschel, and Simon
 conjecture that the biases $q$ with two peaks form an open interval
@@ -124,14 +124,15 @@ at $a_*$ is quartic by Lemma~\ref{lem:analytic-quartic}.}
 
 \subsection{From finite signs to the limiting shape}\label{sec:architecture}
 
-Two parts of the argument are new. The first is the treatment of the
-two ends in the count of sign changes, which lets the induction of
-Gu\'erin, Laulin, Raschel, and Simon run for every initial bias and
-for second differences. The second is a positive-weight integral for
-the central curvature of the fair density. The transfer of the finite
-bounds to the limit and the regularity of the densities are routine.
-The hard steps are the end values of the finite recursion, the
-inequality $h_a'(0)>0$, and the single crossing of the curvature.
+We add two things to the argument of Gu\'erin, Laulin, Raschel, and
+Simon. First, we treat the two ends when we count sign changes. Then
+their induction works for every initial bias and for second
+differences. Second, we write the central curvature of the fair
+density as an integral with a positive weight. Passing the finite
+bounds to the limit is routine, and so is the regularity of the
+densities. Three steps are hard. They are the end values of the finite
+recursion, the inequality $h_a'(0)>0$, and the fact that the curvature
+changes sign only once.
 
 \emph{Counting sign changes.} Gu\'erin, Laulin, Raschel, and Simon
 prove unimodality by induction on the number of steps, for the count
