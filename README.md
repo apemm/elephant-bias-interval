@@ -30,6 +30,13 @@ The script writes `paper/bias_interval.pdf` and, in `dist/`, the arXiv
 source archive, the journal package and the arXiv metadata. It stops if the
 LaTeX log has an overfull box, an undefined reference or an error.
 
+The paper is posted as [arXiv:2611.14576](https://arxiv.org/abs/2611.14576),
+and I submitted it to the Electronic Journal of Probability on 24 November
+2026. The script builds the submitted version from the same sources, as
+`dist/bias_interval_journal.pdf` and `dist/journal_submission.zip`. It drops
+the epigraph, uses the class option `EJP` without `preprint`, and places
+Figure 2 at the top of its page.
+
 ## Check the numerical values
 
 The numerical values are not used in any proof. To recompute their interval

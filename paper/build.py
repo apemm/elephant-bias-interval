@@ -6,8 +6,12 @@ Run from any folder with `python -B paper/build.py`. The script
 2. compiles bias_interval.tex with pdflatex in a temporary folder and
    refuses overfull boxes, undefined references and LaTeX errors,
 3. copies the PDF to paper/bias_interval.pdf,
-4. writes dist/arxiv_source.tar.gz, dist/journal_submission.zip and
-   dist/arxiv_metadata.json.
+4. writes dist/arxiv_source.tar.gz and dist/arxiv_metadata.json,
+5. builds the version submitted to the Electronic Journal of Probability and
+   writes it to dist/bias_interval_journal.pdf and dist/journal_submission.zip.
+   That version drops the epigraph, uses the class option EJP without
+   preprint, with the front matter of the EJP sample file, and places
+   Figure 2 at the top of its page.
 
 It needs pdflatex and the Python package pypdf.
 """
@@ -83,20 +87,76 @@ try:
 except (OSError, subprocess.CalledProcessError):
     pass
 
-with tempfile.TemporaryDirectory(prefix='bias-interval-') as folder:
-    work = Path(folder)
-    for f in sources:
-        target = work / f.relative_to(PAPER)
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(f, target)
+def compile_in(work):
     for _ in range(3):
         subprocess.run(['pdflatex', '-interaction=nonstopmode', '-halt-on-error', MAIN],
                        cwd=work, env=env, stdout=subprocess.DEVNULL, check=False)
     log = (work / MAIN).with_suffix('.log').read_text(encoding='utf-8', errors='replace')
     for bad in ['Overfull', '! ', 'undefined', 'Undefined', 'multiply defined', 'Rerun to get']:
         require(bad not in log, f'LaTeX log contains "{bad}"')
+    return (work / MAIN).with_suffix('.pdf')
+
+
+def copy_sources(work):
+    for f in sources:
+        target = work / f.relative_to(PAPER)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(f, target)
+
+
+with tempfile.TemporaryDirectory(prefix='bias-interval-') as folder:
+    work = Path(folder)
+    copy_sources(work)
     pdf = PAPER / 'bias_interval.pdf'
-    shutil.copy2((work / MAIN).with_suffix('.pdf'), pdf)
+    shutil.copy2(compile_in(work), pdf)
+
+# The journal version: the same sources with three edits.
+EPIGRAPH = (r'\noindent\begin{minipage}{\linewidth}' '\n'
+            r'\begin{quote}\small\itshape' '\n')
+JOURNAL_FRONT = ('\\SUBMITTED{November 24, 2026}\n\\ARXIVID{2611.14576v3}\n'
+                 '\\VOLUME{0}\n\\YEAR{2026}\n\\PAPERNUM{0}\n\\DOI{10.1214/YY-TN}\n')
+
+
+def journal_edit(name, text):
+    text = text.replace('\r\n', '\n')
+    if name == MAIN:
+        require(text.count(r'\documentclass[EJP,preprint]{ejpecp}') == 1, 'class line changed')
+        text = text.replace(r'\documentclass[EJP,preprint]{ejpecp}', r'\documentclass[EJP]{ejpecp}')
+        anchor = '\\AMSSUBJSECONDARY{60F05; 60C05}\n'
+        require(text.count(anchor) == 1, 'subject line changed')
+        text = text.replace(anchor, anchor + JOURNAL_FRONT)
+    if name == 'sec_intro.tex':
+        require(text.count(EPIGRAPH) == 1, 'epigraph changed')
+        start = text.index(EPIGRAPH)
+        end = text.index(r'\end{minipage}', start) + len(r'\end{minipage}')
+        text = text[:start] + text[end:].lstrip('\n')
+    if name == 'sec_shape_engine.tex':
+        require(text.count(r'\begin{figure}[ht]') == 1, 'figure placement changed')
+        text = text.replace(r'\begin{figure}[ht]', r'\begin{figure}[t]')
+    return text
+
+
+journal_names = []
+with tempfile.TemporaryDirectory(prefix='bias-interval-journal-') as folder:
+    work = Path(folder)
+    copy_sources(work)
+    for f in sources:
+        if f.suffix == '.tex':
+            target = work / f.relative_to(PAPER)
+            target.write_text(journal_edit(f.name, f.read_text(encoding='utf-8')),
+                              encoding='utf-8', newline='\n')
+    journal_text = '\n'.join((work / f.relative_to(PAPER)).read_text(encoding='utf-8')
+                             for f in sources if f.suffix == '.tex')
+    require('anthill' not in journal_text, 'the journal version still has the epigraph')
+    journal_pdf = DIST / 'bias_interval_journal.pdf'
+    DIST.mkdir(exist_ok=True)
+    shutil.copy2(compile_in(work), journal_pdf)
+    with zipfile.ZipFile(DIST / 'journal_submission.zip', 'w', zipfile.ZIP_DEFLATED) as z:
+        z.write(journal_pdf, 'bias_interval.pdf')
+        for f in sources:
+            name = f.relative_to(PAPER).as_posix()
+            z.write(work / name, name)
+            journal_names.append(name)
 
 reader = PdfReader(pdf)
 pages = len(reader.pages)
@@ -116,10 +176,6 @@ with tarfile.open(DIST / 'arxiv_source.tar.gz', 'w:gz', format=tarfile.USTAR_FOR
         info = tarfile.TarInfo(name)
         info.size, info.mode, info.mtime = len(data), 0o644, 0
         tar.addfile(info, io.BytesIO(data))
-with zipfile.ZipFile(DIST / 'journal_submission.zip', 'w', zipfile.ZIP_DEFLATED) as z:
-    z.write(pdf, 'bias_interval.pdf')
-    for name in names:
-        z.write(PAPER / name, name)
 figure_count = source.count(r'\begin{figure}')
 metadata = {
     'title': title,
@@ -132,5 +188,6 @@ metadata = {
     'license': 'arXiv.org perpetual, non-exclusive license',
 }
 (DIST / 'arxiv_metadata.json').write_text(json.dumps(metadata, indent=2) + '\n', encoding='utf-8')
-print(json.dumps({'pages': pages, 'figures': figure_count, 'files': len(names),
+print(json.dumps({'pages': pages, 'journal pages': len(PdfReader(journal_pdf).pages),
+                  'figures': figure_count, 'files': len(names),
                   'citations': len(printed), 'disclosure': 'unchanged'}, indent=2))
